@@ -1,1 +1,1 @@
-# Site-Tokyo-Drift
+Criação de Site Individual com o tema do filme "Velozes e Furiosos - Desafio em Tokyo" para a matéria de Pesquisa e Inovação na Sprint 3 do primeiro semeste de Ciências da Computação na faculdade SPTECH

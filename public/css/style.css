@@ -1,0 +1,115 @@
+/* GERAL */
+body {
+    font-family: Arial, Helvetica, sans-serif;
+}
+
+.cabecalho {
+    width: 100%;
+    position: relative;
+}
+
+.cabecalho .img-cabecalho {
+    width: 100%;
+    filter: brightness(40%);
+}
+
+.cabecalho .img-titulo {
+    width: 40%;
+    position: absolute;
+    top: 50%; /* Posiciona no meio verticalmente */
+    left: 50%; /* Posiciona no meio horizontalmente */
+    transform: translate(-50%, -50%); /* Centraliza perfeitamente */
+}
+
+.header {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color: #D9D9D9;
+}
+
+.header a {
+    margin: 10px 15px;
+    color: #000000;
+    text-decoration: solid;
+    font-size: 20px;
+}
+
+.header .agora {
+    font-size: 22px;
+    color: #FF6A00;
+}
+
+footer {
+    background-color: #313131;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 15px 0px;
+}
+
+footer p {
+    color: #D9D9D9;
+    font-size: 15px;
+}
+
+/* HOME */
+.conteudo-1, .conteudo-2 {
+    padding: 50px 0px;
+}
+
+.conteudo-1 .container-1, .conteudo-2 .container-3 {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    justify-content: space-between;
+    margin-bottom: 20px;
+    padding: 0px 70px;
+}
+
+.conteudo-1 .container-1 .div-img-container-1, .conteudo-2 .container-3 .div-img-container-3{
+    width: 40%;
+}
+
+.conteudo-1 .container-1 .div-img-container-1 .img-container-1, .conteudo-2 .container-3 .div-img-container-3 .img-container-3{
+    height: 550px;
+    width: 100%;
+}
+
+.conteudo-1 .container-1 .div-texto-container-1, .conteudo-2 .container-3 .div-texto-container-3 {
+    height: 550px;
+    width: 50%;
+}
+
+.conteudo-1 .container-1 .div-texto-container-1 .texto-container-1, .conteudo .container-2 .texto-container-2, .conteudo-2 .container-3 .div-texto-container-3 .texto-container-3{
+    margin: 0px;
+    text-align: justify;
+}
+
+.container-2 {
+    display: flex;
+    margin-bottom: 20px;
+    padding: 0px 70px;
+}
+
+.div-img-fundo {
+    width: 100%;
+    position: relative;
+}
+
+.img-fundo {
+    width: 100%;
+    filter: brightness(40%) blur(2px);
+}
+
+.texto-fundo {
+    width: 70%;
+    position: absolute;
+    top: 50%; /* Posiciona no meio verticalmente */
+    left: 50%; /* Posiciona no meio horizontalmente */
+    transform: translate(-50%, -50%); /* Centraliza perfeitamente */
+    color: #ffffff;
+    font-weight: bold;
+    text-align: center;
+    font-size: 18px;
+}
