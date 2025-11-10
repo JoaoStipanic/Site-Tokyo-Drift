@@ -16,22 +16,26 @@ body {
     display: flex;
     align-items: center;
     justify-content: center;
-    background-color: #c0c0c0;
+    /* background-color: #313131; */
+    background-image: url(../assets/imgs/fundo-header.jpg);
+    background-position: center center;
+    background-size: cover;
     position: sticky; /*fixar na tela*/
     top: 0px;
     z-index: 999; /*Ultima camada*/
+    font-weight: bolder;
 }
 
 .header a {
     margin: 10px 15px;
-    color: #000000;
+    color: #ed6b18;
     text-decoration: solid;
     font-size: 20px;
 }
 
 .header .agora {
     font-size: 22px;
-    color: #FF6A00;
+    color: #ffe20a;
 }
 
 footer {
@@ -117,4 +121,8 @@ footer p {
 .img-card {
     width: 70%;
     align-self: center;
+}
+
+.titulo-card {
+    justify-self: center;
 }
