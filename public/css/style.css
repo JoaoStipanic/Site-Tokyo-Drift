@@ -1,4 +1,17 @@
 /* GERAL */
+@font-face {
+  font-family: 'AntiqueOliveNordDItalic';
+  src: url('AntiqueOliveNordDItalic.woff2') format('woff2'),
+       url('AntiqueOliveNordDItalic.woff') format('woff');
+  font-weight: normal;
+  font-style: italic;
+}
+
+.p-header {
+  font-family: 'AntiqueOliveNordDItalic', sans-serif;
+  font-style: italic;
+}
+
 body {
     font-family: Arial, Helvetica, sans-serif;
     margin: 0px;
@@ -6,11 +19,6 @@ body {
 
 .cabecalho {
     width: 100%;
-    min-height: 300px;
-    background-image: url(../assets/imgs/cabecalho.jpg);
-    background-size: cover;
-    background-repeat: no-repeat;
-    
 }
 
 .cabecalho .img-cabecalho {
@@ -22,7 +30,6 @@ body {
     display: flex;
     align-items: center;
     justify-content: center;
-    /* background-color: #313131; */
     background-image: url(../assets/imgs/fundo-header.jpg);
     background-position: center center;
     background-size: cover;
@@ -30,6 +37,7 @@ body {
     top: 0px;
     z-index: 999; /*Ultima camada*/
     font-weight: bolder;
+    border-bottom: 1px #ffffff solid;
 }
 
 .header a {
@@ -42,6 +50,15 @@ body {
 .header .agora {
     font-size: 22px;
     color: #ffe20a;
+}
+
+.titulo-conteudo {
+    justify-self: center;
+    margin-bottom: 30px;
+}
+
+.conteudo-1 {
+    margin: 50px 70px;
 }
 
 footer {
@@ -58,10 +75,6 @@ footer p {
 }
 
 /* HOME */
-.conteudo-1 {
-    margin: 50px 70px;
-}
-
 .container-1 {
     display: flex;
     justify-content: center;
@@ -112,7 +125,7 @@ footer p {
 
 /* PERSONAGENS */
 .card {
-    border: solid black 2px;
+    border: solid #ed6b18 2px;
     border-radius: 20px;
     padding: 30px;
     width: 40%;
@@ -127,8 +140,80 @@ footer p {
 .img-card {
     width: 70%;
     align-self: center;
+    border-radius: 10px;
+    border: solid 1px #000000;
 }
 
 .titulo-card {
     justify-self: center;
+}
+
+/* LOGIN */
+.conteudo-login {
+    width: 100%;
+    height: auto;
+    display: flex;
+    align-items: center;
+    border-bottom: 1px #ffffff solid;
+    padding: 60px 0px;
+}
+
+.container-login {
+    width: 100%;
+}
+
+.card-login {
+    width: 60%;
+    background-image: url(../assets/imgs/drift2.jpg);
+    background-position: center center;
+    background-size: cover;
+    background-repeat: no-repeat;
+    border-radius: 10px;
+    justify-self: center;
+    justify-items: center;
+    justify-content: center;
+    padding: 30px;
+}
+
+.texto-container-login {
+    margin: 10px;
+    color: #ffffff;
+    font-size: 22px;
+}
+
+input {
+    width: 99%;
+    height: 40px;
+    border-radius: 10px;
+    border: solid 3px #bb4c07;
+    justify-self: center;
+    justify-content: center;
+    justify-items: center;
+    font-size: 18px;
+}
+
+.p-login {
+    margin: 0px;
+    color: #ffffff;
+}
+
+.p-login a {
+    color: #bb4c07;;
+}
+
+button {
+    width: 100%;
+    height: 48px;
+    background-color: #bb4c07;
+    border-radius: 10px;
+    border: solid 3px #bb4c07;
+    color: #ffffff;
+    font-size: 20px;
+}
+
+.span-mensagem {
+    display: flex;
+    color: #ffe20a;
+    justify-self: center;
+    margin-top: 5px;
 }
