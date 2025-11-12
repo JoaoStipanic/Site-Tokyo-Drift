@@ -1,12 +1,4 @@
 /* GERAL */
-@font-face {
-  font-family: 'AntiqueOliveNordDItalic';
-  src: url('AntiqueOliveNordDItalic.woff2') format('woff2'),
-       url('AntiqueOliveNordDItalic.woff') format('woff');
-  font-weight: normal;
-  font-style: italic;
-}
-
 .p-header {
   font-family: 'AntiqueOliveNordDItalic', sans-serif;
   font-style: italic;
@@ -156,6 +148,7 @@ footer p {
     align-items: center;
     border-bottom: 1px #ffffff solid;
     padding: 60px 0px;
+    background-color: #ffffff;
 }
 
 .container-login {
@@ -163,7 +156,7 @@ footer p {
 }
 
 .card-login {
-    width: 60%;
+    width: 70%;
     background-image: url(../assets/imgs/drift2.jpg);
     background-position: center center;
     background-size: cover;
@@ -172,17 +165,26 @@ footer p {
     justify-self: center;
     justify-items: center;
     justify-content: center;
+    justify-content: space-evenly;
     padding: 30px;
+}
+
+.div-login {
+    width: 40%;
 }
 
 .texto-container-login {
     margin: 10px;
     color: #ffffff;
-    font-size: 22px;
+    font-size: 20px;
+}
+
+.input-login {
+    width: 98.6%;
 }
 
 input {
-    width: 99%;
+    width: 97%;
     height: 40px;
     border-radius: 10px;
     border: solid 3px #bb4c07;
@@ -190,6 +192,10 @@ input {
     justify-content: center;
     justify-items: center;
     font-size: 18px;
+}
+
+input::placeholder {
+    padding-left: 10px;
 }
 
 .p-login {
@@ -201,14 +207,32 @@ input {
     color: #bb4c07;;
 }
 
-button {
+.button {
     width: 100%;
     height: 48px;
-    background-color: #bb4c07;
+    background: linear-gradient(90deg, #bb4c07, #FF8C00, #c9ab00);
     border-radius: 10px;
     border: solid 3px #bb4c07;
     color: #ffffff;
     font-size: 20px;
+    cursor: pointer;
+}
+
+
+/* CADASTRO */
+.card-cadastro {
+    display: flex;
+    width: 80%;
+    background-image: url(../assets/imgs/drift2.jpg);
+    background-position: center center;
+    background-size: cover;
+    background-repeat: no-repeat;
+    border-radius: 10px;
+    justify-self: center;
+    justify-items: center;
+    justify-content: center;
+    justify-content: space-evenly;
+    padding: 30px;
 }
 
 .span-mensagem {
@@ -216,4 +240,22 @@ button {
     color: #ffe20a;
     justify-self: center;
     margin-top: 5px;
+    font-size: 16px;
+}
+
+.button-info {
+    border: solid 2px #ffffff;
+    border-radius: 50px;
+    padding: 2px 8px;
+    cursor: pointer;
+}
+
+.div-info {
+    background-color: #ffffff;
+    margin: 0px;
+    margin-top: 15px;
+    border-radius: 10px;
+    text-align: center;
+    padding: 10px;
+    display: none;
 }
