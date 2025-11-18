@@ -40,10 +40,10 @@
                 <span class="span-mensagem" id="span_nome"></span>
                 <br><br>
 
-                <!-- <p class="texto-container-login">Digite seu Sobrenome</p>
-                <input oninput="analisarSobrenome()" type="text" id="sobrenome_input"><br>
+                <p class="texto-container-login">Digite seu Sobrenome</p>
+                <input type="text" id="sobrenome_input"><br>
                 <span class="span-mensagem" id="span_sobrenome"></span>
-                <br><br> -->
+                <br><br>
 
                 <p class="texto-container-login">Digite seu E-mail</p>
                 <input type="email" id="email_input"><br>
@@ -288,8 +288,10 @@
     //Recupere o valor da nova input pelo nome do id
     // Agora vá para o método fetch logo abaixo
     var nomeVar = nome_input.value;
+    var sobrenomeVar = sobrenome_input.value;
     // var cpfVar = cpf_input.value;
     var emailVar = email_input.value;
+    var telefone = telefone_input.value;
     var senhaVar = senha_input.value;
     var confirmacaoSenhaVar = confirmacao_senha_input.value;
     // var codigoVar = codigo_input.value;
@@ -298,6 +300,7 @@
     // Verificando se há algum campo em branco
     if (
       nomeVar == "" ||
+      sobrenomeVar == "" ||
       emailVar == "" ||
       senhaVar == "" ||
       confirmacaoSenhaVar == ""
@@ -312,6 +315,12 @@
     } else if (nomeVar.length <= 1) {
         cardErro.style.display = "block";
         mensagem_erro.innerHTML = "(Mensagem de erro para nome menor ou igual a 1 caracter";
+        // finalizarAguardar();
+        return false;
+
+    } else if (sobrenomeVar.length <= 1) {
+        cardErro.style.display = "block";
+        mensagem_erro.innerHTML = "(Mensagem de erro para sobrenome menor ou igual a 1 caracter";
         // finalizarAguardar();
         return false;
 
@@ -341,6 +350,7 @@
         // crie um atributo que recebe o valor recuperado aqui
         // Agora vá para o arquivo routes/usuario.js
         nomeServer: nomeVar,
+        sobrenomeServer: sobrenomeVar,
         emailServer: emailVar,
         senhaServer: senhaVar,
         confirmacaoSenhaServer: confirmacaoSenhaVar
