@@ -51,10 +51,10 @@
                 <br>
             </div>
             <div class="div-login">
-                <!-- <p class="texto-container-login">Digite seu Telefone Celular</p>
+                <p class="texto-container-login">Digite seu Telefone Celular</p>
                 <input type="number" id="telefone_input" placeholder="Ex: 00912345678"><br>
                 <span class="span-mensagem" id="span_telefone"></span>
-                <br><br> -->
+                <br><br>
 
                 <div>
                     <p class="texto-container-login">Digite sua Senha</p>
@@ -289,19 +289,17 @@
     // Agora vá para o método fetch logo abaixo
     var nomeVar = nome_input.value;
     var sobrenomeVar = sobrenome_input.value;
-    // var cpfVar = cpf_input.value;
     var emailVar = email_input.value;
     var telefone = telefone_input.value;
     var senhaVar = senha_input.value;
     var confirmacaoSenhaVar = confirmacao_senha_input.value;
-    // var codigoVar = codigo_input.value;
-    // var idEmpresaVincular
 
     // Verificando se há algum campo em branco
     if (
       nomeVar == "" ||
       sobrenomeVar == "" ||
       emailVar == "" ||
+      telefoneVar == "" ||
       senhaVar == "" ||
       confirmacaoSenhaVar == ""
       // codigoVar == "" ||
@@ -330,6 +328,12 @@
         // finalizarAguardar();
         return false;
 
+    } else if (telefoneVar.length != 11) {
+        cardErro.style.display = "block";
+        mensagem_erro.innerHTML = "(Mensagem de erro para telefone diferente de 11 caracteres";
+        // finalizarAguardar();
+        return false;
+
     } else if (senhaVar.length < 6 || senhaVar != confirmacaoSenhaVar) {
         cardErro.style.display = "block";
         mensagem_erro.innerHTML = "(Mensagem de erro para senha menor ou igual a 6 caracteres ou confirmação de senha errada";
@@ -352,6 +356,7 @@
         nomeServer: nomeVar,
         sobrenomeServer: sobrenomeVar,
         emailServer: emailVar,
+        telefoneServer: telefoneVar,
         senhaServer: senhaVar,
         confirmacaoSenhaServer: confirmacaoSenhaVar
       }),
