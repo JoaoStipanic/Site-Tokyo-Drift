@@ -1,219 +1,423 @@
 <!DOCTYPE html>
-<html lang="pt-BR">
+<html lang="pt-br">
+
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="css/style.css">
-    <script src="js/cadastro.js"></script>
-    <title>Personagens</title>
+  <meta charset="UTF-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+  <title>Cadastro</title>
+
+  <script src="./js/sessao.js"></script>
+  <link rel="stylesheet" href="./css/style.css" />
 </head>
-<body>
-    <div class="cabecalho">
-        <img class="img-cabecalho" src="assets/imgs/cabecalho.jpg" alt="">
+
+<body onload="listar()">
+  <div class="cabecalho">
+      <img class="img-cabecalho" src="assets/imgs/cabecalho.jpg" alt="">
+  </div>
+  <header class="header">
+      <p class="p-header"><a href="home.html">Home</a></p>
+      <p class="p-header"><a href="personagens.html">Personagens</a></p>
+      <p class="p-header"><a href="sobre.html">Sobre mim</a></p>
+      <p class="p-header"><a href="quiz.html">Quiz</a></p>
+      <p class="p-header"><a href="login.html" class="agora">Login</a></p>
+  </header>
+
+
+  <div class="conteudo-login">
+    <div class="alerta_erro">
+      <div class="card_erro" id="cardErro">
+        <span id="mensagem_erro"></span>
+      </div>
     </div>
-    <header class="header">
-        <p class="p-header"><a href="home.html">Home</a></p>
-        <p class="p-header"><a href="personagens.html">Personagens</a></p>
-        <p class="p-header"><a href="sobre.html">Sobre mim</a></p>
-        <p class="p-header"><a href="quiz.html">Quiz</a></p>
-        <p class="p-header"><a href="login.html" class="agora">Login</a></p>
-    </header>
+    <div class="container-login">
+        <h1 class="titulo-conteudo" style="margin-top: 0px;">Faça o seu <span style="color: #ed6b18;">Cadastro</span> aqui</h1>
+        <div class="card-cadastro">
+            <div class="div-login">
+                <p class="texto-container-login">Digite seu Nome</p>
+                <input type="text" id="nome_input"><br>
+                <span class="span-mensagem" id="span_nome"></span>
+                <br><br>
 
-    <div class="conteudo-login">
-        <div class="container-login">
-            <h1 class="titulo-conteudo" style="margin-top: 0px;">Faça o seu <span style="color: #ed6b18;">Cadastro</span> aqui</h1>
-            <div class="card-cadastro">
-                <div class="div-login">
-                    <p class="texto-container-login">Digite seu Nome</p>
-                    <input oninput="analisarNome()" type="text" id="input_nome"><br>
-                    <span class="span-mensagem" id="span_nome"></span>
-                    <br><br>
+                <!-- <p class="texto-container-login">Digite seu Sobrenome</p>
+                <input oninput="analisarSobrenome()" type="text" id="sobrenome_input"><br>
+                <span class="span-mensagem" id="span_sobrenome"></span>
+                <br><br> -->
 
-                    <p class="texto-container-login">Digite seu Sobrenome</p>
-                    <input oninput="analisarSobrenome()" type="text" id="input_sobrenome"><br>
-                    <span class="span-mensagem" id="span_sobrenome"></span>
-                    <br><br>
+                <p class="texto-container-login">Digite seu E-mail</p>
+                <input type="email" id="email_input"><br>
+                <span class="span-mensagem" id="span_email"></span>
+                <br>
+            </div>
+            <div class="div-login">
+                <!-- <p class="texto-container-login">Digite seu Telefone Celular</p>
+                <input type="number" id="telefone_input" placeholder="Ex: 00912345678"><br>
+                <span class="span-mensagem" id="span_telefone"></span>
+                <br><br> -->
 
-                    <p class="texto-container-login">Digite seu E-mail</p>
-                    <input oninput="analisarEmail()" type="email" id="input_email"><br>
-                    <span class="span-mensagem" id="span_email"></span>
-                    <br>
+                <div>
+                    <p class="texto-container-login">Digite sua Senha</p>
+                    <!-- <button class="button-info" onclick="info()">?</button> -->
                 </div>
-                <div class="div-login">
-                    <p class="texto-container-login">Digite seu Telefone Celular</p>
-                    <input oninput="analisarTelefone()" type="number" id="input_telefone" placeholder="Ex: 00912345678"><br>
-                    <span class="span-mensagem" id="span_telefone"></span>
-                    <br><br>
+                <input type="text" id="senha_input"><br>
+                <!-- <div class="div-info" id="div_info">
+                    Deve conter mais de 8 dígitos, <br>
+                    caractéres especiais e números
+                </div> -->
+                <br><br>
 
-                    <div>
-                        <p class="texto-container-login">Digite sua Senha</p> <button class="button-info" onclick="info()">?</button>
-                    </div>
-                    <input oninput="analisarSenha()" type="text" id="input_senha"><br>
-                    <div class="div-info" id="div_info">
-                        Deve conter mais de 8 dígitos, <br>
-                        caractéres especiais e números
-                    </div>
-                    <br><br>
+                <p class="texto-container-login">Confirme sua Senha</p>
+                <input type="text" id="confirmacao_senha_input"><br>
+                <span class="span-mensagem" id="span_senhaConfirm"></span>
+                <br><br>
 
-                    <p class="texto-container-login">Confirme sua Senha</p>
-                    <input oninput="analisarSenhaConfirm()" type="text" id="input_senhaConfirm"><br>
-                    <span class="span-mensagem" id="span_senhaConfirm"></span>
-                    <br><br>
-
-                    <button class="button">Fazer cadastro</button>
-                </div>
+                <button onclick="cadastrar()" class="button">Fazer cadastro</button>
             </div>
         </div>
     </div>
+  </div>
+    
 
-    <footer>
+  <!-- <div class="login">
+    <div class="alerta_erro">
+      <div class="card_erro" id="cardErro">
+        <span id="mensagem_erro"></span>
+      </div>
+    </div>
+    <div class="container">
+      <div class="card card-cadastro">
+        <h2>Bem-vindo!</h2>
+        <div class="formulario"> -->
+          <!-- <div class="campo">
+            <span>Código de ativação:</span>
+            <input id="codigo_input" type="text" placeholder="Insira aqui seu código" />
+          </div> 
+          <div class="campo">
+            <span>Nome:</span>
+            <input id="nome_input" type="text" placeholder="Seu nome" />
+          </div>
+          <div class="campo">
+            <span>CPF:</span>
+            <input id="cpf_input" type="number" placeholder="Seu CPF" />
+          </div>
+          <div class="campo">
+            <span>E-mail:</span>
+            <input id="email_input" type="text" placeholder="meuemail@provedor.com" />
+          </div>
+          <div class="campo">
+            <span>Senha:</span>
+            <input id="senha_input" type="password" placeholder="******" />
+          </div>
+          <div class="campo">
+            <span>Confirmação da Senha:</span>
+            <input id="confirmacao_senha_input" type="password" placeholder="******" />
+          </div>
+          <button class="botao" onclick="cadastrar()">Cadastrar</button>
+        </div>
+        <div id="div_aguardar" class="loading-div">
+          <img src="./assets/circle-loading.gif" id="loading-gif" />
+        </div> -->
+<!-- 
+        <div id="div_erros_login"></div>
+      </div>
+    </div>
+  </div> -->
+
+
+  <footer>
         <p>Todos os direitos reservados ao João Vitor Stipanic Almeida</p>
     </footer>
 </body>
+
 </html>
 
 <script>
-    var listaNum = ["0", "1", "2", "3", "4", "5", "6", "7", "8", "9"];
-var listaEsp = ["!", "@", "#", "$", "%", "&", "*", "."];
-var nomeInvalido = false;
-var sobrenomeInvalido = false;
-var emailInvalido = false;
-var telefoneInvalido = false;
-var senhaInvalido = false;
 
-function info() {
-    if (div_info.style.display = 'none') {
-        div_info.style.display = 'block';
+  // Array para armazenar empresas cadastradas para validação de código de ativação 
+  let listaEmpresasCadastradas = [];
+
+  // var listaNum = ["0", "1", "2", "3", "4", "5", "6", "7", "8", "9"];
+  // var listaEsp = ["!", "@", "#", "$", "%", "&", "*", "."];
+  // var nomeInvalido = false;
+  // var sobrenomeInvalido = false;
+  // var emailInvalido = false;
+  // var telefoneInvalido = false;
+  // var senhaInvalido = false;
+
+  // function info() {
+  //   if (div_info.style.display = 'none') {
+  //       div_info.style.display = 'block';
         
-    }
-}
+  //   }
+  // }
 
-function analisarNome() {
-    var nome = input_nome.value;
+// function analisarNome() {
+//     var nome = nome_input.value;
 
-    if (nome == '') { // Verifica se o sobrenome não é vazio
-        nomeInvalido = true;
+//     if (nome == '') { // Verifica se o sobrenome não é vazio
+//         nomeInvalido = true;
 
-    } else if (nome.length <= 1) { // Verifica se o nome tem tamanho suficiente
-        nomeInvalido = true;
+//     } else if (nome.length <= 1) { // Verifica se o nome tem tamanho suficiente
+//         nomeInvalido = true;
 
-    } else {
-        nomeInvalido = false;
-    }
+//     } else {
+//         nomeInvalido = false;
+//     }
     
-    for (var i = 0; i < listaNum.length; i++) { // Percorre toda a lista de números
-        if (nome.includes(listaNum[i])) {
-            nomeInvalido = true; // marca como inválido, mas não sai do loop
-        }
-    }
+//     for (var i = 0; i < listaNum.length; i++) { // Percorre toda a lista de números
+//         if (nome.includes(listaNum[i])) {
+//             nomeInvalido = true; // marca como inválido, mas não sai do loop
+//         }
+//     }
 
-    if (nomeInvalido) { // Exibe o resultado apenas uma vez no final
-        span_nome.innerHTML = "Nome Inválido";
+//     if (nomeInvalido) { // Exibe o resultado apenas uma vez no final
+//         span_nome.innerHTML = "Nome Inválido";
 
-    } else {
-        span_nome.innerHTML = "";
-    }
-}
+//     } else {
+//         span_nome.innerHTML = "";
+//     }
+// }
 
-function analisarSobrenome() {
-    var sobrenome = input_sobrenome.value;
+// function analisarSobrenome() {
+//     var sobrenome = sobrenome_input.value;
 
-    if (sobrenome == '') { // Verifica se o sobrenome não é vazio
-        sobrenomeInvalido = true;
+//     if (sobrenome == '') { // Verifica se o sobrenome não é vazio
+//         sobrenomeInvalido = true;
 
-    } else if (sobrenome.length <= 1) { // Verifica se o sobrenome tem tamanho suficiente
-        sobrenomeInvalido = true;
+//     } else if (sobrenome.length <= 1) { // Verifica se o sobrenome tem tamanho suficiente
+//         sobrenomeInvalido = true;
 
-    } else {
-        sobrenomeInvalido = false;
-    }
+//     } else {
+//         sobrenomeInvalido = false;
+//     }
 
-    for (var i = 0; i < listaNum.length; i++) { // Percorre toda a lista de números
-        if (sobrenome.includes(listaNum[i])) {
-            sobrenomeInvalido = true; // marca como inválido, mas não sai do loop
-        }
-    }
+//     for (var i = 0; i < listaNum.length; i++) { // Percorre toda a lista de números
+//         if (sobrenome.includes(listaNum[i])) {
+//             sobrenomeInvalido = true; // marca como inválido, mas não sai do loop
+//         }
+//     }
 
     
-    if (sobrenomeInvalido) { // Exibe o resultado apenas uma vez no final
-        span_sobrenome.innerHTML = "Sobrenome Inválido";
+//     if (sobrenomeInvalido) { // Exibe o resultado apenas uma vez no final
+//         span_sobrenome.innerHTML = "Sobrenome Inválido";
+//     } else {
+//         span_sobrenome.innerHTML = "";
+//     }
+// }
+
+// function analisarEmail() {
+//     var email = email_input.value;
+
+//     if (email == '') {
+//         emailInvalido = true;
+
+//     } else if (!email.includes('@')) {
+//         emailInvalido = true
+
+//     } else if (!email.includes('.')) {
+//         emailInvalido = true;
+
+//     } else {
+//         emailInvalido = false;
+//     }
+
+//     if (emailInvalido) {
+//         span_email.innerHTML = "E-mail Inválido";
+
+//     } else {
+//         span_email.innerHTML = "";
+//     }
+// }
+
+// function analisarTelefone() {
+//     var telefone = telefone_input.value;
+
+//     if (telefone == '') {
+//         telefoneInvalido = true;
+
+//     } else if (telefone.length != 11 ) { // testarrrr ----------------------------------------------------------------------------
+//         telefoneInvalido = true;
+
+//     } else {
+//         telefoneInvalido = false;
+//     }
+
+//     if (telefoneInvalido) {
+//         span_telefone.innerHTML = "Telefone Inválido";
+
+//     } else {
+//         span_telefone.innerHTML = "";
+//     }
+// }
+
+// function analisarSenha() {
+//     var senha = senha_input.value;
+//     var senhaTam = true;
+//     var senhaNum = true;
+//     var senhaEsp = true;
+
+//     if (senha == '') {
+//         senhaInvalido = true;
+
+//     } else if (senha.length < 8) {
+//         senhaTam = true;
+//     }
+
+//     for (var i = 0; i < listaNum.length; i++) {
+//         if (senha.includes(listaNum[i])) {
+//             span_num.innerHTML = "De"
+//         }
+//     }
+
+//     for (var i = 0; i < listaEsp.length; i++) {
+//         if (senha.includes(listaEsp[i])) {
+//             senhaEsp = false;
+//         }
+//     }
+
+//     if (senhaTam && senhaEsp && senhaNum) {
+//         senhaInvalido
+//     }
+// }
+
+
+  function cadastrar() {
+    // aguardar();
+
+    //Recupere o valor da nova input pelo nome do id
+    // Agora vá para o método fetch logo abaixo
+    var nomeVar = nome_input.value;
+    // var cpfVar = cpf_input.value;
+    var emailVar = email_input.value;
+    var senhaVar = senha_input.value;
+    var confirmacaoSenhaVar = confirmacao_senha_input.value;
+    // var codigoVar = codigo_input.value;
+    // var idEmpresaVincular
+
+    // Verificando se há algum campo em branco
+    if (
+      nomeVar == "" ||
+      emailVar == "" ||
+      senhaVar == "" ||
+      confirmacaoSenhaVar == ""
+      // codigoVar == "" ||
+      // cpfVar == ""
+    ) {
+      cardErro.style.display = "block";
+      mensagem_erro.innerHTML = "(Mensagem de erro para todos os campos em branco)";
+      finalizarAguardar();
+      return false;
+
+    } else if (nomeVar.length <= 1) {
+        cardErro.style.display = "block";
+        mensagem_erro.innerHTML = "(Mensagem de erro para nome menor ou igual a 1 caracter";
+        finalizarAguardar();
+        return false;
+
+    } 
+    // else if (cpfVar.length != 11) {
+    //     cardErro.style.display = "block";
+    //     mensagem_erro.innerHTML = "(Mensagem de erro para cpf diferente de 11 caracteres";
+    //     finalizarAguardar();
+    //     return false;
+
+    // } 
+    else if (emailVar.includes('@') == false || emailVar.includes('.') == false) {
+        cardErro.style.display = "block";
+        mensagem_erro.innerHTML = "(Mensagem de erro para email sem @ ou sem .";
+        finalizarAguardar();
+        return false;
+
+    } else if (senhaVar.length < 6 || senhaVar != confirmacaoSenhaVar) {
+        cardErro.style.display = "block";
+        mensagem_erro.innerHTML = "(Mensagem de erro para senha menor ou igual a 6 caracteres ou confirmação de senha errada";
+        finalizarAguardar();
+        return false;
+
     } else {
-        span_sobrenome.innerHTML = "";
-    }
-}
+      setInterval(sumirMensagem, 5000);
 
-function analisarEmail() {
-    var email = input_email.value;
+    // Verificando se o código de ativação é de alguma empresa cadastrada
+    // for (let i = 0; i < listaEmpresasCadastradas.length; i++) {
+    //   if (listaEmpresasCadastradas[i].codigo_ativacao == codigoVar) {
+    //     idEmpresaVincular = listaEmpresasCadastradas[i].id
+    //     console.log("Código de ativação válido.");
+    //     break;
+    //   } else {
+    //     cardErro.style.display = "block";
+    //     mensagem_erro.innerHTML = "(Mensagem de erro para código inválido)";
+    //     finalizarAguardar();
+    //   }
+    // }
+  }
 
-    if (email == '') {
-        emailInvalido = true;
+    // Enviando o valor da nova input
+    fetch("/usuarios/cadastrar", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify({
+        // crie um atributo que recebe o valor recuperado aqui
+        // Agora vá para o arquivo routes/usuario.js
+        nomeServer: nomeVar,
+        emailServer: emailVar,
+        senhaServer: senhaVar,
+        confirmacaoSenhaServer: confirmacaoSenhaVar,
+        // idEmpresaVincularServer: idEmpresaVincular,
+        // cpfServer: cpfVar
+      }),
+    })
+      .then(function (resposta) {
+        console.log("resposta: ", resposta);
 
-    } else if (!email.includes('@')) {
-        emailInvalido = true
+        if (resposta.ok) {
+          cardErro.style.display = "block";
 
-    } else if (!email.includes('.')) {
-        emailInvalido = true;
+          mensagem_erro.innerHTML =
+            "Cadastro realizado com sucesso! Redirecionando para tela de Login...";
 
-    } else {
-        emailInvalido = false;
-    }
+          setTimeout(() => {
+            window.location = "login.html";
+          }, "2000");
 
-    if (emailInvalido) {
-        span_email.innerHTML = "E-mail Inválido";
-
-    } else {
-        span_email.innerHTML = "";
-    }
-}
-
-function analisarTelefone() {
-    var telefone = input_telefone.value;
-
-    if (telefone == '') {
-        telefoneInvalido = true;
-
-    } else if (telefone.length != 11 ) { // testarrrr ----------------------------------------------------------------------------
-        telefoneInvalido = true;
-
-    } else {
-        telefoneInvalido = false;
-    }
-
-    if (telefoneInvalido) {
-        span_telefone.innerHTML = "Telefone Inválido";
-
-    } else {
-        span_telefone.innerHTML = "";
-    }
-}
-
-function analisarSenha() {
-    var senha = input_senha.value;
-    var senhaTam = true;
-    var senhaNum = true;
-    var senhaEsp = true;
-
-    if (senha == '') {
-        senhaInvalido = true;
-
-    } else if (senha.length < 8) {
-        senhaTam = true;
-    }
-
-    for (var i = 0; i < listaNum.length; i++) {
-        if (senha.includes(listaNum[i])) {
-            span_num.innerHTML = "De"
+          limparFormulario();
+          finalizarAguardar();
+        } else {
+          throw "Houve um erro ao tentar realizar o cadastro!";
         }
+      })
+      .catch(function (resposta) {
+        console.log(`#ERRO: ${resposta}`);
+        finalizarAguardar();
+      });
+
+    return false;
     }
 
-    for (var i = 0; i < listaEsp.length; i++) {
-        if (senha.includes(listaEsp[i])) {
-            senhaEsp = false;
-        }
-    }
+  // Listando empresas cadastradas 
+  // function listar() {
+  //   fetch("/empresas/listar", {
+  //     method: "GET",
+  //   })
+  //     .then(function (resposta) {
+  //       resposta.json().then((empresas) => {
+  //         empresas.forEach((empresa) => {
+  //           listaEmpresasCadastradas.push(empresa);
 
-    if (senhaTam && senhaEsp && senhaNum) {
-        senhaInvalido
-    }
-}
+  //           console.log("listaEmpresasCadastradas")
+  //           console.log(listaEmpresasCadastradas[0].codigo_ativacao)
+  //         });
+  //       });
+  //     })
+  //     .catch(function (resposta) {
+  //       console.log(`#ERRO: ${resposta}`);
+  //     });
+  // }
+  
+
+  function sumirMensagem() {
+    cardErro.style.display = "none";
+  }
 </script>
