@@ -1,11 +1,16 @@
 <!DOCTYPE html>
-<html lang="pt-BR">
+<html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Quiz</title>
     <link rel="stylesheet" href="css/style.css">
-    <title>Home</title>
+    <link rel="stylesheet" href="css/style-quiz.css">
 </head>
+
+
+<!-- <body onload="onloadEsconder()"> -->
 <body>
     <div class="cabecalho">
         <img class="img-cabecalho" src="assets/imgs/cabecalho.jpg" alt="Capa do Velozes e Furiosos - Desafio em Tokyo">
@@ -17,13 +22,380 @@
         <p><a href="quiz.html">Quiz</a></p>
         <p><a href="login.html">Login</a></p>
     </header>
-
-    <div class="conteudo-1">
     
+    <div><button id="btnIniciarQuiz" class="button-quiz" onclick="iniciarQuiz()">INICIAR QUIZ</button></div>
+    <h2>Teste seu conhecimento sobre o filme Velozes e Furiosos: Desafio em Tóquio</h2>
+    <div class="container-quiz">
+    
+        <div id="pontuacao">
+            <div id="pontuacaoDuranteJogo" class="card-pontuacao">
+                <span class="pontos">Quantidade de acertos: <span id="spanCertas"></span></span><br>
+                <span class="pontos">Quantidade de erros: <span id="spanErradas"></span></span>
+            </div>
+        </div>
+
+        <div id="jogo" class="card-pergunta">
+
+            <div id="infoQuestao" style="padding: 15px 0px;">
+                <span>Questão atual: <span id="spanNumeroDaQuestaoAtual"></span> de <span id="qtdQuestoes"></span>
+                    questões.</span>
+            </div>
+
+            <div id="perguntaDaQuestaoAtual">
+                <span id="spanQuestaoExibida" class="text-bold"></span>
+            </div>
+
+            <div id="infoAlternativas">
+                <span>Escolha uma opção dentre as abaixo:</span>
+            </div>
+
+            <div id="opcoes" class="flex-colunar padding-8">
+                <span>
+                    <input type="radio" id="primeiraOpcao" name="option" class="radio" value="alternativaA" />
+                    <label for="primeiraOpcao" class="option" id="labelOpcaoUm"></label>
+                </span>
+                <span>
+                    <input type="radio" id="segundaOpcao" name="option" class="radio" value="alternativaB" />
+                    <label for="segundaOpcao" class="option" id="labelOpcaoDois"></label>
+                </span>
+                <span>
+                    <input type="radio" id="terceiraOpcao" name="option" class="radio" value="alternativaC" />
+                    <label for="terceiraOpcao" class="option" id="labelOpcaoTres"></label>
+                </span>
+                <span>
+                    <input type="radio" id="quartaOpcao" name="option" class="radio" value="alternativaD" />
+                    <label for="quartaOpcao" class="option" id="labelOpcaoQuatro"></label>
+                </span>
+            </div>
+
+            <div id="botoes" class="div-button">
+                <button onclick="submeter()" class="button-quiz" id="btnSubmeter">Submeter</button>
+                <button onclick="avancar()" class="button-quiz" id="btnProx" disabled>Avançar</button>
+                <!-- <button onclick="finalizar()" id="btnConcluir" disabled>Finalizar Quiz</button> -->
+            </div>
+            <div style="justify-content: center;">
+                <button class="button-quiz" style="align-self: center;" onclick="tentarNovamente()" id="btnTentarNovamente" disabled>Tentar novamente</button>
+            </div>
+
+        </div>
+
+        <div id="pontuacao1">
+            <div id="pontuacaoFinalJogo" class="card-pontuacao">
+                <span id="pontuacaoFinal" class="pontos">Pontuação Final:
+                    <span id="spanPontuacaoFinal">***</span>
+                </span>
+                <span id="msgFinal" class="width-fit-content">***</span>
+            </div>
+        </div>
     </div>
 
     <footer>
         <p>João Vitor Stipanic Almeida © 2025</p>
     </footer>
 </body>
+
 </html>
+<script>
+    const listaDeQuestoes = [
+        // 1
+        {   
+            pergunta: "Em qual ano o filme Velozes e Furiosos: Desafio em Tóquio foi lançado?",
+            alternativaA: "2004",
+            alternativaB: "2000",
+            alternativaC: "2006",
+            alternativaD: "2001",
+            alternativaCorreta: "alternativaC"
+        },
+
+        // 2
+        {
+            pergunta: "Qual o modelo do carro o personagem Han Lue dirige no filme?",
+            alternativaA: "Mazda RX-7",
+            alternativaB: "Nissan 350Z",
+            alternativaC: "Mazda RX-8",
+            alternativaD: "Mitsubishi Lancer EVO IX",
+            alternativaCorreta: "alternativaA"
+        },
+
+        // 3
+        {
+            pergunta: "Qual o nome da mulher que o personagem Sean Boswell se apaixona?",
+            alternativaA: "Mia",
+            alternativaB: "Neela",
+            alternativaC: "Letty",
+            alternativaD: "Suki",
+            alternativaCorreta: "alternativaB"
+        },
+
+        // 4
+        {
+            pergunta: "Em ordem cronológica de lançamendo, qual seria o número do filme Velozes e Furioso: Desafio em Tóquio?",
+            alternativaA: "1",
+            alternativaB: "4",
+            alternativaC: "2",
+            alternativaD: "3",
+            alternativaCorreta: "alternativaD"
+        },
+
+        // 5
+        {
+            pergunta: "No filme Velozes e Furiosos: Desafio em Tóquio, quem dirige esse carro?",
+            alternativaA: "Twinkie",
+            alternativaB: "Han",
+            alternativaC: "Takashi",
+            alternativaD: "Roman",
+            alternativaCorreta: "alternativaC"
+        },
+
+        // 6
+        {
+            pergunta: "Em qual cidade se passa o filme Velozes e Furiosos: Desafio em Tóquio?",
+            alternativaA: "Tóquio",
+            alternativaB: "Rio de Janeiro",
+            alternativaC: "Los Angeles",
+            alternativaD: "Dubai",
+            alternativaCorreta: "alternativaA"
+        },
+        
+        // 7
+        {
+            pergunta: "Que tipo de corrida é o foco central do filme Velozes e Furiosos: Desafio em Tóquio?",
+            alternativaA: "Racha",
+            alternativaB: "Rali",
+            alternativaC: "Drift",
+            alternativaD: "Stock Car",
+            alternativaCorreta: "alternativaC"
+        },
+        
+
+        // 8
+        {
+            pergunta: "Qual o nome do vilão principal do filme?",
+            alternativaA: "Cipher",
+            alternativaB: "Shawn",
+            alternativaC: "DK",
+            alternativaD: "Takashi",
+            alternativaCorreta: "alternativaD"
+        },
+
+        // 9
+        {
+            pergunta: "Sean Boswell vai para Tóquio para morar com quem?",
+            alternativaA: "Pai",
+            alternativaB: "Mãe",
+            alternativaC: "Irmão",
+            alternativaD: "Amigo",
+            alternativaCorreta: "alternativaA"
+        },
+
+        // 10
+        {
+            pergunta: "Onde se passa o início do filme Velozes e Furiosos: Desafio em Tóquio?",
+            alternativaA: "Japão",
+            alternativaB: "Estados Unidos",
+            alternativaC: "Brasil",
+            alternativaD: "China",
+            alternativaCorreta: "alternativaB"
+        },
+    ]
+
+    // variáveis globais    
+    let numeroDaQuestaoAtual = 0
+    let pontuacaoFinal = 0
+    let tentativaIncorreta = 0
+    let certas = 0
+    let erradas = 0
+    let quantidadeDeQuestoes = listaDeQuestoes.length
+    // let isUltima = numeroDaQuestaoAtual == quantidadeDeQuestoes-1 ? true : false
+
+    function onloadEsconder() {
+        document.getElementById('pontuacao').style.display = "none"
+        document.getElementById('jogo').style.display = "none"
+        document.getElementById('pontuacao1').style.display = "none"
+
+    }
+
+    function iniciarQuiz() {
+        document.getElementById('pontuacao').style.display = "flex"
+        document.getElementById('jogo').style.display = "block"
+        document.getElementById('pontuacao1').style.display = "flex"
+        document.getElementById('btnIniciarQuiz').style.display = "none"
+
+        document.getElementById('qtdQuestoes').innerHTML = quantidadeDeQuestoes
+
+        preencherHTMLcomQuestaoAtual(0)
+
+        btnSubmeter.disabled = false
+        btnProx.disabled = true
+        // btnConcluir.disabled = true
+        btnTentarNovamente.disabled = true
+    }
+
+    function preencherHTMLcomQuestaoAtual(index) {
+        habilitarAlternativas(true)
+        const questaoAtual = listaDeQuestoes[index]
+        numeroDaQuestaoAtual = index
+        console.log("questaoAtual")
+        console.log(questaoAtual)
+        document.getElementById("spanNumeroDaQuestaoAtual").innerHTML = Number(index) + 1 // ajustando porque o index começa em 0
+        document.getElementById("spanQuestaoExibida").innerHTML = questaoAtual.pergunta;
+        document.getElementById("labelOpcaoUm").innerHTML = questaoAtual.alternativaA;
+        document.getElementById("labelOpcaoDois").innerHTML = questaoAtual.alternativaB;
+        document.getElementById("labelOpcaoTres").innerHTML = questaoAtual.alternativaC;
+        document.getElementById("labelOpcaoQuatro").innerHTML = questaoAtual.alternativaD;
+    }
+
+    function submeter() {
+        const options = document.getElementsByName("option"); // recupera alternativas no html
+
+        let hasChecked = false
+        for (let i = 0; i < options.length; i++) {
+            if (options[i].checked) {
+                hasChecked = true
+                break
+            }
+        }
+
+        if (!hasChecked) {
+            alert("Não há alternativas escolhidas. Escolha uma opção.")
+        } else {
+            btnSubmeter.disabled = true
+            btnProx.disabled = false
+
+            habilitarAlternativas(false)
+
+            checarResposta()
+        }
+    }
+
+    function habilitarAlternativas(trueOrFalse) {
+        let opcaoEscolhida = trueOrFalse ? false : true
+
+        primeiraOpcao.disabled = opcaoEscolhida
+        segundaOpcao.disabled = opcaoEscolhida
+        terceiraOpcao.disabled = opcaoEscolhida
+        quartaOpcao.disabled = opcaoEscolhida
+
+    }
+
+    function avancar() {
+        btnProx.disabled = true
+        btnSubmeter.disabled = false
+
+        desmarcarRadioButtons()
+
+        if (numeroDaQuestaoAtual < quantidadeDeQuestoes - 1) {
+            preencherHTMLcomQuestaoAtual(numeroDaQuestaoAtual)
+        } else if (numeroDaQuestaoAtual == quantidadeDeQuestoes - 1) {
+            alert("Atenção... a próxima é a ultima questão!")
+            preencherHTMLcomQuestaoAtual(numeroDaQuestaoAtual)
+        } else {
+            finalizarJogo()
+        }
+        limparCoresBackgroundOpcoes()
+    }
+
+    function tentarNovamente() {
+        // atualiza a página
+        window.location.reload()
+    }
+
+    function checarResposta() {
+        const questaoAtual = listaDeQuestoes[numeroDaQuestaoAtual] // questão atual 
+        const respostaQuestaoAtual = questaoAtual.alternativaCorreta // qual é a resposta correta da questão atual
+
+        const options = document.getElementsByName("option"); // recupera alternativas no html
+
+        let alternativaCorreta = null // variável para armazenar a alternativa correta
+
+        options.forEach((option) => {
+            if (option.value === respostaQuestaoAtual) {
+                console.log("alternativaCorreta está no componente: " + alternativaCorreta)
+                alternativaCorreta = option.labels[0].id
+            }
+        })
+
+        // verifica se resposta assinalada é correta
+        options.forEach((option) => {
+            if (option.checked === true && option.value === respostaQuestaoAtual) {
+                document.getElementById(alternativaCorreta).classList.add("text-success-with-bg")
+                pontuacaoFinal++
+                certas++
+                document.getElementById("spanCertas").innerHTML = certas
+                numeroDaQuestaoAtual++
+            } else if (option.checked && option.value !== respostaQuestaoAtual) {
+                const wrongLabelId = option.labels[0].id
+
+                document.getElementById(wrongLabelId).classList.add("text-danger-with-bg")
+                document.getElementById(alternativaCorreta).classList.add("text-success-with-bg")
+                tentativaIncorreta++
+                erradas++
+                document.getElementById("spanErradas").innerHTML = erradas
+                numeroDaQuestaoAtual++
+            }
+        })
+    }
+
+    function limparCoresBackgroundOpcoes() {
+        const options = document.getElementsByName("option");
+        options.forEach((option) => {
+            document.getElementById(option.labels[0].id).classList.remove("text-danger-with-bg")
+            document.getElementById(option.labels[0].id).classList.remove("text-success-with-bg")
+        })
+    }
+
+    function desmarcarRadioButtons() {
+        const options = document.getElementsByName("option");
+        for (let i = 0; i < options.length; i++) {
+            options[i].checked = false;
+        }
+    }
+
+    function finalizarJogo() {
+        let textoParaMensagemFinal = null
+        let classComCoresParaMensagemFinal = null
+        const porcentagemFinalDeAcertos = pontuacaoFinal / quantidadeDeQuestoes
+
+        if (porcentagemFinalDeAcertos <= 0.3) {
+            textoParaMensagemFinal = "Parece que você não estudou..."
+            classComCoresParaMensagemFinal = "text-danger-with-bg"
+        }
+        else if (porcentagemFinalDeAcertos > 0.3 && porcentagemFinalDeAcertos < 0.9) {
+            textoParaMensagemFinal = "Pode melhorar na próxima, hein!"
+            classComCoresParaMensagemFinal = "text-warning-with-bg"
+        }
+        else if (porcentagemFinalDeAcertos >= 0.9) {
+            textoParaMensagemFinal = "Uau, parabéns!"
+            classComCoresParaMensagemFinal = "text-success-with-bg"
+        }
+
+        textoParaMensagemFinal += "<br> Você acertou " + Math.round((porcentagemFinalDeAcertos)*100) + "% das questões."
+
+
+        document.getElementById('msgFinal').innerHTML = textoParaMensagemFinal
+        document.getElementById('msgFinal').classList.add(classComCoresParaMensagemFinal) 
+        document.getElementById('spanPontuacaoFinal').innerHTML = pontuacaoFinal
+
+        document.getElementById('jogo').classList.add("text-new-gray") 
+
+        btnProx.disabled = true
+        btnSubmeter.disabled = true
+        // btnConcluir.disabled = true
+        btnTentarNovamente.disabled = false
+
+        fetch("/quiz/resultadoSalvar", {
+            method: "POST",
+            headers: {"Content-Type": "application/json",},
+            body: JSON.stringify({
+                fkUsuario: sessionStorage.ID_USUARIO,
+                fkQuiz: 1,
+                pontuacao: pontuacaoFinal
+            }),
+        })
+        .then(res => res.json())
+        .then(json => {
+            console.log("Resultado salvo:", json);
+        })
+        .catch(erro => console.error("Erro:", erro));
+    }
+</script>
