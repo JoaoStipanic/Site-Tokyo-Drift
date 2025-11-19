@@ -121,6 +121,7 @@ footer p {
     border-radius: 20px;
     padding: 30px;
     width: 40%;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
 }
 
 .centralizador {
@@ -167,6 +168,8 @@ footer p {
     justify-content: center;
     justify-content: space-evenly;
     padding: 30px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
+
 }
 
 .div-login {
@@ -233,6 +236,7 @@ input::placeholder {
     justify-content: center;
     justify-content: space-evenly;
     padding: 30px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
 }
 
 .span-mensagem {
@@ -256,4 +260,12 @@ input::placeholder {
     vertical-align: middle;
     margin-left: 5px;
     justify-self: center;
+}
+
+dialog {
+    padding: 40px;
+    border: 2px solid #aaaaaa;
+    border-radius: 5px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
+    font-size: 22px;
 }
