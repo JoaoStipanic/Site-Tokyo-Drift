@@ -250,12 +250,10 @@ input::placeholder {
     cursor: pointer;
 }
 
-.div-info {
-    background-color: #ffffff;
-    margin: 0px;
-    margin-top: 15px;
-    border-radius: 10px;
-    text-align: center;
-    padding: 10px;
-    display: none;
+.info img {
+    width: 20px;
+    height: 20px;
+    vertical-align: middle;
+    margin-left: 5px;
+    justify-self: center;
 }
