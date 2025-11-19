@@ -26,11 +26,12 @@
 
 
   <div class="conteudo-login">
-    <div class="alerta_erro">
+    <dialog id="dialog_mensagem">Cadastro realizado com sucesso! <br> Redirecionando para tela de Login...</dialog>
+    <!-- <div class="alerta_erro">
       <div class="card_erro" id="cardErro">
         <span id="mensagem_erro"></span>
       </div>
-    </div>
+    </div> -->
     <div class="container-login">
         <h1 class="titulo-conteudo" style="margin-top: 0px;">Faça o seu <span style="color: #ed6b18;">Cadastro</span> aqui</h1>
         <div class="card-cadastro">
@@ -300,8 +301,12 @@ function analisarSenha() {
     } else if (senhaInvalido) {
         return false;
 
+    } else if (senhaVar != confirmacaoSenhaVar) {
+        alert('Confirme sua senha corretamente!')
+        return false;
+      
     } else {
-      setInterval(sumirMensagem, 5000);
+      setInterval(sumirMensagem, 2000);
   }
 
     // Enviando o valor da nova input
@@ -325,30 +330,24 @@ function analisarSenha() {
         console.log("resposta: ", resposta);
 
         if (resposta.ok) {
-          cardErro.style.display = "block";
-
-          mensagem_erro.innerHTML =
-            "Cadastro realizado com sucesso! Redirecionando para tela de Login...";
+          dialog_mensagem.style.display = 'block';
 
           setTimeout(() => {
             window.location = "login.html";
           }, "2000");
 
-          limparFormulario();
-          // finalizarAguardar();
         } else {
           throw "Houve um erro ao tentar realizar o cadastro!";
         }
       })
       .catch(function (resposta) {
         console.log(`#ERRO: ${resposta}`);
-        // finalizarAguardar();
       });
 
     return false;
     }
 
   function sumirMensagem() {
-    cardErro.style.display = "none";
+    dialog_mensagem.style.display = 'none'
   }
 </script>
