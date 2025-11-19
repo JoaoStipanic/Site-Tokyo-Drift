@@ -36,7 +36,7 @@
         <div class="card-cadastro">
             <div class="div-login">
                 <p class="texto-container-login">Digite seu Nome</p>
-                <input type="text" id="nome_input"><br>
+                <input type="text" id="nome_input" oninput="analisarNome()"><br>
                 <span class="span-mensagem" id="span_nome"></span>
                 <br><br>
 
@@ -52,7 +52,7 @@
             </div>
             <div class="div-login">
                 <p class="texto-container-login">Digite seu Telefone Celular</p>
-                <input type="number" id="telefone_input" placeholder="Ex: 00912345678"><br>
+                <input type="number" id="telefone_input" placeholder="Ex: 00912345678" oninput="analisarTelefone()"><br>
                 <span class="span-mensagem" id="span_telefone"></span>
                 <br><br>
 
@@ -77,47 +77,8 @@
         </div>
     </div>
   </div>
-    
 
-  <!-- <div class="login">
-    <div class="alerta_erro">
-      <div class="card_erro" id="cardErro">
-        <span id="mensagem_erro"></span>
-      </div>
-    </div>
-    <div class="container">
-      <div class="card card-cadastro">
-        <h2>Bem-vindo!</h2>
-        <div class="formulario"> -->
-          <!-- <div class="campo">
-            <span>Código de ativação:</span>
-            <input id="codigo_input" type="text" placeholder="Insira aqui seu código" />
-          </div> 
-          <div class="campo">
-            <span>Nome:</span>
-            <input id="nome_input" type="text" placeholder="Seu nome" />
-          </div>
-          <div class="campo">
-            <span>CPF:</span>
-            <input id="cpf_input" type="number" placeholder="Seu CPF" />
-          </div>
-          <div class="campo">
-            <span>E-mail:</span>
-            <input id="email_input" type="text" placeholder="meuemail@provedor.com" />
-          </div>
-          <div class="campo">
-            <span>Senha:</span>
-            <input id="senha_input" type="password" placeholder="******" />
-          </div>
-          <div class="campo">
-            <span>Confirmação da Senha:</span>
-            <input id="confirmacao_senha_input" type="password" placeholder="******" />
-          </div>
-          <button class="botao" onclick="cadastrar()">Cadastrar</button>
-        </div>
-        <div id="div_aguardar" class="loading-div">
-          <img src="./assets/circle-loading.gif" id="loading-gif" />
-        </div> -->
+
 <!-- 
         <div id="div_erros_login"></div>
       </div>
@@ -137,12 +98,12 @@
   // Array para armazenar empresas cadastradas para validação de código de ativação 
   let listaEmpresasCadastradas = [];
 
-  // var listaNum = ["0", "1", "2", "3", "4", "5", "6", "7", "8", "9"];
-  // var listaEsp = ["!", "@", "#", "$", "%", "&", "*", "."];
-  // var nomeInvalido = false;
+  var listaNum = ["0", "1", "2", "3", "4", "5", "6", "7", "8", "9"];
+  var listaEsp = ["!", "@", "#", "$", "%", "&", "*", "."];
+  var nomeInvalido = false;
   // var sobrenomeInvalido = false;
   // var emailInvalido = false;
-  // var telefoneInvalido = false;
+  var telefoneInvalido = false;
   // var senhaInvalido = false;
 
   // function info() {
@@ -152,32 +113,32 @@
   //   }
   // }
 
-// function analisarNome() {
-//     var nome = nome_input.value;
+function analisarNome() {
+    var nome = nome_input.value;
 
-//     if (nome == '') { // Verifica se o sobrenome não é vazio
-//         nomeInvalido = true;
+    if (nome == '') { // Verifica se o sobrenome não é vazio
+        nomeInvalido = true;
 
-//     } else if (nome.length <= 1) { // Verifica se o nome tem tamanho suficiente
-//         nomeInvalido = true;
+    } else if (nome.length <= 1) { // Verifica se o nome tem tamanho suficiente
+        nomeInvalido = true;
 
-//     } else {
-//         nomeInvalido = false;
-//     }
+    } else {
+        nomeInvalido = false;
+    }
     
-//     for (var i = 0; i < listaNum.length; i++) { // Percorre toda a lista de números
-//         if (nome.includes(listaNum[i])) {
-//             nomeInvalido = true; // marca como inválido, mas não sai do loop
-//         }
-//     }
+    for (var i = 0; i < listaNum.length; i++) { // Percorre toda a lista de números
+        if (nome.includes(listaNum[i])) {
+            nomeInvalido = true; // marca como inválido, mas não sai do loop
+        }
+    }
 
-//     if (nomeInvalido) { // Exibe o resultado apenas uma vez no final
-//         span_nome.innerHTML = "Nome Inválido";
+    if (nomeInvalido) { // Exibe o resultado apenas uma vez no final
+        span_nome.innerHTML = "Nome Inválido";
 
-//     } else {
-//         span_nome.innerHTML = "";
-//     }
-// }
+    } else {
+        span_nome.innerHTML = "";
+    }
+}
 
 // function analisarSobrenome() {
 //     var sobrenome = sobrenome_input.value;
@@ -230,26 +191,26 @@
 //     }
 // }
 
-// function analisarTelefone() {
-//     var telefone = telefone_input.value;
+function analisarTelefone() {
+    var telefone = telefone_input.value;
 
-//     if (telefone == '') {
-//         telefoneInvalido = true;
+    if (telefone == '') {
+        telefoneInvalido = true;
 
-//     } else if (telefone.length != 11 ) { // testarrrr ----------------------------------------------------------------------------
-//         telefoneInvalido = true;
+    } else if (telefone.length != 11 ) { // testarrrr ----------------------------------------------------------------------------
+        telefoneInvalido = true;
 
-//     } else {
-//         telefoneInvalido = false;
-//     }
+    } else {
+        telefoneInvalido = false;
+    }
 
-//     if (telefoneInvalido) {
-//         span_telefone.innerHTML = "Telefone Inválido";
+    if (telefoneInvalido) {
+        span_telefone.innerHTML = "Telefone Inválido";
 
-//     } else {
-//         span_telefone.innerHTML = "";
-//     }
-// }
+    } else {
+        span_telefone.innerHTML = "";
+    }
+}
 
 // function analisarSenha() {
 //     var senha = senha_input.value;
