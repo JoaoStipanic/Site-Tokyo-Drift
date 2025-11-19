@@ -26,12 +26,7 @@
 
 
   <div class="conteudo-login">
-    <dialog id="dialog_mensagem">Cadastro realizado com sucesso! <br> Redirecionando para tela de Login...</dialog>
-    <!-- <div class="alerta_erro">
-      <div class="card_erro" id="cardErro">
-        <span id="mensagem_erro"></span>
-      </div>
-    </div> -->
+    <dialog id="dialog_mensagem"></dialog>
     <div class="container-login">
         <h1 class="titulo-conteudo" style="margin-top: 0px;">Faça o seu <span style="color: #ed6b18;">Cadastro</span> aqui</h1>
         <div class="card-cadastro">
@@ -61,18 +56,13 @@
                     <p class="texto-container-login">Digite sua Senha 
                       <abbr class="info" title="Deve conter mais de 8 dígitos, caractéres especiais e números!"><img src="assets/imgs/info.png" alt="Símbolo de i"></abbr>
                     </p> 
-                    <!-- <button class="button-info" onclick="info()">?</button> -->
                 </div>
-                <input type="text" id="senha_input" oninput="analisarSenha()"><br>
+                <input type="password" id="senha_input" oninput="analisarSenha()"><br>
                 <span class="span-mensagem" id="span_senha"></span>
-                <!-- <div class="div-info" id="div_info">
-                    Deve conter mais de 8 dígitos, <br>
-                    caractéres especiais e números
-                </div> -->
                 <br><br>
 
                 <p class="texto-container-login">Confirme sua Senha</p>
-                <input type="text" id="confirmacao_senha_input"><br>
+                <input type="password" id="confirmacao_senha_input"><br>
                 <span class="span-mensagem" id="span_senhaConfirm"></span>
                 <br><br>
 
@@ -81,14 +71,6 @@
         </div>
     </div>
   </div>
-
-
-<!-- 
-        <div id="div_erros_login"></div>
-      </div>
-    </div>
-  </div> -->
-
 
   <footer>
         <p>Todos os direitos reservados ao João Vitor Stipanic Almeida</p>
@@ -333,6 +315,7 @@ function analisarSenha() {
 
         if (resposta.ok) {
           dialog_mensagem.style.display = 'block';
+          dialog_mensagem.innerHTML = `Cadastro realizado com sucesso! <br> Redirecionando para tela de Login...`
 
           setTimeout(() => {
             window.location = "login.html";

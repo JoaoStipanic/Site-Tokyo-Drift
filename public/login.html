@@ -26,11 +26,12 @@
 
 
     <div class="conteudo-login">
-        <div class="alerta_erro">
+        <dialog id="dialog_mensagem"></dialog>
+        <!-- <div class="alerta_erro">
             <div class="card_erro" id="cardErro">
                 <span id="mensagem_erro"></span>
             </div>
-        </div>
+        </div> -->
         <div class="container-login">
             <h1 class="titulo-conteudo" style="margin-top: 0px;">Efetue  o seu <span style="color: #ed6b18;">Login</span></h1>
             <div class="card-login">
@@ -48,6 +49,10 @@
                 <p class="p-login">Não tem conta? <a href="cadastro.html">Cadastre-se aqui</a></p>
             </div>
 
+            <!-- <div id="div_aguardar" class="loading-div">
+                    <img src="./assets/circle-loading.gif" id="loading-gif">
+            </div> -->
+
             <div id="div_erros_login"></div>
         </div>
     </div>
@@ -61,23 +66,26 @@
 </html>
 
 <script>
-
-
     function entrar() {
-        aguardar();
+        // aguardar();
 
         var emailVar = email_input.value;
         var senhaVar = senha_input.value;
 
         if (emailVar == "" || senhaVar == "") {
-            cardErro.style.display = "block"
-            mensagem_erro.innerHTML = "(Mensagem de erro para todos os campos em branco)";
+            dialog_mensagem.style.display = "block"
+            dialog_mensagem.innerHTML = "Todos os campos devem estar preenchidos!";
+
+            setTimeout(() => {
+            dialog_mensagem.style.display = "none"
+          }, "2000");
+
             // finalizarAguardar();
             return false;
         }
-        else {
-            setInterval(sumirMensagem, 5000)
-        }
+        // else {
+        //     setInterval(sumirMensagem, 5000)
+        // }
 
         console.log("FORM LOGIN: ", emailVar);
         console.log("FORM SENHA: ", senhaVar);
@@ -92,9 +100,9 @@
                 senhaServer: senhaVar
             })
         }).then(function (resposta) {
-            console.log("ESTOU NO THEN DO entrar()!")
+            console.log("ESTOU NO THEN DO entrar()!") //nao esta funcionando --------------------------------------------------------------------------------------------------
 
-            if (resposta.ok) {
+            if (resposta.ok) { 
                 console.log(resposta);
 
                 resposta.json().then(json => {
@@ -105,9 +113,12 @@
                     sessionStorage.ID_USUARIO = json.id
                     // sessionStorage.AQUARIOS = JSON.stringify(json.aquarios)
 
-                    setTimeout(function () {
-                        window.location = "./dashboard/cards.html";
-                    }, 1000); // apenas para exibir o loading
+                    dialog_mensagem.style.display = 'block';
+                    dialog_mensagem.innerHTML = `Login realizado com sucesso! <br> Redirecionando para o QUIZ...`
+
+                    setTimeout(() => {
+                        window.location = "login.html";
+                    }, "2000");
 
                 });
 
@@ -117,7 +128,7 @@
 
                 resposta.text().then(texto => {
                     console.error(texto);
-                    finalizarAguardar(texto);
+                    // finalizarAguardar(texto);
                 });
             }
 
@@ -128,8 +139,8 @@
         return false;
     }
 
-    function sumirMensagem() {
-        cardErro.style.display = "none"
-    }
+    // function sumirMensagem() {
+    //     cardErro.style.display = "none"
+    // }
 
 </script>
