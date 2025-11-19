@@ -1,27 +1,49 @@
+/* QUIZ */
 /* Não usar pure white or pure black: https://uxplanet.org/basicdesign-never-use-pure-black-in-typography-36138a3327a6 */
 /* The 4-point grid system: https://medium.com/@sainzkike/controlling-spacing-in-design-systems-multiple-spacing-9bf1afec87f */
 
-:root {
-    --primary-brand-color: #ED145B;
-    --secondary-brand-color: #0762C8;
-    --success: #198754;
-    --success-dark: #095c36;
-    --success-light: #9dd3ba;
-    --warning: #ffc107;
-    --warning-dark: #705400;
-    --warning-light: #fdebb3;
-    --danger: #dc3545;
-    --danger-dark: #990c19;
-    --danger-light: #f0c1c6;
-    --new-gray: #CCCCCC;
-    --new-black: #212427;
-    --new-white: #E8E8E8;
+.container-quiz {
+    display: flex;
+    justify-content: space-evenly;
+    background-color: gray;
+    padding: 30px 0px;
 }
 
-body {
-    color: var(--new-black);
-    background-color: var(--new-white);
-    font-family: Verdana, Geneva, Tahoma, sans-serif;
+.pontos {
+    color: #ffffff;
+    font-size: 18px;
+}
+
+.card-pergunta {
+    background-color: white;
+    border-radius: 10px;
+    padding: 30px;
+    width: 50%;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
+}
+
+.card-pontuacao {
+    
+}
+
+.button-quiz {
+    width: 45%;
+    height: 45px;
+    background: linear-gradient(90deg, #bb4c07, #FF8C00, #c9ab00);
+    border-radius: 10px;
+    border: solid 3px #bb4c07;
+    color: #ffffff;
+    font-size: 22px;
+    cursor: pointer;
+    font-size: medium;
+    font-family: Arial, Helvetica, sans-serif;
+}
+
+.div-button {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    margin-bottom: 10px;
 }
 
 button {
@@ -29,46 +51,13 @@ button {
     font-weight: bold;
 }
 
+#infoQuestao {
+    color: rgb(141, 141, 141)
+}
+
 .flex-colunar {
     display: flex;
     flex-direction: column;
-}
-
-.width-fit-content {
-    width: fit-content;
-}
-
-.border-primary {
-    border: 3px solid var(--primary-brand-color);
-}
-
-.border-secondary {
-    border: 3px solid var(--secondary-brand-color);
-}
-
-.padding-8 {
-    padding: 8px;
-}
-
-.text-bold {
-    font-weight: bold;
-}
-
-.text-success-with-bg {
-    color: var(--success-dark);
-    background-color: var(--success-light);
-}
-
-.text-warning-with-bg {
-    color: var(--warning-dark);
-    background-color: var(--warning-light);
-}
-
-.text-danger-with-bg {
-    color: var(--danger-dark);
-    background-color: var(--danger-light);
-}
-
-.text-new-gray {
-    color: var(--new-gray);
+    padding: 20px;
+    font-size: 1;
 }
