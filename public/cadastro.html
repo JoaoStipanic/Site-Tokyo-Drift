@@ -46,7 +46,7 @@
                 <br><br>
 
                 <p class="texto-container-login">Digite seu E-mail</p>
-                <input type="email" id="email_input"><br>
+                <input type="email" id="email_input" oninput="analisarEmail()"><br>
                 <span class="span-mensagem" id="span_email"></span>
                 <br>
             </div>
@@ -102,7 +102,7 @@
   var listaEsp = ["!", "@", "#", "$", "%", "&", "*", "."];
   var nomeInvalido = false;
   var sobrenomeInvalido = false;
-  // var emailInvalido = false;
+  var emailInvalido = false;
   var telefoneInvalido = false;
   // var senhaInvalido = false;
 
@@ -167,29 +167,29 @@ function analisarSobrenome() {
     }
 }
 
-// function analisarEmail() {
-//     var email = email_input.value;
+function analisarEmail() {
+    var email = email_input.value;
 
-//     if (email == '') {
-//         emailInvalido = true;
+    if (email == '') {
+        emailInvalido = true;
 
-//     } else if (!email.includes('@')) {
-//         emailInvalido = true
+    } else if (!email.includes('@')) {
+        emailInvalido = true
 
-//     } else if (!email.includes('.')) {
-//         emailInvalido = true;
+    } else if (!email.includes('.')) {
+        emailInvalido = true;
 
-//     } else {
-//         emailInvalido = false;
-//     }
+    } else {
+        emailInvalido = false;
+    }
 
-//     if (emailInvalido) {
-//         span_email.innerHTML = "E-mail Inválido";
+    if (emailInvalido) {
+        span_email.innerHTML = "E-mail Inválido";
 
-//     } else {
-//         span_email.innerHTML = "";
-//     }
-// }
+    } else {
+        span_email.innerHTML = "";
+    }
+}
 
 function analisarTelefone() {
     var telefone = telefone_input.value;
