@@ -60,7 +60,8 @@
                     <p class="texto-container-login">Digite sua Senha</p>
                     <!-- <button class="button-info" onclick="info()">?</button> -->
                 </div>
-                <input type="text" id="senha_input"><br>
+                <input type="text" id="senha_input" oninput="analisarSenha()"><br>
+                <span class="span-mensagem" id="span_senha"></span>
                 <!-- <div class="div-info" id="div_info">
                     Deve conter mais de 8 dígitos, <br>
                     caractéres especiais e números
@@ -94,17 +95,13 @@
 </html>
 
 <script>
-
-  // Array para armazenar empresas cadastradas para validação de código de ativação 
-  let listaEmpresasCadastradas = [];
-
   var listaNum = ["0", "1", "2", "3", "4", "5", "6", "7", "8", "9"];
   var listaEsp = ["!", "@", "#", "$", "%", "&", "*", "."];
   var nomeInvalido = false;
   var sobrenomeInvalido = false;
   var emailInvalido = false;
   var telefoneInvalido = false;
-  // var senhaInvalido = false;
+  var senhaInvalido = true;
 
   // function info() {
   //   if (div_info.style.display = 'none') {
@@ -197,7 +194,7 @@ function analisarTelefone() {
     if (telefone == '') {
         telefoneInvalido = true;
 
-    } else if (telefone.length != 11 ) { // testarrrr ----------------------------------------------------------------------------
+    } else if (telefone.length != 11 ) {
         telefoneInvalido = true;
 
     } else {
@@ -212,35 +209,41 @@ function analisarTelefone() {
     }
 }
 
-// function analisarSenha() {
-//     var senha = senha_input.value;
-//     var senhaTam = true;
-//     var senhaNum = true;
-//     var senhaEsp = true;
+function analisarSenha() {
+    var senha = senha_input.value;
+    var senhaTam = false;
+    var senhaNum = false;
+    var senhaEsp = false;
 
-//     if (senha == '') {
-//         senhaInvalido = true;
+    if (senha == '') {
+        senhaInvalido = true;
 
-//     } else if (senha.length < 8) {
-//         senhaTam = true;
-//     }
+    } else if (senha.length >= 8) {
+        senhaTam = true;
+    }
 
-//     for (var i = 0; i < listaNum.length; i++) {
-//         if (senha.includes(listaNum[i])) {
-//             span_num.innerHTML = "De"
-//         }
-//     }
+    for (var i = 0; i < listaNum.length; i++) {
+        if (senha.includes(listaNum[i])) {
+            senhaNum = true;
+        }
+    }
 
-//     for (var i = 0; i < listaEsp.length; i++) {
-//         if (senha.includes(listaEsp[i])) {
-//             senhaEsp = false;
-//         }
-//     }
+    for (var i = 0; i < listaEsp.length; i++) {
+        if (senha.includes(listaEsp[i])) {
+            senhaEsp = true;
+        }
+    }
 
-//     if (senhaTam && senhaEsp && senhaNum) {
-//         senhaInvalido
-//     }
-// }
+    if (senhaTam && senhaEsp && senhaNum) {
+        senhaInvalido = false
+    }
+
+    if (senhaInvalido) {
+      span_senha.innerHTML = "Senha Inválida";
+    } else {
+      span_senha.innerHTML = "";
+    }
+}
 
 
   function cadastrar() {
@@ -263,39 +266,34 @@ function analisarTelefone() {
       telefoneVar == "" ||
       senhaVar == "" ||
       confirmacaoSenhaVar == ""
-      // codigoVar == "" ||
-      // cpfVar == ""
     ) {
-      cardErro.style.display = "block";
-      mensagem_erro.innerHTML = "(Mensagem de erro para todos os campos em branco)";
-      // finalizarAguardar();
       return false;
 
-    } else if (nomeVar.length <= 1) {
+    } else if (nomeInvalido) {
         cardErro.style.display = "block";
         mensagem_erro.innerHTML = "(Mensagem de erro para nome menor ou igual a 1 caracter";
         // finalizarAguardar();
         return false;
 
-    } else if (sobrenomeVar.length <= 1) {
+    } else if (sobrenomeInvalido) {
         cardErro.style.display = "block";
         mensagem_erro.innerHTML = "(Mensagem de erro para sobrenome menor ou igual a 1 caracter";
         // finalizarAguardar();
         return false;
 
-    } else if (emailVar.includes('@') == false || emailVar.includes('.') == false) {
+    } else if (emailInvalido) {
         cardErro.style.display = "block";
         mensagem_erro.innerHTML = "(Mensagem de erro para email sem @ ou sem .";
         // finalizarAguardar();
         return false;
 
-    } else if (telefoneVar.length != 11) {
+    } else if (telefoneInvalido) {
         cardErro.style.display = "block";
         mensagem_erro.innerHTML = "(Mensagem de erro para telefone diferente de 11 caracteres";
         // finalizarAguardar();
         return false;
 
-    } else if (senhaVar.length < 6 || senhaVar != confirmacaoSenhaVar) {
+    } else if (senhaInvalido) {
         cardErro.style.display = "block";
         mensagem_erro.innerHTML = "(Mensagem de erro para senha menor ou igual a 6 caracteres ou confirmação de senha errada";
         // finalizarAguardar();
