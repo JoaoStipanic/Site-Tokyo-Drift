@@ -116,6 +116,9 @@ function analisarNome() {
     if (nome == '') { // Verifica se o sobrenome não é vazio
         nomeInvalido = true;
 
+    } else if (nome.trim() == '') {
+        nomeInvalido = true;
+      
     } else if (nome.length <= 1) { // Verifica se o nome tem tamanho suficiente
         nomeInvalido = true;
 
@@ -143,6 +146,9 @@ function analisarSobrenome() {
     if (sobrenome == '') { // Verifica se o sobrenome não é vazio
         sobrenomeInvalido = true;
 
+    } else if (sobrenome.trim() == "") {
+        sobrenomeInvalido = true;
+      
     } else if (sobrenome.length <= 1) { // Verifica se o sobrenome tem tamanho suficiente
         sobrenomeInvalido = true;
 
@@ -170,6 +176,9 @@ function analisarEmail() {
     if (email == '') {
         emailInvalido = true;
 
+    } else if (email.trim() == '') {
+        emailInvalido = true;
+      
     } else if (!email.includes('@')) {
         emailInvalido = true
 
@@ -194,6 +203,9 @@ function analisarTelefone() {
     if (telefone == '') {
         telefoneInvalido = true;
 
+    } else if (telefone.trim() == '') {
+        telefoneInvalido = true;
+      
     } else if (telefone.length != 11 ) {
         telefoneInvalido = true;
 
@@ -218,6 +230,9 @@ function analisarSenha() {
     if (senha == '') {
         senhaInvalido = true;
 
+    } else if (senha.trim() == '') {
+        senhaInvalido = true;
+      
     } else if (senha.length >= 8) {
         senhaTam = true;
     }
@@ -251,12 +266,12 @@ function analisarSenha() {
 
     //Recupere o valor da nova input pelo nome do id
     // Agora vá para o método fetch logo abaixo
-    var nomeVar = nome_input.value;
-    var sobrenomeVar = sobrenome_input.value;
-    var emailVar = email_input.value;
-    var telefoneVar = telefone_input.value;
-    var senhaVar = senha_input.value;
-    var confirmacaoSenhaVar = confirmacao_senha_input.value;
+    var nomeVar = nome_input.value.trim();
+    var sobrenomeVar = sobrenome_input.value.trim();
+    var emailVar = email_input.value.trim();
+    var telefoneVar = telefone_input.value.trim();
+    var senhaVar = senha_input.value.trim();
+    var confirmacaoSenhaVar = confirmacao_senha_input.value.trim();
 
     // Verificando se há algum campo em branco
     if (
@@ -267,36 +282,22 @@ function analisarSenha() {
       senhaVar == "" ||
       confirmacaoSenhaVar == ""
     ) {
+      alert('Todos os campos devem estar preenchidos!')
       return false;
 
     } else if (nomeInvalido) {
-        cardErro.style.display = "block";
-        mensagem_erro.innerHTML = "(Mensagem de erro para nome menor ou igual a 1 caracter";
-        // finalizarAguardar();
         return false;
 
     } else if (sobrenomeInvalido) {
-        cardErro.style.display = "block";
-        mensagem_erro.innerHTML = "(Mensagem de erro para sobrenome menor ou igual a 1 caracter";
-        // finalizarAguardar();
         return false;
 
     } else if (emailInvalido) {
-        cardErro.style.display = "block";
-        mensagem_erro.innerHTML = "(Mensagem de erro para email sem @ ou sem .";
-        // finalizarAguardar();
         return false;
 
     } else if (telefoneInvalido) {
-        cardErro.style.display = "block";
-        mensagem_erro.innerHTML = "(Mensagem de erro para telefone diferente de 11 caracteres";
-        // finalizarAguardar();
         return false;
 
     } else if (senhaInvalido) {
-        cardErro.style.display = "block";
-        mensagem_erro.innerHTML = "(Mensagem de erro para senha menor ou igual a 6 caracteres ou confirmação de senha errada";
-        // finalizarAguardar();
         return false;
 
     } else {
