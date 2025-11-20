@@ -228,6 +228,8 @@
 
         btnSubmeter.disabled = false
         btnProx.disabled = true
+        btnProx.style.background = 'linear-gradient(90deg, #6e6e6e, #a5a5a5, #cccccc'
+        btnProx.style.border = 'solid 2px #000000'
         // btnConcluir.disabled = true
         btnTentarNovamente.disabled = true
     }
@@ -261,7 +263,12 @@
             alert("Não há alternativas escolhidas. Escolha uma opção.")
         } else {
             btnSubmeter.disabled = true
+            btnSubmeter.style.background = 'linear-gradient(90deg, #6e6e6e, #a5a5a5, #cccccc'
+            btnSubmeter.style.border = 'solid 2px #000000'
+            
             btnProx.disabled = false
+            btnProx.style.background = 'linear-gradient(90deg, #bb4c07, #FF8C00, #c9ab00)'
+            btnProx.style.border = 'solid 2px #bb4c07'
 
             habilitarAlternativas(false)
 
@@ -281,7 +288,12 @@
 
     function avancar() {
         btnProx.disabled = true
+        btnProx.style.background = 'linear-gradient(90deg, #6e6e6e, #a5a5a5, #cccccc'
+        btnProx.style.border = 'solid 2px #000000'
+
         btnSubmeter.disabled = false
+        btnSubmeter.style.background = 'linear-gradient(90deg, #bb4c07, #FF8C00, #c9ab00)'
+        btnSubmeter.style.border = 'solid 2px #bb4c07'
 
         desmarcarRadioButtons()
 

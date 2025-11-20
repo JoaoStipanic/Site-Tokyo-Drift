@@ -198,7 +198,7 @@ footer p {
     font-size: 18px;
 }
 
-.input::placeholder {
+.input-login::placeholder {
     padding-left: 10px;
 }
 
@@ -216,7 +216,7 @@ footer p {
     height: 48px;
     background: linear-gradient(90deg, #bb4c07, #FF8C00, #c9ab00);
     border-radius: 10px;
-    border: solid 3px #bb4c07;
+    border: solid 2px #bb4c07;
     color: #ffffff;
     font-size: 20px;
     cursor: pointer;
