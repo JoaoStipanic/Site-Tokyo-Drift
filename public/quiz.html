@@ -12,7 +12,6 @@
 
 
 <body onload="onloadEsconder()">
-<!-- <body> -->
     <div class="cabecalho">
         <img class="img-cabecalho" src="assets/imgs/cabecalho.jpg" alt="Capa do Velozes e Furiosos - Desafio em Tokyo">
     </div>
@@ -408,15 +407,14 @@
         btnConcluir.style.display = "block"
         btnTentarNovamente.disabled = false
         
-
         fetch("/quiz/resultadoSalvar", {
             method: "POST",
             headers: {
                 "Content-Type": "application/json"
             },
             body: JSON.stringify({
-                fkUsuario: sessionStorage.ID_USUARIO,
-                fkQuiz: 1,
+                idUsuario: sessionStorage.ID_USUARIO,
+                idQuiz: 1,
                 pontuacao: pontuacaoFinal
             }),
         })

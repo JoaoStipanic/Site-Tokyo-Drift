@@ -6,12 +6,12 @@ function resultadoSalvar(req, res) {
     var pontuacao = req.body.pontuacao;
 
     if (fkUsuario == undefined || fkQuiz == undefined || pontuacao == undefined) {
-        res.status(400).send("Dados undefined");
+        res.status(400).json({ erro: "Dados undefined" });
     } 
     else {
         quizModel.resultadoSalvar(fkUsuario, fkQuiz, pontuacao)
             .then(function (resposta) {
-                res.status(200).send("Dados salvos com sucesso");
+                res.status(200).json({ erro: "Dados salvos com sucesso" });
             })
             .catch(function(erro){
                 console.log("Erro ao salvar resultado:", erro);
