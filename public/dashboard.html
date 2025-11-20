@@ -10,7 +10,7 @@
     <script src="js/sessao.js"></script>
     <title>Dashboard</title>
 </head>
-<body onload="obterDados()">
+<body onload="iniciar()">
     <div class="cabecalho">
         <img class="img-cabecalho" src="assets/imgs/cabecalho.jpg" alt="Capa do Velozes e Furiosos - Desafio em Tokyo">
     </div>
@@ -66,7 +66,7 @@
                     <canvas id="linha"></canvas>
                 </div>
                 <div class="card-dash">
-                    <canvas id="linha"></canvas>
+                    <canvas id="linha2"></canvas>
                 </div>
             </div>
         </div>
@@ -80,63 +80,89 @@
 </html>
 
 <script>
-    function obterDados(){
-        var dados = [{
-            jogador:'Endrick',
-            votos: 10
-        },
-        {
-            jogador:'João',
-            votos: 5
-        },
-        {
-            jogador:'Maria',
-            votos: 15
-        },
-        {
-            jogador:'José',
-            votos: 20
-        },
-        {
-            jogador:'Pedro',
-            votos: 25
-        },
-        {
-            jogador:'Ana',
-            votos: 30
-        }]
-
-        plotarGraficoLinha(dados);
+    function iniciar() {
+        const idUsuario = sessionStorage.ID_USUARIO;
+        obterDadosGrafico(idUsuario);
     }
+    
 
-    function plotarGraficoLinha(dados){
-        var votos = [];
-        var jogadores = [];
+    function obterDadosGrafico(idUsuario) {
 
-        for(var i = 0; i < dados.length; i++){
-            votos.push(dados[i].votos);
-            jogadores.push(dados[i].jogador);
-        }
+        fetch(`/dash/buscar/${idUsuario}`, { cache: 'no-store' })
 
-        var ctx = document.getElementById('linha').getContext('2d');
+            .then(function (response) {
+            if (response.ok) {
+                response.json().then(function (resposta) {
+                    console.log(`Dados recebidos: ${JSON.stringify(resposta)}`);
+                    resposta.reverse(); // do mais antigo pro mais novo
 
-        var myChart = new Chart(ctx, {
-            type: 'line', // Tipo de gráfico: linha
-            data: { // Dados para o gráfico
-                labels: jogadores, // Rótulos no eixo X
-                datasets: [{ 
-                    label: 'Votos', // Nome do conjunto de dados
-                    data: votos, // Dados dos votos
-                    backgroundColor: [
-                        'rgba(255, 99, 132, 0.2)', // Cor de fundo das linhas
-                    ],
-                    borderColor: [
-                        'rgba(255, 99, 132, 1)', // Cor da borda das linhas
-                    ],
-                    borderWidth: 1 // Largura da borda das linhas
-                }]
-            },
+                    plotarGrafico(resposta, idUsuario);
+
+                });
+            } else {
+                console.error('Nenhum dado encontrado ou erro na API');
+            }
+            })
+        .catch(function (error) {
+            console.error(`Erro na obtenção dos dados p/ gráfico: ${error.message}`);
         });
     }
 
+    function plotarGrafico(resposta, idAquario) {
+
+        console.log('iniciando plotagem do gráfico...');
+        let labels = [];
+
+        let dados = {
+            labels: labels,
+            datasets: [{
+                label: 'Umidade',
+                data: [],
+                fill: false,
+                borderColor: 'rgb(75, 192, 192)',
+                tension: 0.1
+            },
+            {
+                label: 'Temperatura',
+                data: [],
+                fill: false,
+                borderColor: 'rgb(199, 52, 52)',
+                tension: 0.1
+            }]
+        };
+
+        console.log('----------------------------------------------')
+        console.log('Estes dados foram recebidos pela funcao "obterDadosGrafico" e passados para "plotarGrafico":')
+        console.log(resposta)
+
+        // // Inserindo valores recebidos em estrutura para plotar o gráfico
+        // for (i = 0; i < resposta.length; i++) {
+        //     var registro = resposta[i];
+        //     labels.push(registro.momento_grafico);
+        //     dados.datasets[0].data.push(registro.umidade);
+        //     dados.datasets[1].data.push(registro.temperatura);
+        // }
+
+        console.log('----------------------------------------------')
+        console.log('O gráfico será plotado com os respectivos valores:')
+        console.log('Labels:')
+        console.log(labels)
+        console.log('Dados:')
+        console.log(dados.datasets)
+        console.log('----------------------------------------------')
+
+        // Criando estrutura para plotar gráfico - config
+        const config = {
+            type: 'line',
+            data: dados,
+        };
+
+        // Adicionando gráfico criado em div na tela
+        let myChart = new Chart(
+            document.getElementById(`linha`),
+            config
+        );
+
+        // setTimeout(() => atualizarGrafico(idAquario, dados, myChart), 2000);
+    }
 </script>
