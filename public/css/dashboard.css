@@ -1,0 +1,35 @@
+.conteudo {
+  display: flex;
+  /* justify-content: space-between; */
+  background-color: gray;
+}
+
+.navbar {
+  display: flex;
+  flex-direction: column;
+  background-color: rgb(255, 255, 255);
+  width: 23%;
+  justify-content: center;
+  align-items: center;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
+}
+
+.conteudo .button {
+  width: 80%;
+}
+
+.container {
+  width: 77%;
+  display: flex;
+  justify-content: center;
+  padding: 40px 0px;
+
+}
+
+.card-dash {
+  background-color: rgb(255, 255, 255);
+  padding: 40px;
+  border: solid #ed6b18 2px;
+  border-radius: 20px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
+}

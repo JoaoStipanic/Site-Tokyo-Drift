@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="css/dashboard.css">
+    <link rel="shortcut icon" href="./assets/icon/roda.ico" type="image/x-icon">
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <script src="js/sessao.js"></script>
+    <title>Dashboard</title>
+</head>
+<body onload="obterDados()">
+    <div class="cabecalho">
+        <img class="img-cabecalho" src="assets/imgs/cabecalho.jpg" alt="Capa do Velozes e Furiosos - Desafio em Tokyo">
+    </div>
+    <header class="header">
+        <p><a href="dashboard.html">Home</a></p>
+        <p><a href="personagens.html">Personagens</a></p>
+        <p><a href="sobre.html">Sobre mim</a></p>
+        <p><a href="quiz.html">Quiz</a></p>
+        <p><a href="login.html">Login</a></p>
+    </header>
+
+    <div class="conteudo">
+        <!-- <h1 class="titulo-conteudo">Dashboard</h1> -->
+        <div class="navbar">
+            <div class="hello">
+                <h3>Olá, usuário!</h3>
+            </div>
+
+
+            <button class="button">Fazer Quiz</button>
+
+
+            <div class="btn-nav">
+
+                <h3>Gráficos</h3>
+
+            </div>
+
+            <div class="btn-nav-white">
+                <a href="./mural.html">
+                    <h3>Mural de Avisos</h3>
+                </a>
+            </div>
+
+            <div class="btn-logout" onclick="limparSessao()">
+                <h3>Sair</h3>
+            </div>
+        </div>
+        <div class="container">
+            <div class="card-dash">
+                <canvas id="linha"></canvas>
+            </div>
+        </div>
+    </div>
+
+    <footer>
+        <p>João Vitor Stipanic Almeida © 2025</p>
+    </footer>
+</body>
+</html>
+
+<script>
+    function obterDados(){
+        var dados = [{
+            jogador:'Endrick',
+            votos: 10
+        },
+        {
+            jogador:'João',
+            votos: 5
+        },
+        {
+            jogador:'Maria',
+            votos: 15
+        },
+        {
+            jogador:'José',
+            votos: 20
+        },
+        {
+            jogador:'Pedro',
+            votos: 25
+        },
+        {
+            jogador:'Ana',
+            votos: 30
+        }]
+
+        plotarGraficoLinha(dados);
+    }
+
+    function plotarGraficoLinha(dados){
+        var votos = [];
+        var jogadores = [];
+
+        for(var i = 0; i < dados.length; i++){
+            votos.push(dados[i].votos);
+            jogadores.push(dados[i].jogador);
+        }
+
+        var ctx = document.getElementById('linha').getContext('2d');
+
+        var myChart = new Chart(ctx, {
+            type: 'line', // Tipo de gráfico: linha
+            data: { // Dados para o gráfico
+                labels: jogadores, // Rótulos no eixo X
+                datasets: [{ 
+                    label: 'Votos', // Nome do conjunto de dados
+                    data: votos, // Dados dos votos
+                    backgroundColor: [
+                        'rgba(255, 99, 132, 0.2)', // Cor de fundo das linhas
+                    ],
+                    borderColor: [
+                        'rgba(255, 99, 132, 1)', // Cor da borda das linhas
+                    ],
+                    borderWidth: 1 // Largura da borda das linhas
+                }]
+            },
+        });
+    }
+
+</script>
