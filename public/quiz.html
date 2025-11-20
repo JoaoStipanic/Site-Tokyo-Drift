@@ -38,14 +38,15 @@
         <div id="jogo" class="card-pergunta">
 
             <div id="infoQuestao" style="padding: 15px 0px;">
-                <span>Questão atual: <span id="spanNumeroDaQuestaoAtual"></span> de <span id="qtdQuestoes"></span>
-                    questões.</span>
+                <span>Questão <span id="spanNumeroDaQuestaoAtual"></span> de <span id="qtdQuestoes"></span></span>
             </div>
 
+            
             <div id="perguntaDaQuestaoAtual">
                 <span id="spanQuestaoExibida" class="text-bold"></span>
             </div>
-
+            <span id="span_img"></span>
+            <br>
             <div id="infoAlternativas">
                 <span>Escolha uma opção dentre as abaixo:</span>
             </div>
@@ -74,7 +75,7 @@
                 <button onclick="avancar()" class="button-quiz" id="btnProx" disabled>Avançar</button>
             </div>
             <div class="div-button-2">
-                <!-- <button onclick="finalizarJogo()" class="button-quiz" id="btnConcluir" disabled>Finalizar Quiz</button> -->
+                <button onclick="irDashboard()" class="button-quiz" style="width: 35%;" id="btnConcluir" disabled>ir para Dashboard</button>
                 <button onclick="tentarNovamente()" class="button-quiz" style="width: 35%;" id="btnTentarNovamente" disabled>Tentar novamente</button>
             </div>
 
@@ -207,13 +208,13 @@
     let certas = 0
     let erradas = 0
     let quantidadeDeQuestoes = listaDeQuestoes.length
-    // let isUltima = numeroDaQuestaoAtual == quantidadeDeQuestoes-1 ? true : false
+    let isUltima = numeroDaQuestaoAtual == quantidadeDeQuestoes-1 ? true : false
 
     function onloadEsconder() {
         document.getElementById('pontuacao').style.display = "none"
         document.getElementById('jogo').style.display = "none"
         document.getElementById('pontuacao1').style.display = "none"
-
+        btnConcluir.style.display = "none"
     }
 
     function iniciarQuiz() {
@@ -230,7 +231,6 @@
         btnProx.disabled = true
         btnProx.style.background = 'linear-gradient(90deg, #6e6e6e, #a5a5a5, #cccccc'
         btnProx.style.border = 'solid 2px #000000'
-        // btnConcluir.disabled = true
         btnTentarNovamente.disabled = false
     }
 
@@ -246,6 +246,16 @@
         document.getElementById("labelOpcaoDois").innerHTML = questaoAtual.alternativaB;
         document.getElementById("labelOpcaoTres").innerHTML = questaoAtual.alternativaC;
         document.getElementById("labelOpcaoQuatro").innerHTML = questaoAtual.alternativaD;
+
+        if (index == 4) {
+            span_img.innerHTML = `<img src="assets/imgs/dkcar.jpg" alt="Foto do carro Nissan 350Z" style="width: 90%; align-self: center; justify-self: center;">`;
+
+        } else if (index == 9) {
+            span_img.innerHTML = `<img src="assets/imgs/rua-japao.jpg" alt="Foto de uma rua de Tóquio" style="width: 90%; align-self: center; justify-self: center;">`;
+            
+        } else {
+            span_img.innerHTML = '';
+        }
     }
 
     function submeter() {
@@ -297,7 +307,7 @@
 
         desmarcarRadioButtons()
 
-        if (numeroDaQuestaoAtual < quantidadeDeQuestoes - 1) {
+        if (numeroDaQuestaoAtual < quantidadeDeQuestoes) {
             preencherHTMLcomQuestaoAtual(numeroDaQuestaoAtual)
         } else {
             finalizarJogo()
@@ -395,11 +405,10 @@
         btnSubmeter.disabled = true
         btnSubmeter.style.background = 'linear-gradient(90deg, #6e6e6e, #a5a5a5, #cccccc'
         btnSubmeter.style.border = 'solid 2px #000000'
-        // btnConcluir.disabled = true
+        btnConcluir.style.display = "block"
         btnTentarNovamente.disabled = false
 
-    }
-
+        
         // fetch("/quiz/resultadoSalvar", {
         //     method: "POST",
         //     headers: {
@@ -425,4 +434,11 @@
         // });
 
         // return false;
+    }
+
+    function irDashboard() {
+        window.location = "dashboard.html"
+    }
+
+        
 </script>
