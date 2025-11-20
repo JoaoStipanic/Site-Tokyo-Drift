@@ -21,9 +21,9 @@
 .container {
   width: 77%;
   display: flex;
+  flex-direction: column;
   justify-content: center;
   padding: 40px 0px;
-
 }
 
 .card-dash {
@@ -32,4 +32,11 @@
   border: solid #ed6b18 2px;
   border-radius: 20px;
   box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
+  padding: 20px;
+}
+
+.container-filho {
+  display: flex;
+  justify-content: space-evenly;
+  margin-bottom: 20px;
 }
