@@ -73,9 +73,9 @@
                 <button onclick="submeter()" class="button-quiz" id="btnSubmeter">Submeter</button>
                 <button onclick="avancar()" class="button-quiz" id="btnProx" disabled>Avançar</button>
             </div>
-            <div style="justify-content: center;">
-                <button onclick="finalizar()" class="button-quiz" id="btnConcluir" disabled>Finalizar Quiz</button>
-                <button onclick="tentarNovamente()" class="button-quiz" id="btnTentarNovamente" disabled>Tentar novamente</button>
+            <div class="div-button-2">
+                <!-- <button onclick="finalizarJogo()" class="button-quiz" id="btnConcluir" disabled>Finalizar Quiz</button> -->
+                <button onclick="tentarNovamente()" class="button-quiz" style="width: 35%;" id="btnTentarNovamente" disabled>Tentar novamente</button>
             </div>
 
         </div>
@@ -231,7 +231,7 @@
         btnProx.style.background = 'linear-gradient(90deg, #6e6e6e, #a5a5a5, #cccccc'
         btnProx.style.border = 'solid 2px #000000'
         // btnConcluir.disabled = true
-        btnTentarNovamente.disabled = true
+        btnTentarNovamente.disabled = false
     }
 
     function preencherHTMLcomQuestaoAtual(index) {
@@ -389,34 +389,40 @@
         document.getElementById('jogo').classList.add("text-new-gray") 
 
         btnProx.disabled = true
+        btnProx.style.background = 'linear-gradient(90deg, #6e6e6e, #a5a5a5, #cccccc'
+        btnProx.style.border = 'solid 2px #000000'
+
         btnSubmeter.disabled = true
-        btnConcluir.disabled = true
+        btnSubmeter.style.background = 'linear-gradient(90deg, #6e6e6e, #a5a5a5, #cccccc'
+        btnSubmeter.style.border = 'solid 2px #000000'
+        // btnConcluir.disabled = true
         btnTentarNovamente.disabled = false
 
-        fetch("/quiz/resultadoSalvar", {
-            method: "POST",
-            headers: {
-                "Content-Type": "application/json"
-            },
-            body: JSON.stringify({
-                fkUsuario: sessionStorage.ID_USUARIO,
-                fkQuiz: 1,
-                pontuacao: pontuacaoFinal
-            }),
-        })
-        .then(res => res.json()).then(function (resposta) {
-            console.log("resposta: ", resposta)
-
-            if (resposta.ok) {
-                console.log("dados realizado insert");
-            } else {
-                throw "Houve um erro ao tentar realizar d insert dos dados";
-            }
-        })
-        .catch(function (resposta) {
-        console.log(`#ERRO: ${resposta}`);
-        });
-
-        return false;
     }
+
+        // fetch("/quiz/resultadoSalvar", {
+        //     method: "POST",
+        //     headers: {
+        //         "Content-Type": "application/json"
+        //     },
+        //     body: JSON.stringify({
+        //         fkUsuario: sessionStorage.ID_USUARIO,
+        //         fkQuiz: 1,
+        //         pontuacao: pontuacaoFinal
+        //     }),
+        // })
+        // .then(res => res.json()).then(function (resposta) {
+        //     console.log("resposta: ", resposta)
+
+        //     if (resposta.ok) {
+        //         console.log("dados realizado insert");
+        //     } else {
+        //         throw "Houve um erro ao tentar realizar d insert dos dados";
+        //     }
+        // })
+        // .catch(function (resposta) {
+        // console.log(`#ERRO: ${resposta}`);
+        // });
+
+        // return false;
 </script>
