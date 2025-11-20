@@ -1,5 +1,4 @@
 var usuarioModel = require("../models/usuarioModel");
-// var aquarioModel = require("../models/aquarioModel");
 
 function autenticar(req, res) {
     var email = req.body.emailServer;
@@ -19,26 +18,11 @@ function autenticar(req, res) {
 
                     if (resultadoAutenticar.length == 1) {
                         console.log(resultadoAutenticar);
-
-                        // aquarioModel.buscarAquariosPorEmpresa(resultadoAutenticar[0].empresaId)
-                        //     .then((resultadoAquarios) => {
-                        //         if (resultadoAquarios.length > 0) {
-                        //             res.json({
-                        //                 id: resultadoAutenticar[0].id,
-                        //                 email: resultadoAutenticar[0].email,
-                        //                 nome: resultadoAutenticar[0].nome,
-                        //                 sobrenome: resultadoAutenticar[0].sobrenome,
-                        //                 telefone: resultadoAutenticar[0].telefone,
-                        //                 senha: resultadoAutenticar[0].senha
-                        //             });
-                        //         } else {
-                        //             res.status(204).json({ aquarios: [] });
-                        //         }
-                        //     })
-
                         res.status(200).json(resultadoAutenticar[0]);
+
                     } else if (resultadoAutenticar.length == 0) {
                         res.status(403).send("Email e/ou senha inválido(s)");
+
                     } else {
                         res.status(403).send("Mais de um usuário com o mesmo login e senha!");
                     }
@@ -65,14 +49,19 @@ function cadastrar(req, res) {
     // Faça as validações dos valores
     if (nome == undefined) {
         res.status(400).send("Seu nome está undefined!");
+
     } else if (sobrenome == undefined) {
         res.status(400).send("Seu sobrenome está undefined!");
+
     } else if (email == undefined) {
         res.status(400).send("Seu email está undefined!");
+
     } else if (telefone == undefined) {
         res.status(400).send("Seu telefone está undefined!");
+
     } else if (senha == undefined) {
         res.status(400).send("Sua senha está undefined!");
+        
     } else {
 
         // Passe os valores como parâmetro e vá para o arquivo usuarioModel.js
