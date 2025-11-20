@@ -108,25 +108,29 @@
         });
     }
 
-    function plotarGrafico(resposta, idAquario) {
-
+    function plotarGrafico(resposta, idUsuario) {
         console.log('iniciando plotagem do gráfico...');
         let labels = [];
+        let dadosResposta = [];
+        
+        // Inserindo valores recebidos em estrutura para plotar o gráfico
+        for (i = 0; i < resposta.length; i++) {
+            var registro = resposta[0].pontuacao; //-----------------------------------------------------
+            dadosResposta.push(registro);
+        }
+        
+        for (i = 0; i < resposta.length; i++) {
+            var tentativa = `Tentativa ${i + 1}`;
+            labels.push(tentativa);
+        }
 
         let dados = {
             labels: labels,
             datasets: [{
                 label: 'Umidade',
-                data: [],
+                data: dadosResposta,
                 fill: false,
                 borderColor: 'rgb(75, 192, 192)',
-                tension: 0.1
-            },
-            {
-                label: 'Temperatura',
-                data: [],
-                fill: false,
-                borderColor: 'rgb(199, 52, 52)',
                 tension: 0.1
             }]
         };
@@ -134,15 +138,6 @@
         console.log('----------------------------------------------')
         console.log('Estes dados foram recebidos pela funcao "obterDadosGrafico" e passados para "plotarGrafico":')
         console.log(resposta)
-
-        // // Inserindo valores recebidos em estrutura para plotar o gráfico
-        // for (i = 0; i < resposta.length; i++) {
-        //     var registro = resposta[i];
-        //     labels.push(registro.momento_grafico);
-        //     dados.datasets[0].data.push(registro.umidade);
-        //     dados.datasets[1].data.push(registro.temperatura);
-        // }
-
         console.log('----------------------------------------------')
         console.log('O gráfico será plotado com os respectivos valores:')
         console.log('Labels:')
@@ -155,6 +150,17 @@
         const config = {
             type: 'line',
             data: dados,
+            scales: {
+                y: {
+                    min: 0,
+                    max: 30,
+                    ticks: {
+                        font: {
+                            size: 7,
+                        }
+                    }
+                }
+            }
         };
 
         // Adicionando gráfico criado em div na tela
@@ -163,6 +169,7 @@
             config
         );
 
-        // setTimeout(() => atualizarGrafico(idAquario, dados, myChart), 2000);
+        // setTimeout(() => atualizarGrafico(idUsuario, dados, myChart), 2000);
     }
+
 </script>
