@@ -31,23 +31,23 @@
         <div class="card-cadastro">
             <div class="div-login">
                 <p class="texto-container-login">Digite seu Nome</p>
-                <input type="text" id="nome_input" oninput="analisarNome()"><br>
+                <input type="text" class="input" id="nome_input" oninput="analisarNome()"><br>
                 <span class="span-mensagem" id="span_nome"></span>
                 <br><br>
 
                 <p class="texto-container-login">Digite seu Sobrenome</p>
-                <input type="text" id="sobrenome_input" oninput="analisarSobrenome()"><br>
+                <input type="text" class="input" id="sobrenome_input" oninput="analisarSobrenome()"><br>
                 <span class="span-mensagem" id="span_sobrenome"></span>
                 <br><br>
 
                 <p class="texto-container-login">Digite seu E-mail</p>
-                <input type="email" id="email_input" oninput="analisarEmail()"><br>
+                <input type="email" class="input" id="email_input" oninput="analisarEmail()"><br>
                 <span class="span-mensagem" id="span_email"></span>
                 <br>
             </div>
             <div class="div-login">
                 <p class="texto-container-login">Digite seu Telefone Celular</p>
-                <input type="number" id="telefone_input" placeholder="Ex: 00912345678" oninput="analisarTelefone()"><br>
+                <input type="number" class="input" id="telefone_input" placeholder="Ex: 00912345678" oninput="analisarTelefone()"><br>
                 <span class="span-mensagem" id="span_telefone"></span>
                 <br><br>
 
@@ -56,12 +56,12 @@
                       <abbr class="info" title="Deve conter mais de 8 dígitos, caractéres especiais e números!"><img src="assets/imgs/info.png" alt="Símbolo de i"></abbr>
                     </p> 
                 </div>
-                <input type="password" id="senha_input" oninput="analisarSenha()"><br>
+                <input type="password" class="input" id="senha_input" oninput="analisarSenha()"><br>
                 <span class="span-mensagem" id="span_senha"></span>
                 <br><br>
 
                 <p class="texto-container-login">Confirme sua Senha</p>
-                <input type="password" id="confirmacao_senha_input"><br>
+                <input type="password" class="input" id="confirmacao_senha_input"><br>
                 <span class="span-mensagem" id="span_senhaConfirm"></span>
                 <br><br>
 
@@ -245,7 +245,7 @@ function analisarSenha() {
 }
 
 
-  function cadastrar() {
+function cadastrar() {
     // aguardar();
 
     //Recupere o valor da nova input pelo nome do id
@@ -259,15 +259,15 @@ function analisarSenha() {
 
     // Verificando se há algum campo em branco
     if (
-      nomeVar == "" ||
-      sobrenomeVar == "" ||
-      emailVar == "" ||
-      telefoneVar == "" ||
-      senhaVar == "" ||
-      confirmacaoSenhaVar == ""
+    nomeVar == "" ||
+    sobrenomeVar == "" ||
+    emailVar == "" ||
+    telefoneVar == "" ||
+    senhaVar == "" ||
+    confirmacaoSenhaVar == ""
     ) {
-      alert('Todos os campos devem estar preenchidos!')
-      return false;
+    alert('Todos os campos devem estar preenchidos!')
+    return false;
 
     } else if (nomeInvalido) {
         return false;
@@ -287,18 +287,18 @@ function analisarSenha() {
     } else if (senhaVar != confirmacaoSenhaVar) {
         alert('Confirme sua senha corretamente!')
         return false;
-      
+    
     } else {
-      setInterval(sumirMensagem, 2000);
-  }
+    setInterval(sumirMensagem, 2000);
+    }
 
     // Enviando o valor da nova input
     fetch("/usuarios/cadastrar", {
-      method: "POST",
-      headers: {
+    method: "POST",
+    headers: {
         "Content-Type": "application/json",
-      },
-      body: JSON.stringify({
+    },
+    body: JSON.stringify({
         // crie um atributo que recebe o valor recuperado aqui
         // Agora vá para o arquivo routes/usuario.js
         nomeServer: nomeVar,
@@ -307,31 +307,31 @@ function analisarSenha() {
         telefoneServer: telefoneVar,
         senhaServer: senhaVar,
         confirmacaoSenhaServer: confirmacaoSenhaVar
-      }),
+    }),
     })
-      .then(function (resposta) {
+    .then(function (resposta) {
         console.log("resposta: ", resposta);
 
         if (resposta.ok) {
-          dialog_mensagem.style.display = 'block';
-          dialog_mensagem.innerHTML = `Cadastro realizado com sucesso! <br> Redirecionando para tela de Login...`
+        dialog_mensagem.style.display = 'block';
+        dialog_mensagem.innerHTML = `Cadastro realizado com sucesso! <br> Redirecionando para tela de Login...`
 
-          setTimeout(() => {
+        setTimeout(() => {
             window.location = "login.html";
-          }, "2000");
+        }, "2000");
 
         } else {
-          throw "Houve um erro ao tentar realizar o cadastro!";
+        throw "Houve um erro ao tentar realizar o cadastro!";
         }
-      })
-      .catch(function (resposta) {
+    })
+    .catch(function (resposta) {
         console.log(`#ERRO: ${resposta}`);
-      });
+    });
 
     return false;
-    }
+}
 
-  function sumirMensagem() {
+function sumirMensagem() {
     dialog_mensagem.style.display = 'none'
-  }
+}
 </script>

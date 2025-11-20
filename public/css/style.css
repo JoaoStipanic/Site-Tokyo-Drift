@@ -183,11 +183,11 @@ footer p {
     font-size: 20px;
 }
 
-.input-login {
+.div-login .input {
     width: 98.6%;
 }
 
-input {
+.input {
     width: 97%;
     height: 40px;
     border-radius: 10px;
@@ -198,7 +198,7 @@ input {
     font-size: 18px;
 }
 
-input::placeholder {
+.input::placeholder {
     padding-left: 10px;
 }
 

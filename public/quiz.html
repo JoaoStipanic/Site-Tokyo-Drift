@@ -11,8 +11,8 @@
 </head>
 
 
-<!-- <body onload="onloadEsconder()"> -->
-<body>
+<body onload="onloadEsconder()">
+<!-- <body> -->
     <div class="cabecalho">
         <img class="img-cabecalho" src="assets/imgs/cabecalho.jpg" alt="Capa do Velozes e Furiosos - Desafio em Tokyo">
     </div>
@@ -72,10 +72,10 @@
             <div id="botoes" class="div-button">
                 <button onclick="submeter()" class="button-quiz" id="btnSubmeter">Submeter</button>
                 <button onclick="avancar()" class="button-quiz" id="btnProx" disabled>Avançar</button>
-                <!-- <button onclick="finalizar()" id="btnConcluir" disabled>Finalizar Quiz</button> -->
             </div>
             <div style="justify-content: center;">
-                <button class="button-quiz" style="align-self: center;" onclick="tentarNovamente()" id="btnTentarNovamente" disabled>Tentar novamente</button>
+                <button onclick="finalizar()" class="button-quiz" id="btnConcluir" disabled>Finalizar Quiz</button>
+                <button onclick="tentarNovamente()" class="button-quiz" id="btnTentarNovamente" disabled>Tentar novamente</button>
             </div>
 
         </div>
@@ -197,7 +197,7 @@
             alternativaC: "Brasil",
             alternativaD: "China",
             alternativaCorreta: "alternativaB"
-        },
+        }
     ]
 
     // variáveis globais    
@@ -286,9 +286,6 @@
         desmarcarRadioButtons()
 
         if (numeroDaQuestaoAtual < quantidadeDeQuestoes - 1) {
-            preencherHTMLcomQuestaoAtual(numeroDaQuestaoAtual)
-        } else if (numeroDaQuestaoAtual == quantidadeDeQuestoes - 1) {
-            alert("Atenção... a próxima é a ultima questão!")
             preencherHTMLcomQuestaoAtual(numeroDaQuestaoAtual)
         } else {
             finalizarJogo()
@@ -381,22 +378,33 @@
 
         btnProx.disabled = true
         btnSubmeter.disabled = true
-        // btnConcluir.disabled = true
+        btnConcluir.disabled = true
         btnTentarNovamente.disabled = false
 
         fetch("/quiz/resultadoSalvar", {
             method: "POST",
-            headers: {"Content-Type": "application/json",},
+            headers: {
+                "Content-Type": "application/json"
+            },
             body: JSON.stringify({
                 fkUsuario: sessionStorage.ID_USUARIO,
                 fkQuiz: 1,
                 pontuacao: pontuacaoFinal
             }),
         })
-        .then(res => res.json())
-        .then(json => {
-            console.log("Resultado salvo:", json);
+        .then(res => res.json()).then(function (resposta) {
+            console.log("resposta: ", resposta)
+
+            if (resposta.ok) {
+                console.log("dados realizado insert");
+            } else {
+                throw "Houve um erro ao tentar realizar d insert dos dados";
+            }
         })
-        .catch(erro => console.error("Erro:", erro));
+        .catch(function (resposta) {
+        console.log(`#ERRO: ${resposta}`);
+        });
+
+        return false;
     }
 </script>

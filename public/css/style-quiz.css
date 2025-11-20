@@ -30,10 +30,6 @@ h2 {
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
 }
 
-.card-pontuacao {
-    
-}
-
 .button-quiz {
     width: 45%;
     height: 45px;
@@ -68,4 +64,19 @@ button {
     flex-direction: column;
     padding: 20px;
     font-size: 1;
+}
+
+.text-success-with-bg {
+    color: var(--success-dark);
+    background-color: var(--success-light);
+}
+
+.text-warning-with-bg {
+    color: var(--warning-dark);
+    background-color: var(--warning-light);
+}
+
+.text-danger-with-bg {
+    color: var(--danger-dark);
+    background-color: var(--danger-light);
 }
