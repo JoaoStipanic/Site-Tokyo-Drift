@@ -86,7 +86,7 @@
         const media = '';
         obterDadosGraficoTentativaPontuacao(idUsuario);
         obterDadosGraficoPorcentagem(idUsuario);
-        buscarKpiMedia();
+        buscarKpiMedia(idUsuario);
         // plotarGraficoPorcentagem();
     }
     
@@ -145,12 +145,12 @@
 
             .then(function(response) {
                 if (response.ok) {
-                response.json().then(function (resposta) {
-                    console.log(`Dados recebidos para kpi de pontuação total: ${JSON.stringify(resposta)}`);
+                response.json().then(function (respostaKpi1) {
+                    console.log(`Dados recebidos para kpi de pontuação total: ${JSON.stringify(respostaKpi1)}`);
                     console.log('----------------------------------------------');
-                    // resposta.reverse(); // do mais antigo pro mais novo
+                    respostaKpi1.reverse(); // do mais antigo pro mais novo
 
-                    plotarKpi(resposta);
+                    plotarKpi(respostaKpi1);
 
                 });
             } else {
@@ -283,9 +283,9 @@
         );
     }
 
-    function plotarKpi(resposta) {
-        console.log(resposta)
-        media.innerHTML = resposta[0].media;
+    function plotarKpi(respostaKpi1) {
+        console.log(respostaKpi1)
+        media.innerHTML = respostaKpi1[0].media;
     }
 
 </script>
