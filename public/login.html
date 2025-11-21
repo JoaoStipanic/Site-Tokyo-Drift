@@ -37,7 +37,8 @@
                 <input class="input" type="password" id="senha_input" placeholder="******">
                 <br><br><br>
 
-                <button class="button" onclick="entrar()">Fazer cadastro</button>
+                <button class="button" onclick="entrar()">Fazer cadastro</button><br>
+                <span class="span-mensagem" id="span_erro"></span>
                 <br><br><br>
 
                 <p class="p-login">Não tem conta? <a href="cadastro.html">Cadastre-se aqui</a></p>
@@ -63,8 +64,8 @@
             dialog_mensagem.innerHTML = "Todos os campos devem estar preenchidos!";
 
             setTimeout(() => {
-            dialog_mensagem.style.display = "none"
-          }, "2000");
+                dialog_mensagem.style.display = "none"
+            }, "2000");
 
             return false;
         }
@@ -95,7 +96,8 @@
                     sessionStorage.ID_USUARIO = json.id
 
                     dialog_mensagem.style.display = 'block';
-                    dialog_mensagem.innerHTML = `Login realizado com sucesso! <br> Redirecionando para o QUIZ...`
+                    dialog_mensagem.innerHTML = `Login realizado com sucesso! <br> Redirecionando para a tela de Dashboard...`
+
                     setTimeout(() => {
                         window.location = "dashboard.html";
                     }, "2000");
@@ -108,6 +110,7 @@
 
                 resposta.text().then(texto => {
                     console.error(texto);
+                    verificar(texto);
                 });
             }
 
