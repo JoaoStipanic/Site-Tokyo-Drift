@@ -23,7 +23,7 @@ var quizRouter = require("./src/routes/quiz");
 var dashTentativaRouter = require("./src/routes/dashTentativa");
 var dashPorcentagemRouter = require("./src/routes/dashPorcentagem");
 
-// var kpiMediaRouter = require("./src/routes/kpiMedia");
+var kpiMediaRouter = require("./src/routes/kpiMedia");
 
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
@@ -38,7 +38,7 @@ app.use("/avisos", avisosRouter);
 app.use("/quiz", quizRouter);
 app.use("/dashTentativa", dashTentativaRouter);
 app.use("/dashPorcentagem", dashPorcentagemRouter);
-// app.use("/kpiMedia", kpiMediaRouter);
+app.use("/kpiMedia", kpiMediaRouter);
 
 
 app.listen(PORTA_APP, function () {

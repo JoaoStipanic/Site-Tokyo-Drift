@@ -3,7 +3,7 @@ var router = express.Router();
 
 var kpiMediaController = require("../controllers/kpiMediaController");
 
-router.get("/buscarKpiMedia/:media", function (req, res) {
+router.get("/buscarKpiMedia/:idUsuario", function (req, res) {
     kpiMediaController.buscarKpiMedia(req, res);
 });
 

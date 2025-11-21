@@ -86,8 +86,8 @@
         const media = '';
         obterDadosGraficoTentativaPontuacao(idUsuario);
         obterDadosGraficoPorcentagem(idUsuario);
-        // buscarKpiMedia(media);
-        // plotarGraficoPorcentagem()
+        buscarKpiMedia();
+        // plotarGraficoPorcentagem();
     }
     
 
@@ -139,29 +139,29 @@
         });
     }
 
-    // function buscarKpiMedia(media) {
-    //     // Buscando dados da média de Pontuações total
-    //     fetch(`/kpiMedia/buscarKpiMedia/${media}`, { cache: 'no-store' })
+    function buscarKpiMedia(idUsuario) {
+        // Buscando dados da média de Pontuações total
+        fetch(`/kpiMedia/buscarKpiMedia/${idUsuario}`, { cache: 'no-store' })
 
-    //         .then(function(response) {
-    //             if (response.ok) {
-    //             response.json().then(function (resposta) {
-    //                 console.log(`Dados recebidos para kpi de pontuação total: ${JSON.stringify(resposta)}`);
-    //                 console.log('----------------------------------------------');
-    //                 // resposta.reverse(); // do mais antigo pro mais novo
+            .then(function(response) {
+                if (response.ok) {
+                response.json().then(function (resposta) {
+                    console.log(`Dados recebidos para kpi de pontuação total: ${JSON.stringify(resposta)}`);
+                    console.log('----------------------------------------------');
+                    // resposta.reverse(); // do mais antigo pro mais novo
 
-    //                 plotarKpi(resposta);
+                    plotarKpi(resposta);
 
-    //             });
-    //         } else {
-    //             console.error('Nenhum dado encontrado ou erro na API');
-    //         }
-    //         })
-    //     .catch(function (error) {
-    //         console.error(`Erro na obtenção dos dados p/ kpi: ${error.message}`);
-    //     });
+                });
+            } else {
+                console.error('Nenhum dado encontrado ou erro na API');
+            }
+            })
+        .catch(function (error) {
+            console.error(`Erro na obtenção dos dados p/ kpi: ${error.message}`);
+        });
 
-    // }
+    }
 
     // ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 
@@ -283,8 +283,9 @@
         );
     }
 
-    // function plotarKpi(resposta) {
-    //     media.innerHTML = resposta[0][0]
-    // }
+    function plotarKpi(resposta) {
+        console.log(resposta)
+        media.innerHTML = resposta[0].media;
+    }
 
 </script>

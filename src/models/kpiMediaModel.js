@@ -1,6 +1,6 @@
 var database = require("../database/config")
 
-function buscarKpiMedia(media) {
+function buscarKpiMedia(idUsuario) {
     var instrucaoSql = `
         SELECT ROUND(AVG(pontuacao)) AS media FROM Resultado;
     `;
