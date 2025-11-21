@@ -52,23 +52,24 @@
         <div class="container">
             <div class="container-filho">
                 <div class="card-dash-kpi">
-                    <p class="">Média de acertos:</p>
-                    <p class="" id="media">XX</p>
+                    <p class="titulo">Média de acertos:</p>
+                    <p class="texto-kpi" id="media">XX</p>
                 </div>
                 <div class="card-dash-kpi">
-                    <p class="">Porcentagem de acertos</p>
-                    <p class="">XX%</p>
+                    <p class="titulo">Porcentagem de acertos</p>
+                    <p class="texto-kpi">XX%</p>
                 </div>
             
             </div>
-            <!-- <div class="container-filho"> -->
+            <div class="container-filho">
                 <div class="card-dash">
                     <canvas id="linha"></canvas>
                 </div>
                 <div class="card-dash">
+                    <p class="titulo">Porcentagem de acertos</p>
                     <canvas id="pizza"></canvas>
                 </div>
-            <!-- </div> -->
+            </div>
         </div>
           
     </div>
@@ -191,8 +192,7 @@
                 data: dadosResposta,
                 fill: false,
                 borderColor: 'rgb(237, 107, 24)',
-                backgroundColor: 'rgb(237, 107, 24)',
-                tension: 0.1,
+                backgroundColor: 'rgb(237, 107, 24)'
             }]
         };
 
@@ -212,23 +212,27 @@
             type: 'line',
             data: dados,
             options: {
-                    scales: {
-                        x: {
-                            title: {
-                                display: true,
-                                text: 'Tentativa'
-                            },
+                scales: {
+                    x: {
+                        title: {
+                            display: true,
+                            text: 'Tentativa'
                         },
-                        y: {
-                            title: {
-                                display: true,
-                                text: 'Pontuação'
-                            },
-                            beginAtZero: true,
-                            stacked: true
-                        }
+                    },
+                    y: {
+                        min: 0,
+                        max: 10,
+                        ticks: {
+                            stepSize: 1
+                        },
+                        title: {
+                            display: true,
+                            text: 'Pontuação'
+                        },
+                        beginAtZero: true
                     }
                 }
+            }
         };
         
         // Adicionando gráfico criado em div na tela
