@@ -23,7 +23,6 @@
     </header>
 
     <div class="conteudo">
-        <!-- <h1 class="titulo-conteudo">Dashboard</h1> -->
         <div class="navbar">
             <dialog id="dialog_mensagem"></dialog>
             <div class="hello">
@@ -56,7 +55,7 @@
                 </div>
                 <div class="card-dash-kpi">
                     <p class="titulo">Porcentagem de acertos</p>
-                    <p class="texto-kpi">XX%</p>
+                    <p class="texto-kpi" id="mediaTotal">XX%</p>
                 </div>
             
             </div>
@@ -95,6 +94,7 @@
         obterDadosGraficoTentativaPontuacao(idUsuario);
         obterDadosGraficoPorcentagem(idUsuario);
         buscarKpiMedia(idUsuario);
+        buscarKpiMediaTotal(idUsuario);
     }
     
 
@@ -102,13 +102,12 @@
 
         // Buscando dados do gráfico de Pontuações do usuário
         fetch(`/dashTentativa/buscarTentativa/${idUsuario}`, { cache: 'no-store' })
-
             .then(function (response) {
-            if (response.ok) {
-                response.json().then(function (resposta) {
+                if (response.ok) {
+                    response.json().then(function (resposta) {
+ 
                     console.log(`Dados recebidos para gráfico de pontuação do usuário: ${JSON.stringify(resposta)}`);
-                    console.log('----------------------------------------------');
-                    resposta.reverse(); // do mais antigo pro mais novo
+                    resposta.reverse();
 
                     plotarGraficoTentativasPontuacao(resposta, idUsuario);
 
@@ -117,9 +116,9 @@
                 console.error('Nenhum dado encontrado ou erro na API');
             }
             })
-        .catch(function (error) {
-            console.error(`Erro na obtenção dos dados p/ gráfico: ${error.message}`);
-        });
+            .catch(function (error) {
+                console.error(`Erro na obtenção dos dados p/ gráfico: ${error.message}`);
+            });
     }
 
     function obterDadosGraficoPorcentagem(idUsuario) {
@@ -131,7 +130,6 @@
             if (response.ok) {
                 response.json().then(function (respostaPorcentagem) {
                     console.log(`Dados recebidos para gráfico de porcentagem de pontuação do usuário: ${JSON.stringify(respostaPorcentagem)}`);
-                    console.log('----------------------------------------------');
                     respostaPorcentagem.reverse();
 
                     plotarGraficoPorcentagem(respostaPorcentagem, idUsuario);
@@ -152,12 +150,11 @@
 
             .then(function(response) {
                 if (response.ok) {
-                response.json().then(function (respostaKpi1) {
-                    console.log(`Dados recebidos para kpi de pontuação total: ${JSON.stringify(respostaKpi1)}`);
-                    console.log('----------------------------------------------');
+                    response.json().then(function (respostaKpi1) {
+                    console.log(`Dados recebidos para kpi de pontuação media: ${JSON.stringify(respostaKpi1)}`);
                     respostaKpi1.reverse(); // do mais antigo pro mais novo
 
-                    plotarKpi(respostaKpi1);
+                    plotarKpiMedia(respostaKpi1);
 
                 });
             } else {
@@ -168,17 +165,38 @@
             console.error(`Erro na obtenção dos dados p/ kpi: ${error.message}`);
         });
 
-    }
+    };
+
+    function buscarKpiMediaTotal(idUsuario) {
+        fetch(`/kpiMediaTotal/buscarKpiMediaTotal/${idUsuario}`, { cache: 'no-store' })
+
+            .then(function (response) {
+                if (response.ok) {
+                    response.json().then(function (respostaKpi2) {
+                    console.log(`Dados recebidos para kpi de pontuação media total: ${JSON.stringify(respostaKpi2)}`);
+                    respostaKpi2.reverse();
+
+                    plotarKpiMediaTotal(respostaKpi2);
+
+                });
+            } else {
+                console.error('Nenhum dado encontrado ou erro na API');
+            }
+            })
+        .catch(function (error) {
+            console.error(`Erro na obtenção dos dados p/ gráfico: ${error.message}`);
+        });
+    };
 
     // ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
     // Plotando...
 
     function plotarGraficoTentativasPontuacao(resposta, idUsuario) {
-        console.log('iniciando plotagem do gráfico...');
-        console.log('----------------------------------------------');
         let labels = [];
         let dadosResposta = [];
         var tentativaMaior = 0;
+        console.log('Dados: TentativasPontuacao')
+        console.log(resposta)
         
         // Inserindo valores recebidos em estrutura para plotar o gráfico
         for (i = 0; i < resposta.length; i++) {
@@ -203,19 +221,7 @@
                 backgroundColor: 'rgb(237, 107, 24)'
             }]
         };
-
-        // console.log('----------------------------------------------')
-        console.log('Estes dados foram recebidos pela funcao "obterDadosGraficoTentativaPontuacao" e passados para "plotarGraficoTentativasPontuacao":');
-        console.log(resposta);
-        console.log('----------------------------------------------');
-        console.log('O gráfico será plotado com os respectivos valores:');
-        console.log('Labels:');
-        console.log(labels);
-        console.log('Dados:');
-        console.log(dados.datasets);
-        console.log('----------------------------------------------');
-
-        // Criando estrutura para plotar gráfico - config
+        
         const config = {
             type: 'line',
             data: dados,
@@ -242,8 +248,7 @@
                 }
             }
         };
-        
-        // Adicionando gráfico criado em div na tela
+
         let myChart = new Chart(
             document.getElementById(`linha`),
             config
@@ -275,7 +280,6 @@
                     'rgb(200, 92, 23)',
                     'rgb(170, 145, 0)'
                 ]
-                // hoverOffset: 4
             }]
         };
 
@@ -291,9 +295,16 @@
         );
     }
 
-    function plotarKpi(respostaKpi1) {
+    function plotarKpiMedia(respostaKpi1) {
+        console.log('Dados: Kpi Pontuação Média');
         console.log(respostaKpi1)
         media.innerHTML = respostaKpi1[0].media;
+    }
+
+    function plotarKpiMediaTotal(respostaKpi2){
+        console.log('Dados: Kpi Pontuação Média Total');
+        console.log(respostaKpi2)
+        mediaTotal.innerHTML = `${respostaKpi2[0].mediaTotal}`;
     }
 
 </script>
