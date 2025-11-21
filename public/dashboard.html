@@ -25,12 +25,13 @@
     <div class="conteudo">
         <!-- <h1 class="titulo-conteudo">Dashboard</h1> -->
         <div class="navbar">
+            <dialog id="dialog_mensagem"></dialog>
             <div class="hello">
                 <h3>Olá, usuário!</h3>
             </div>
 
 
-            <button class="button">Fazer Quiz</button>
+            <button class="button" onclick="irQuiz()">Fazer Quiz</button>
 
 
             <div class="btn-nav">
@@ -45,9 +46,7 @@
                 </a>
             </div>
 
-            <div class="btn-logout" onclick="limparSessao()">
-                <h3>Sair</h3>
-            </div>
+            <button class="button" onclick="limparSessao()">Sair</button>
         </div>
         <div class="container">
             <div class="container-filho">
@@ -81,13 +80,21 @@
 </html>
 
 <script>
+    function irQuiz () {
+        dialog_mensagem.style.display = 'block';
+        dialog_mensagem.innerHTML = `Redirecionando para o Quiz...`
+
+        setTimeout(() => {
+            window.location = "quiz.html";
+        }, "1500");
+    }
+
     function iniciar() {
         const idUsuario = sessionStorage.ID_USUARIO;
         const media = '';
         obterDadosGraficoTentativaPontuacao(idUsuario);
         obterDadosGraficoPorcentagem(idUsuario);
         buscarKpiMedia(idUsuario);
-        // plotarGraficoPorcentagem();
     }
     
 
@@ -164,6 +171,7 @@
     }
 
     // ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+    // Plotando...
 
     function plotarGraficoTentativasPontuacao(resposta, idUsuario) {
         console.log('iniciando plotagem do gráfico...');
