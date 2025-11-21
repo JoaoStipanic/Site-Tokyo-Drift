@@ -168,7 +168,7 @@ footer p {
     justify-items: center;
     justify-content: center;
     justify-content: space-evenly;
-    padding: 30px;
+    padding: 50px;
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
 
 }
@@ -183,12 +183,8 @@ footer p {
     font-size: 20px;
 }
 
-.div-login .input {
-    width: 98.6%;
-}
-
 .input {
-    width: 97%;
+    width: 98.5%;
     height: 40px;
     border-radius: 10px;
     border: solid 3px #bb4c07;
@@ -225,7 +221,7 @@ footer p {
 
 /* CADASTRO */
 .card-cadastro {
-    display: flex;
+    /* display: flex; */
     width: 80%;
     background-image: url(../assets/imgs/drift2.jpg);
     background-position: center center;
@@ -235,9 +231,22 @@ footer p {
     justify-self: center;
     justify-items: center;
     justify-content: center;
-    justify-content: space-evenly;
+    /* justify-content: space-evenly; */
     padding: 30px;
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
+}
+
+.central {
+    width: 80%;
+    height: auto;
+    padding: 30px;
+    justify-items: center;
+}
+
+.entradas-cadastro {
+    display: flex;
+    justify-content: space-between;
+    width: 100%;
 }
 
 .span-mensagem {
