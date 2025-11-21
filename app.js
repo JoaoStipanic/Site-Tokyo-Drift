@@ -20,7 +20,10 @@ var usuarioRouter = require("./src/routes/usuarios");
 var avisosRouter = require("./src/routes/avisos");
 // var medidasRouter = require("./src/routes/medidas");
 var quizRouter = require("./src/routes/quiz");
-var dashRouter = require("./src/routes/dash");
+var dashTentativaRouter = require("./src/routes/dashTentativa");
+var dashPorcentagemRouter = require("./src/routes/dashPorcentagem");
+
+// var kpiMediaRouter = require("./src/routes/kpiMedia");
 
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
@@ -33,7 +36,9 @@ app.use("/usuarios", usuarioRouter);
 app.use("/avisos", avisosRouter);
 // app.use("/medidas", medidasRouter);
 app.use("/quiz", quizRouter);
-app.use("/dash", dashRouter);
+app.use("/dashTentativa", dashTentativaRouter);
+app.use("/dashPorcentagem", dashPorcentagemRouter);
+// app.use("/kpiMedia", kpiMediaRouter);
 
 
 app.listen(PORTA_APP, function () {

@@ -1,6 +1,6 @@
 var database = require("../database/config")
 
-function buscar(idUsuario) {
+function buscarTentativa(idUsuario) {
     var instrucaoSql = `
         SELECT pontuacao FROM Resultado WHERE fkUsuario = ${idUsuario} ORDER BY idResultado DESC;
     `;
@@ -9,5 +9,5 @@ function buscar(idUsuario) {
 }
 
 module.exports = {
-    buscar
+    buscarTentativa
 };

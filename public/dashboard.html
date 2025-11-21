@@ -52,8 +52,8 @@
         <div class="container">
             <div class="container-filho">
                 <div class="card-dash-kpi">
-                    <p class="">Total de acertos:</p>
-                    <p class="">XX</p>
+                    <p class="">Média de acertos:</p>
+                    <p class="" id="media">XX</p>
                 </div>
                 <div class="card-dash-kpi">
                     <p class="">Porcentagem de acertos</p>
@@ -61,14 +61,14 @@
                 </div>
             
             </div>
-            <div class="container-filho">
+            <!-- <div class="container-filho"> -->
                 <div class="card-dash">
                     <canvas id="linha"></canvas>
                 </div>
                 <div class="card-dash">
-                    <canvas id="linha2"></canvas>
+                    <canvas id="pizza"></canvas>
                 </div>
-            </div>
+            <!-- </div> -->
         </div>
           
     </div>
@@ -82,21 +82,27 @@
 <script>
     function iniciar() {
         const idUsuario = sessionStorage.ID_USUARIO;
-        obterDadosGrafico(idUsuario);
+        const media = '';
+        obterDadosGraficoTentativaPontuacao(idUsuario);
+        obterDadosGraficoPorcentagem(idUsuario);
+        // buscarKpiMedia(media);
+        // plotarGraficoPorcentagem()
     }
     
 
-    function obterDadosGrafico(idUsuario) {
+    function obterDadosGraficoTentativaPontuacao(idUsuario) {
 
-        fetch(`/dash/buscar/${idUsuario}`, { cache: 'no-store' })
+        // Buscando dados do gráfico de Pontuações do usuário
+        fetch(`/dashTentativa/buscarTentativa/${idUsuario}`, { cache: 'no-store' })
 
             .then(function (response) {
             if (response.ok) {
                 response.json().then(function (resposta) {
-                    console.log(`Dados recebidos: ${JSON.stringify(resposta)}`);
+                    console.log(`Dados recebidos para gráfico de pontuação do usuário: ${JSON.stringify(resposta)}`);
+                    console.log('----------------------------------------------');
                     resposta.reverse(); // do mais antigo pro mais novo
 
-                    plotarGrafico(resposta, idUsuario);
+                    plotarGraficoTentativasPontuacao(resposta, idUsuario);
 
                 });
             } else {
@@ -108,76 +114,173 @@
         });
     }
 
-    function plotarGrafico(resposta, idUsuario) {
+    function obterDadosGraficoPorcentagem(idUsuario) {
+
+        // Buscando dados do gráfico de porcentagem da pontuação do usuário
+        fetch(`/dashPorcentagem/buscarPorcentagem/${idUsuario}`, { cache: 'no-store' })
+
+            .then(function (response) {
+            if (response.ok) {
+                response.json().then(function (respostaPorcentagem) {
+                    console.log(`Dados recebidos para gráfico de porcentagem de pontuação do usuário: ${JSON.stringify(respostaPorcentagem)}`);
+                    console.log('----------------------------------------------');
+                    respostaPorcentagem.reverse();
+
+                    plotarGraficoPorcentagem(respostaPorcentagem, idUsuario);
+
+                });
+            } else {
+                console.error('Nenhum dado encontrado ou erro na API');
+            }
+            })
+        .catch(function (error) {
+            console.error(`Erro na obtenção dos dados p/ gráfico: ${error.message}`);
+        });
+    }
+
+    // function buscarKpiMedia(media) {
+    //     // Buscando dados da média de Pontuações total
+    //     fetch(`/kpiMedia/buscarKpiMedia/${media}`, { cache: 'no-store' })
+
+    //         .then(function(response) {
+    //             if (response.ok) {
+    //             response.json().then(function (resposta) {
+    //                 console.log(`Dados recebidos para kpi de pontuação total: ${JSON.stringify(resposta)}`);
+    //                 console.log('----------------------------------------------');
+    //                 // resposta.reverse(); // do mais antigo pro mais novo
+
+    //                 plotarKpi(resposta);
+
+    //             });
+    //         } else {
+    //             console.error('Nenhum dado encontrado ou erro na API');
+    //         }
+    //         })
+    //     .catch(function (error) {
+    //         console.error(`Erro na obtenção dos dados p/ kpi: ${error.message}`);
+    //     });
+
+    // }
+
+    // ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+
+    function plotarGraficoTentativasPontuacao(resposta, idUsuario) {
         console.log('iniciando plotagem do gráfico...');
+        console.log('----------------------------------------------');
         let labels = [];
         let dadosResposta = [];
+        var tentativaMaior = 0;
         
         // Inserindo valores recebidos em estrutura para plotar o gráfico
         for (i = 0; i < resposta.length; i++) {
             var registro = resposta[i].pontuacao;
             dadosResposta.push(registro);
-        }
-        
-        for (i = 0; i < resposta.length; i++) {
-            var tentativa = `${i + 1}`;
+
+            var tentativa = `${i + 1}º`;
             labels.push(tentativa);
+
+            if (registro >= tentativaMaior) {
+                tentativaMaior = registro;
+            }
         }
 
         let dados = {
             labels: labels,
             datasets: [{
-                label: 'Umidade',
+                label: 'Pontuação',
                 data: dadosResposta,
                 fill: false,
-                borderColor: 'rgb(75, 192, 192)',
-                tension: 0.1
+                borderColor: 'rgb(237, 107, 24)',
+                backgroundColor: 'rgb(237, 107, 24)',
+                tension: 0.1,
             }]
         };
 
-        console.log('----------------------------------------------')
-        console.log('Estes dados foram recebidos pela funcao "obterDadosGrafico" e passados para "plotarGrafico":')
-        console.log(resposta)
-        console.log('----------------------------------------------')
-        console.log('O gráfico será plotado com os respectivos valores:')
-        console.log('Labels:')
-        console.log(labels)
-        console.log('Dados:')
-        console.log(dados.datasets)
-        console.log('----------------------------------------------')
+        // console.log('----------------------------------------------')
+        console.log('Estes dados foram recebidos pela funcao "obterDadosGraficoTentativaPontuacao" e passados para "plotarGraficoTentativasPontuacao":');
+        console.log(resposta);
+        console.log('----------------------------------------------');
+        console.log('O gráfico será plotado com os respectivos valores:');
+        console.log('Labels:');
+        console.log(labels);
+        console.log('Dados:');
+        console.log(dados.datasets);
+        console.log('----------------------------------------------');
 
         // Criando estrutura para plotar gráfico - config
         const config = {
             type: 'line',
             data: dados,
             options: {
-                scales: {
-                    x: {
-                        title: {
-                            display: true,
-                            text: 'Tentativas'
+                    scales: {
+                        x: {
+                            title: {
+                                display: true,
+                                text: 'Tentativa'
+                            },
                         },
-                        beginAtZero: true
-                    },
-                    y: {
-                        title: {
-                            display: true,
-                            text: 'Pontuação'
-                        },
-                        beginAtZero: true
+                        y: {
+                            title: {
+                                display: true,
+                                text: 'Pontuação'
+                            },
+                            beginAtZero: true,
+                            stacked: true
+                        }
                     }
                 }
-            }
         };
         
-
         // Adicionando gráfico criado em div na tela
         let myChart = new Chart(
             document.getElementById(`linha`),
             config
         );
-
-        // setTimeout(() => atualizarGrafico(idUsuario, dados, myChart), 2000);
     }
+
+    function plotarGraficoPorcentagem(respostaPorcentagem, idUsuario) {
+        let labels = [];
+        let dadosResposta = [];
+        var tentativaMaior = 0;
+        var porcentagemAcerto = respostaPorcentagem[0].pontuacao / 10 * 100;
+        var porcentagemErro = 100 - porcentagemAcerto;
+        console.log('Dados: Porcentagem')
+        console.log(respostaPorcentagem)
+
+        let dados = {
+            labels: [
+                'Acertos',
+                'Erros'
+            ],
+            datasets: [{
+                label: 'My First Dataset',
+                data: [porcentagemErro, porcentagemAcerto],
+                backgroundColor: [
+                    'rgb(201, 171, 0)',
+                    'rgb(237, 107, 24)'
+                ],
+                hoverbackgroundColor: [
+                    'rgb(200, 92, 23)',
+                    'rgb(170, 145, 0)'
+                ]
+                // hoverOffset: 4
+            }]
+        };
+
+        const config = {
+            type: 'pie',
+            data: dados
+        };
+
+
+        let myChart = new Chart(
+            document.getElementById(`pizza`),
+            config
+        );
+    }
+
+    // function plotarKpi(resposta) {
+    //     media.innerHTML = resposta[0][0]
+    // }
 
 </script>
