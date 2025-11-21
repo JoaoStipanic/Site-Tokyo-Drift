@@ -65,6 +65,7 @@ INSERT INTO Pergunta VALUES
     (10, 1, 'Onde se passa o início do filme Velozes e Furiosos: Desafio em Tóquio?');
 
 INSERT INTO Resposta VALUES
+-- Pergunta 1
 	(1, 1, 'A', '2004', 0),
 	(2, 1, 'B', '2000', 0),
 	(3, 1, 'C', '2006', 1),

@@ -51,11 +51,11 @@
         </div>
         <div class="container">
             <div class="container-filho">
-                <div class="card-dash">
+                <div class="card-dash-kpi">
                     <p class="">Total de acertos:</p>
                     <p class="">XX</p>
                 </div>
-                <div class="card-dash">
+                <div class="card-dash-kpi">
                     <p class="">Porcentagem de acertos</p>
                     <p class="">XX%</p>
                 </div>
@@ -115,12 +115,12 @@
         
         // Inserindo valores recebidos em estrutura para plotar o gráfico
         for (i = 0; i < resposta.length; i++) {
-            var registro = resposta[0].pontuacao; //-----------------------------------------------------
+            var registro = resposta[i].pontuacao;
             dadosResposta.push(registro);
         }
         
         for (i = 0; i < resposta.length; i++) {
-            var tentativa = `Tentativa ${i + 1}`;
+            var tentativa = `${i + 1}`;
             labels.push(tentativa);
         }
 
@@ -150,18 +150,26 @@
         const config = {
             type: 'line',
             data: dados,
-            scales: {
-                y: {
-                    min: 0,
-                    max: 30,
-                    ticks: {
-                        font: {
-                            size: 7,
-                        }
+            options: {
+                scales: {
+                    x: {
+                        title: {
+                            display: true,
+                            text: 'Tentativas'
+                        },
+                        beginAtZero: true
+                    },
+                    y: {
+                        title: {
+                            display: true,
+                            text: 'Pontuação'
+                        },
+                        beginAtZero: true
                     }
                 }
             }
         };
+        
 
         // Adicionando gráfico criado em div na tela
         let myChart = new Chart(
