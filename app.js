@@ -20,7 +20,6 @@ var usuarioRouter = require("./src/routes/usuarios");
 var avisosRouter = require("./src/routes/avisos");
 var quizRouter = require("./src/routes/quiz");
 var dashTentativaRouter = require("./src/routes/dashTentativa");
-var dashPorcentagemRouter = require("./src/routes/dashPorcentagem");
 var kpiMediaRouter = require("./src/routes/kpiMedia");
 var kpiMediaTotalRouter = require("./src/routes/kpiMediaTotal")
 
@@ -35,7 +34,6 @@ app.use("/usuarios", usuarioRouter);
 app.use("/avisos", avisosRouter);
 app.use("/quiz", quizRouter);
 app.use("/dashTentativa", dashTentativaRouter);
-app.use("/dashPorcentagem", dashPorcentagemRouter);
 app.use("/kpiMedia", kpiMediaRouter);
 app.use("/kpiMediaTotal", kpiMediaTotalRouter);
 
