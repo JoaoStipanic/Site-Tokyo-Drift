@@ -83,6 +83,7 @@
         obterDadosGraficoTentativaPontuacao(idUsuario);
         buscarMedia(idUsuario);
         buscarKpiMediaTotal(idUsuario);
+        buscarNomeUsuario(idUsuario);
     }
     
 
@@ -102,10 +103,10 @@
             } else {
                 console.error('Nenhum dado encontrado ou erro na API');
             }
-            })
-            .catch(function (error) {
+        })
+        .catch(function (error) {
                 console.error(`Erro na obtenção dos dados p/ gráfico: ${error.message}`);
-            });
+        });
     }
 
     function buscarMedia(idUsuario) {
@@ -126,7 +127,7 @@
             } else {
                 console.error('Nenhum dado encontrado ou erro na API');
             }
-            })
+        })
         .catch(function (error) {
             console.error(`Erro na obtenção dos dados p/ kpi: ${error.message}`);
         });
@@ -149,11 +150,33 @@
             } else {
                 console.error('Nenhum dado encontrado ou erro na API');
             }
-            })
+        })
         .catch(function (error) {
             console.error(`Erro na obtenção dos dados p/ gráfico: ${error.message}`);
         });
     };
+
+    function buscarNomeUsuario(idUsuario) {
+        // Buscando nome e sobrenome do usuário logado
+        fetch (`usuarioNome/buscarNomeUsuario/${idUsuario}`, { cache: 'no-store'})
+
+        .then(function (response){
+            if (response.ok) {
+                response.json().then(function (respostaNome) {
+                    console.log(`Dados recebidos para navbar nome do usuário: ${JSON.stringify(respostaNome)}`);
+                    respostaNome.reverse();
+
+                    plotarNome(respostaNome);
+
+                });
+            } else {
+                console.erro('Nenhum dado encontrado ou erro na API');
+            }
+        })
+        .catch(function (error) {
+            console.erro(`Erro na obtenção dos dados p/ gráfico: ${error.message}`);
+        })
+    }
 
     // ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
     // Plotando...
@@ -288,6 +311,10 @@
             p_mediaTotal.innerHTML = `Você está acima da média`;
             p_mediaTotal.style.color = 'green'
         }
+    }
+
+    function plotarNome(respostaNome) {
+        nome_usuario.innerHTML = respostaNome[0].nomeCompleto;
     }
 
 </script>

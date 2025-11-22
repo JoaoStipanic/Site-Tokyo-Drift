@@ -21,7 +21,8 @@ var avisosRouter = require("./src/routes/avisos");
 var quizRouter = require("./src/routes/quiz");
 var dashTentativaRouter = require("./src/routes/dashTentativa");
 var kpiMediaRouter = require("./src/routes/kpiMedia");
-var kpiMediaTotalRouter = require("./src/routes/kpiMediaTotal")
+var kpiMediaTotalRouter = require("./src/routes/kpiMediaTotal");
+var usuarioNomeRouter = require("./src/routes/usuarioNome");
 
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
@@ -36,6 +37,7 @@ app.use("/quiz", quizRouter);
 app.use("/dashTentativa", dashTentativaRouter);
 app.use("/kpiMedia", kpiMediaRouter);
 app.use("/kpiMediaTotal", kpiMediaTotalRouter);
+app.use("/usuarioNome", usuarioNomeRouter);
 
 
 app.listen(PORTA_APP, function () {
