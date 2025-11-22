@@ -51,11 +51,11 @@
             <div class="container-filho">
                 <div class="card-dash-kpi">
                     <p class="titulo">Média de acertos:</p>
-                    <p class="texto-kpi" id="media">XX</p>
+                    <p class="texto-kpi" id="media"style="color: #ed6b18">XX</p>
                 </div>
                 <div class="card-dash-kpi">
-                    <p class="titulo">Porcentagem de acertos</p>
-                    <p class="texto-kpi" id="mediaTotal">XX%</p>
+                    <p class="titulo">Seu status comparado a média de pontuação de todos os usuários</p>
+                    <p class="texto-kpi" id="p_mediaTotal">XX%</p>
                 </div>
             
             </div>
@@ -145,7 +145,7 @@
     }
 
     function buscarKpiMedia(idUsuario) {
-        // Buscando dados da média de Pontuações total
+        // Buscando dados da média de Pontuações
         fetch(`/kpiMedia/buscarKpiMedia/${idUsuario}`, { cache: 'no-store' })
 
             .then(function(response) {
@@ -168,6 +168,7 @@
     };
 
     function buscarKpiMediaTotal(idUsuario) {
+        // Buscando dados da média de Pontuações total
         fetch(`/kpiMediaTotal/buscarKpiMediaTotal/${idUsuario}`, { cache: 'no-store' })
 
             .then(function (response) {
@@ -261,6 +262,7 @@
         var tentativaMaior = 0;
         var porcentagemAcerto = respostaPorcentagem[0].pontuacao / 10 * 100;
         var porcentagemErro = 100 - porcentagemAcerto;
+        
         console.log('Dados: Porcentagem')
         console.log(respostaPorcentagem)
 
@@ -303,8 +305,23 @@
 
     function plotarKpiMediaTotal(respostaKpi2){
         console.log('Dados: Kpi Pontuação Média Total');
-        console.log(respostaKpi2)
-        mediaTotal.innerHTML = `${respostaKpi2[0].mediaTotal}`;
+        console.log(respostaKpi2);
+
+        var mediaTotal = respostaKpi2[0].mediaTotal;
+        var mediaUsuario = respostaKpi2[0].mediaUsuario;
+
+        if (mediaTotal > mediaUsuario) {
+            p_mediaTotal.innerHTML = `Você está abaixo da média`;
+            p_mediaTotal.style.color = 'red';
+
+        } else if (mediaTotal == mediaUsuario) {
+            p_mediaTotal.innerHTML = `Você está na média`;
+            p_mediaTotal.style.color = 'yellow';
+            
+        } else {
+            p_mediaTotal.innerHTML = `Você está acima da média`;
+            p_mediaTotal.style.color = 'green'
+        }
     }
 
 </script>
