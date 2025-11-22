@@ -22,6 +22,14 @@ dialog {
   justify-content: center;
   align-items: center;
   box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
+  justify-content: space-evenly;
+}
+
+.titulo-nav {
+  text-align: center;
+  font-size: 20px;
+  font-weight: bold;
+  margin: 0px;
 }
 
 .conteudo .button {

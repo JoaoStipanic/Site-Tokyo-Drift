@@ -1,6 +1,6 @@
 var database = require("../database/config")
 
-function buscarKpiMedia(idUsuario) {
+function buscarMedia(idUsuario) {
     var instrucaoSql = `
         SELECT ROUND(AVG(pontuacao), 2) AS media FROM Resultado WHERE fkUsuario = ${idUsuario};
     `;
@@ -9,5 +9,5 @@ function buscarKpiMedia(idUsuario) {
 }
 
 module.exports = {
-    buscarKpiMedia
+    buscarMedia
 };

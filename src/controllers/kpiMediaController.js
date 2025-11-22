@@ -1,9 +1,9 @@
 var kpiMediaModel = require("../models/kpiMediaModel");
 
-function buscarKpiMedia(req, res) {
+function buscarMedia(req, res) {
     var idUsuario = req.params.idUsuario
 
-    kpiMediaModel.buscarKpiMedia(idUsuario).then(function(resultado) {
+    kpiMediaModel.buscarMedia(idUsuario).then(function(resultado) {
         res.status(200).json(resultado);
     }).catch(function(erro){
         res.status(500).json(erro.sqlMessage);
@@ -11,5 +11,5 @@ function buscarKpiMedia(req, res) {
 }
 
 module.exports = {
-    buscarKpiMedia
+    buscarMedia
 }

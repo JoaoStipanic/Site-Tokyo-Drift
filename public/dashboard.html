@@ -26,45 +26,34 @@
         <div class="navbar">
             <dialog id="dialog_mensagem"></dialog>
             <div class="hello">
-                <h3>Olá, usuário!</h3>
+                <p class="titulo-nav">Olá, <span id="nome_usuario" style="color: #ed6b18">XXX</span>! <br>
+                Aqui estão seus resultado!</p>
             </div>
-
-
             <button class="button" onclick="irQuiz()">Fazer Quiz</button>
-
-
             <div class="btn-nav">
-
                 <h3>Gráficos</h3>
-
             </div>
-
-            <div class="btn-nav-white">
-                <a href="./mural.html">
-                    <h3>Mural de Avisos</h3>
-                </a>
-            </div>
-
             <button class="button" onclick="limparSessao()">Sair</button>
         </div>
         <div class="container">
             <div class="container-filho">
                 <div class="card-dash-kpi">
-                    <p class="titulo">Média de acertos:</p>
-                    <p class="texto-kpi" id="media"style="color: #ed6b18">XX</p>
+                    <p class="titulo">Média total de acertos:</p>
+                    <p class="texto-kpi" id="media" style="color: #ed6b18">XX</p>
                 </div>
                 <div class="card-dash-kpi">
-                    <p class="titulo">Seu status comparado a média de pontuação de todos os usuários</p>
+                    <p class="titulo">Seu status comparado a média de pontuação de todos os usuários:</p>
                     <p class="texto-kpi" id="p_mediaTotal">XX%</p>
                 </div>
             
             </div>
             <div class="container-filho">
                 <div class="card-dash">
+                    <p class="titulo">Pontuação de cada tentativa:</p>
                     <canvas id="linha"></canvas>
                 </div>
                 <div class="card-dash">
-                    <p class="titulo">Porcentagem de acertos</p>
+                    <p class="titulo">Porcentagem total de acertos:</p>
                     <canvas id="pizza"></canvas>
                 </div>
             </div>
@@ -92,14 +81,12 @@
         const idUsuario = sessionStorage.ID_USUARIO;
         const media = '';
         obterDadosGraficoTentativaPontuacao(idUsuario);
-        obterDadosGraficoPorcentagem(idUsuario);
-        buscarKpiMedia(idUsuario);
+        buscarMedia(idUsuario);
         buscarKpiMediaTotal(idUsuario);
     }
     
 
     function obterDadosGraficoTentativaPontuacao(idUsuario) {
-
         // Buscando dados do gráfico de Pontuações do usuário
         fetch(`/dashTentativa/buscarTentativa/${idUsuario}`, { cache: 'no-store' })
             .then(function (response) {
@@ -121,32 +108,9 @@
             });
     }
 
-    function obterDadosGraficoPorcentagem(idUsuario) {
-
-        // Buscando dados do gráfico de porcentagem da pontuação do usuário
-        fetch(`/dashPorcentagem/buscarPorcentagem/${idUsuario}`, { cache: 'no-store' })
-
-            .then(function (response) {
-            if (response.ok) {
-                response.json().then(function (respostaPorcentagem) {
-                    console.log(`Dados recebidos para gráfico de porcentagem de pontuação do usuário: ${JSON.stringify(respostaPorcentagem)}`);
-                    respostaPorcentagem.reverse();
-
-                    plotarGraficoPorcentagem(respostaPorcentagem, idUsuario);
-
-                });
-            } else {
-                console.error('Nenhum dado encontrado ou erro na API');
-            }
-            })
-        .catch(function (error) {
-            console.error(`Erro na obtenção dos dados p/ gráfico: ${error.message}`);
-        });
-    }
-
-    function buscarKpiMedia(idUsuario) {
-        // Buscando dados da média de Pontuações
-        fetch(`/kpiMedia/buscarKpiMedia/${idUsuario}`, { cache: 'no-store' })
+    function buscarMedia(idUsuario) {
+        // Buscando dados da média de Pontuações do usuário
+        fetch(`/kpiMedia/buscarMedia/${idUsuario}`, { cache: 'no-store' })
 
             .then(function(response) {
                 if (response.ok) {
@@ -155,6 +119,8 @@
                     respostaKpi1.reverse(); // do mais antigo pro mais novo
 
                     plotarKpiMedia(respostaKpi1);
+                    plotarGraficoPorcentagem(respostaKpi1, idUsuario);
+
 
                 });
             } else {
@@ -256,15 +222,15 @@
         );
     }
 
-    function plotarGraficoPorcentagem(respostaPorcentagem, idUsuario) {
+    function plotarGraficoPorcentagem(respostaKpi1, idUsuario) {
         let labels = [];
         let dadosResposta = [];
         var tentativaMaior = 0;
-        var porcentagemAcerto = respostaPorcentagem[0].pontuacao / 10 * 100;
+        var porcentagemAcerto = respostaKpi1[0].media / 10 * 100;
         var porcentagemErro = 100 - porcentagemAcerto;
         
         console.log('Dados: Porcentagem')
-        console.log(respostaPorcentagem)
+        console.log(respostaKpi1)
 
         let dados = {
             labels: [
