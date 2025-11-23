@@ -134,3 +134,11 @@ button {
     transition: 0.2s;
     border: 6px solid #ffe20a;
 }
+
+.certas {
+    background-color: rgb(151, 255, 151);
+}
+
+.erradas {
+    background-color: rgb(255, 106, 106);
+}

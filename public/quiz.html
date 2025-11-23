@@ -197,13 +197,6 @@
     let quantidadeDeQuestoes = listaDeQuestoes.length
     let isUltima = numeroDaQuestaoAtual == quantidadeDeQuestoes-1 ? true : false
 
-    // function onloadEsconder() {
-    //     document.getElementById('pontuacao').style.display = "none"
-    //     document.getElementById('jogo').style.display = "none"
-    //     document.getElementById('pontuacao1').style.display = "none"
-    //     btnConcluir.style.display = "none"
-    // }
-
     function estiloImg() {
         span_img.style = `align-self: center;
                         justify-self: center;
@@ -212,10 +205,7 @@
     }
 
     function iniciarQuiz() {
-        // document.getElementById('pontuacao').style.display = "flex"
         document.getElementById('jogo').style.display = "block"
-        // document.getElementById('pontuacao1').style.display = "flex"
-        // document.getElementById('btnIniciarQuiz').style.display = "none"
 
         document.getElementById('qtdQuestoes').innerHTML = quantidadeDeQuestoes
 
@@ -336,16 +326,17 @@
         // verifica se resposta assinalada é correta
         options.forEach((option) => {
             if (option.checked === true && option.value === respostaQuestaoAtual) {
-                document.getElementById(alternativaCorreta).classList.add("text-success-with-bg")
+                document.getElementById(alternativaCorreta).classList.add("certas")
                 pontuacaoFinal++
                 certas++
                 // document.getElementById("spanCertas").innerHTML = certas
                 numeroDaQuestaoAtual++
+
             } else if (option.checked && option.value !== respostaQuestaoAtual) {
                 const wrongLabelId = option.labels[0].id
 
-                document.getElementById(wrongLabelId).classList.add("text-danger-with-bg")
-                document.getElementById(alternativaCorreta).classList.add("text-success-with-bg")
+                document.getElementById(wrongLabelId).classList.add("erradas")
+                document.getElementById(alternativaCorreta).classList.add("certas")
                 tentativaIncorreta++
                 erradas++
                 // document.getElementById("spanErradas").innerHTML = erradas
@@ -357,8 +348,8 @@
     function limparCoresBackgroundOpcoes() {
         const options = document.getElementsByName("option");
         options.forEach((option) => {
-            document.getElementById(option.labels[0].id).classList.remove("text-danger-with-bg")
-            document.getElementById(option.labels[0].id).classList.remove("text-success-with-bg")
+            document.getElementById(option.labels[0].id).classList.remove("certas")
+            document.getElementById(option.labels[0].id).classList.remove("erradas")
         })
     }
 
@@ -423,7 +414,7 @@
             if (resposta.ok) {
                 console.log("Insert dos dados realizado");
             } else {
-                // throw "Houve um erro ao tentar realizar o insert dos dados";
+                throw "Houve um erro ao tentar realizar o insert dos dados";
             }
         })
         .catch(function (resposta) {
