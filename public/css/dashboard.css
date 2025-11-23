@@ -5,15 +5,6 @@
   background-color: gray;
 }
 
-dialog {
-    padding: 40px;
-    border: 2px solid #aaaaaa;
-    border-radius: 5px;
-    box-shadow: 0 0 20px rgba(0, 0, 0, 0.5);
-    font-size: 22px;
-    justify-self: center;
-}
-
 .navbar {
   display: flex;
   flex-direction: column;
@@ -114,4 +105,17 @@ dialog {
   width: 100%;
   border-radius: 20px;
   border: solid 1px #ed6b18;
+}
+
+.mensagem-dash{
+    padding: 40px;
+    border: 2px solid #aaaaaa;
+    border-radius: 10px;
+    box-shadow: 0 0 20px rgba(0, 0, 0, 0.5);
+    font-size: 22px;
+    justify-self: center;
+    text-align: center;
+    justify-content: center;
+    flex-direction: column;
+    margin-top: 200px;
 }
