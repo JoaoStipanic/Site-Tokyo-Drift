@@ -64,6 +64,7 @@ body {
 .titulo-conteudo {
     justify-self: center;
     margin-bottom: 30px;
+    color: #ffe20a;
 }
 
 .conteudo-1 {
@@ -109,6 +110,7 @@ footer p {
     margin: 0px;
     text-align: justify;
     font-size: 17px;
+    color: #ffffff;
 }
 
 .div-img-fundo {
@@ -137,7 +139,7 @@ footer p {
 .card {
     border: solid #ed6b18 2px;
     border-radius: 20px;
-    padding: 30px;
+    padding: 50px;
     width: 40%;
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
     background-color: #ffffff;
@@ -153,11 +155,19 @@ footer p {
     width: 70%;
     align-self: center;
     border-radius: 10px;
-    border: solid 1px #000000;
+    border: solid 1px #ed6b18;
 }
 
 .titulo-card {
     justify-self: center;
+    color: #ed6b18;
+}
+
+.texto-container-1-card {
+    margin: 0px;
+    text-align: justify;
+    font-size: 17px;
+    color: #000000;
 }
 
 /* LOGIN */
