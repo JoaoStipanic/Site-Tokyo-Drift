@@ -25,13 +25,20 @@
     <div class="conteudo-1">
         <p class="titulo-quiz">Teste seu conhecimento sobre o filme <span class="titulo-quiz" style="color: #ffe20a">Velozes e Furiosos: Desafio em Tóquio</span></p>
         <div class="container-quiz">
-            <!-- <div id="pontuacao">
-                <div id="pontuacaoDuranteJogo" class="card-pontuacao">
-                    <span class="pontos">Quantidade de acertos: <span id="spanCertas"></span></span><br>
-                    <span class="pontos">Quantidade de erros: <span id="spanErradas"></span></span>
-                </div>
-            </div> -->
+            
+            
+
             <div id="jogo" class="card-pergunta">
+                <!-- <dialog id="dialog_mensagem" class="mensagem-quiz"><p class="titulo-quiz" style="color: black;"><span class="titulo-quiz" style="color: #ed6b18">PARABÉNS!</span> VOCÊ ACERTOU TUDO</p>
+                    <div >
+                        <p class="texto-pergunta"> Sua pontuação foi de <span style="color: rgb(0, 182, 0);">${pontuacaoFinal}</span> pontos</p><br>
+                        <div class="div-button-2">
+                            <button onclick="tentarNovamente()" class="button-quiz" style="width: 35%;" id="btnTentarNovamente">Tentar novamente</button>
+                            <button onclick="irDashboard()" class="button-quiz" style="width: 35%;" id="btnTentarNovamente">Ir para Dashboard</button>
+                        </div>
+                    </div>
+                </dialog> -->
+                <dialog id="dialog_mensagem" class="mensagem-quiz"></dialog>
                 <div id="infoQuestao" style="margin-bottom: 15px;">
                     <span>Questão <span id="spanNumeroDaQuestaoAtual"></span> de <span id="qtdQuestoes"></span></span>
                 </div>
@@ -66,14 +73,6 @@
                     <button onclick="tentarNovamente()" class="button-quiz" style="width: 35%;" id="btnTentarNovamente" disabled>Tentar novamente</button>
                 </div>
             </div>
-            <!-- <div id="pontuacao1">
-                <div id="pontuacaoFinalJogo" class="card-pontuacao">
-                    <span id="pontuacaoFinal" class="pontos">Pontuação Final:
-                        <span id="spanPontuacaoFinal">***</span>
-                    </span>
-                    <span id="msgFinal" class="width-fit-content">***</span>
-                </div>
-            </div> -->
         </div>
     </div>
     
@@ -213,7 +212,7 @@
 
         btnSubmeter.disabled = false
         btnProx.disabled = true
-        btnProx.style.background = 'linear-gradient(90deg, #6e6e6e, #a5a5a5, #cccccc'
+        btnProx.style.background = 'linear-gradient(90deg, #6e6e6e, #a5a5a5, #cccccc)'
         btnProx.style.border = 'solid 2px #6e6e6e'
         btnTentarNovamente.disabled = false
     }
@@ -261,11 +260,11 @@
             alert("Não há alternativas escolhidas. Escolha uma opção.")
         } else {
             btnSubmeter.disabled = true
-            btnSubmeter.style.background = 'linear-gradient(90deg, #6e6e6e, #a5a5a5, #cccccc'
+            btnSubmeter.style.background = 'linear-gradient(90deg, #6e6e6e, #a5a5a5, #cccccc)'
             btnSubmeter.style.border = 'solid 2px #6e6e6e'
             
             btnProx.disabled = false
-            btnProx.style.background = 'linear-gradient(90deg, #ed6b18, #FF8C00, #c9ab00)'
+            btnProx.style.background = 'linear-gradient(90deg, #ed6b18, #FF8C00, #ffe20a)'
             btnProx.style.border = 'solid 2px #ed6b18'
 
             habilitarAlternativas(false)
@@ -290,7 +289,7 @@
         btnProx.style.border = 'solid 2px #6e6e6e'
 
         btnSubmeter.disabled = false
-        btnSubmeter.style.background = 'linear-gradient(90deg, #ed6b18, #FF8C00, #c9ab00)'
+        btnSubmeter.style.background = 'linear-gradient(90deg, #ed6b18, #FF8C00, #ffe20a)'
         btnSubmeter.style.border = 'solid 2px #ed6b18'
 
         desmarcarRadioButtons()
@@ -365,28 +364,6 @@
         let classComCoresParaMensagemFinal = null
         const porcentagemFinalDeAcertos = pontuacaoFinal / quantidadeDeQuestoes
 
-        if (porcentagemFinalDeAcertos <= 0.3) {
-            textoParaMensagemFinal = "Parece que você não estudou..."
-            classComCoresParaMensagemFinal = "text-danger-with-bg"
-        }
-        else if (porcentagemFinalDeAcertos > 0.3 && porcentagemFinalDeAcertos < 0.9) {
-            textoParaMensagemFinal = "Pode melhorar na próxima, hein!"
-            classComCoresParaMensagemFinal = "text-warning-with-bg"
-        }
-        else if (porcentagemFinalDeAcertos >= 0.9) {
-            textoParaMensagemFinal = "Uau, parabéns!"
-            classComCoresParaMensagemFinal = "text-success-with-bg"
-        }
-
-        textoParaMensagemFinal += "<br> Você acertou " + Math.round((porcentagemFinalDeAcertos)*100) + "% das questões."
-
-
-        document.getElementById('msgFinal').innerHTML = textoParaMensagemFinal
-        document.getElementById('msgFinal').classList.add(classComCoresParaMensagemFinal) 
-        document.getElementById('spanPontuacaoFinal').innerHTML = pontuacaoFinal
-
-        document.getElementById('jogo').classList.add("text-new-gray") 
-
         btnProx.disabled = true
         btnProx.style.background = 'linear-gradient(90deg, #6e6e6e, #a5a5a5, #cccccc'
         btnProx.style.border = 'solid 2px #6e6e6e'
@@ -394,8 +371,42 @@
         btnSubmeter.disabled = true
         btnSubmeter.style.background = 'linear-gradient(90deg, #6e6e6e, #a5a5a5, #cccccc'
         btnSubmeter.style.border = 'solid 2px #6e6e6e'
-        btnConcluir.style.display = "block"
-        btnTentarNovamente.disabled = false
+
+        btnTentarNovamente.disabled = true
+        btnTentarNovamente.style.background = 'linear-gradient(90deg, #6e6e6e, #a5a5a5, #cccccc'
+        btnTentarNovamente.style.border = 'solid 2px #6e6e6e'
+
+        if (pontuacaoFinal == 10) {
+            dialog_mensagem.style.display = 'flex';
+            dialog_mensagem.innerHTML = `<p class="titulo-quiz" style="color: black;"><span class="titulo-quiz" style="color: #ed6b18">PARABÉNS!</span> VOCÊ ACERTOU TUDO</p>
+                                        <div>
+                                            <p class="texto-pergunta"> Sua pontuação foi de <span style="color: rgb(0, 182, 0);"><b>${pontuacaoFinal}</b></span> pontos</p><br>
+                                            <div class="div-button-2">
+                                                <button onclick="tentarNovamente()" class="button-quiz" style="width: 35%;" id="btnTentarNovamente">Tentar novamente</button>
+                                                <button onclick="irDashboard()" class="button-quiz" style="width: 35%;" id="btnTentarNovamente">Ir para Dashboard</button>
+                                            </div>
+                                        </div>`;
+        } else if (pontuacaoFinal > 5) {
+            dialog_mensagem.style.display = 'flex';
+            dialog_mensagem.innerHTML = `<p class="titulo-quiz" style="color: black;"><span class="titulo-quiz" style="color: #ed6b18">Muito bom!</span> você quase acertou tudo</p>
+                                        <div>
+                                            <p class="texto-pergunta"> Sua pontuação foi de <span style="color: rgb(0, 182, 0);"><b>${pontuacaoFinal}</b></span> pontos</p><br>
+                                            <div class="div-button-2">
+                                                <button onclick="tentarNovamente()" class="button-quiz" style="width: 35%;" id="btnTentarNovamente">Tentar novamente</button>
+                                                <button onclick="irDashboard()" class="button-quiz" style="width: 35%;" id="btnTentarNovamente">Ir para Dashboard</button>
+                                            </div>
+                                        </div>`;
+        } else {
+            dialog_mensagem.style.display = 'flex';
+            dialog_mensagem.innerHTML = `<p class="titulo-quiz" style="color: black;"><span class="titulo-quiz" style="color: #ed6b18">Não foi dessa vez!</span> Quem sabe na próxima </p>
+                                        <div>
+                                            <p class="texto-pergunta"> Sua pontuação foi de <span style="color: rgb(223, 15, 15);"><b>${pontuacaoFinal}</b></span> pontos</p><br>
+                                            <div class="div-button-2">
+                                                <button onclick="tentarNovamente()" class="button-quiz" style="width: 35%;" id="btnTentarNovamente">Tentar novamente</button>
+                                                <button onclick="irDashboard()" class="button-quiz" style="width: 35%;" id="btnTentarNovamente">Ir para Dashboard</button>
+                                            </div>
+                                        </div>`;
+        }
         
         fetch("/quiz/resultadoSalvar", {
             method: "POST",
@@ -420,5 +431,9 @@
         .catch(function (resposta) {
             console.error(`#ERRO: ${resposta}`);
         });
+    }
+
+    function irDashboard() {
+        window.location ='dashboard.html';
     }
 </script>
