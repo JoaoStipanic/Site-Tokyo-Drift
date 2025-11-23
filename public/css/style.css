@@ -11,9 +11,11 @@ body {
 
 .cabecalho {
     width: 100%;
+    height: fit-content;
+    display: flex;
 }
 
-.cabecalho .img-cabecalho {
+.img-cabecalho {
     width: 100%;
     height: 100%;
 }
@@ -22,14 +24,31 @@ body {
     display: flex;
     align-items: center;
     justify-content: center;
+
+    /*
     background-image: url(../assets/imgs/fundo-header.jpg);
     background-position: center center;
-    background-size: cover;
-    position: sticky; /*fixar na tela*/
+    background-size: cover; */
+    position: sticky; /* fixar na tela */
     top: 0px;
-    z-index: 999; /*Ultima camada*/
+    z-index: 999; /* Ultima camada */
     font-weight: bolder;
     border-bottom: 1px #ffffff solid;
+    width: 100%;
+    height: fit-content;
+    padding: 0px;
+    margin: 0px;
+    flex-direction: column;
+}
+
+.header-texto {
+    display: flex;
+    background-color: transparent;
+    border: 0px;
+    box-shadow: 0 0 0px;
+    height: 100%;
+    width: 100%;
+    justify-content: center;
 }
 
 .header a {

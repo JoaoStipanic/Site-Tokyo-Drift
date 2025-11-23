@@ -37,7 +37,7 @@ dialog {
 }
 
 .container {
-  width: 77%;
+  width: 86%;
   display: flex;
   flex-direction: column;
   justify-content: center;
@@ -59,8 +59,22 @@ dialog {
 }
 
 .card-dash {
-  width: 40%;
-  height: auto;
+  width: 60%;
+  height: fit-content;
+  background-color: rgb(255, 255, 255);
+  border: solid #ed6b18 2px;
+  border-radius: 20px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
+  padding: 20px;
+  justify-content: center;
+  justify-items: center;
+  align-items: center;
+  align-content: center;
+}
+
+.card-dash-img {
+  width: 26%;
+  height: fit-content;
   background-color: rgb(255, 255, 255);
   border: solid #ed6b18 2px;
   border-radius: 20px;
@@ -73,8 +87,9 @@ dialog {
 }
 
 .container-filho {
+  padding: 0px 80px;
   display: flex;
-  justify-content: space-evenly;
+  justify-content: space-between;
   margin-bottom: 20px;
 }
 
@@ -87,4 +102,10 @@ dialog {
   font-size: 24px;
   margin: 0px;
   font-weight: bold;
+}
+
+.img-dash {
+  width: 100%;
+  border-radius: 20px;
+  border: solid 1px #ed6b18;
 }

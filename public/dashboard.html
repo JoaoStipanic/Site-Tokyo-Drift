@@ -14,13 +14,16 @@
     <div class="cabecalho">
         <img class="img-cabecalho" src="assets/imgs/cabecalho.jpg" alt="Capa do Velozes e Furiosos - Desafio em Tokyo">
     </div>
-    <header class="header">
-        <p><a href="dashboard.html">Home</a></p>
-        <p><a href="personagens.html">Personagens</a></p>
-        <p><a href="sobre.html">Sobre mim</a></p>
-        <p><a href="quiz.html">Quiz</a></p>
-        <p><a href="login.html">Login</a></p>
-    </header>
+    <div class="header">
+        <img class="img-cabecalho" src="assets/imgs/fundo-header.jpg" alt="Capa do Velozes e Furiosos - Desafio em Tokyo">
+        <dialog class="header-texto">
+            <p><a href="index.html">Home</a></p>
+            <p><a href="personagens.html">Personagens</a></p>
+            <p><a href="sobre.html">Sobre mim</a></p>
+            <p><a href="quiz.html">Quiz</a></p>
+            <p><a href="login.html">Login</a></p>
+        </dialog>
+    </div>
 
     <div class="conteudo">
         <div class="navbar">
@@ -52,9 +55,17 @@
                     <p class="titulo">Pontuação de cada tentativa:</p>
                     <canvas id="linha"></canvas>
                 </div>
+                <div class="card-dash-img">
+                    <img class="img-dash" src="assets/imgs/vf3.jpg" alt="fedkfkefkef">
+                </div>
+            </div>
+            <div class="container-filho">
+                <div class="card-dash-img">
+                    <img class="img-dash" src="assets/imgs/vf4.jpg" alt="dawdawdawdawd">
+                </div>
                 <div class="card-dash">
                     <p class="titulo">Porcentagem total de acertos:</p>
-                    <canvas id="pizza"></canvas>
+                    <canvas id="pizza" height="50px"></canvas>
                 </div>
             </div>
         </div>
@@ -276,7 +287,10 @@
 
         const config = {
             type: 'pie',
-            data: dados
+            data: dados,
+            options: {
+                maintainAspectRatio: true
+            }
         };
 
 
@@ -314,7 +328,7 @@
     }
 
     function plotarNome(respostaNome) {
-        nome_usuario.innerHTML = respostaNome[0].nomeCompleto
+        nome_usuario.innerHTML = respostaNome[0].nomeCompleto;
     }
 
 </script>
