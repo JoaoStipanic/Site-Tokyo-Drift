@@ -17,9 +17,6 @@
     <div class="header">
         <img class="img-cabecalho" src="assets/imgs/fundo-header.jpg" alt="Capa do Velozes e Furiosos - Desafio em Tokyo">
         <dialog class="header-texto">
-            <p><a href="index.html">Home</a></p>
-            <p><a href="personagens.html">Personagens</a></p>
-            <p><a href="sobre.html">Sobre mim</a></p>
             <p><a href="quiz.html">Quiz</a></p>
             <p><a href="dashboard.html" class="agora">Dashboard</a></p>
         </dialog>
@@ -29,7 +26,7 @@
         <div class="navbar">
             <dialog id="dialog_mensagem"></dialog>
             <div class="menu-navbar">
-                <p class="titulo-nav">Olá, <span id="nome_usuario" style="color: #ed6b18">XXX</span>! <br>
+                <p class="titulo-nav">Olá, <span id="nome_usuario" style="color: #ed6b18"></span>! <br>
                 Aqui estão seus resultados!</p>
                 <button class="button" onclick="irQuiz()">Fazer Quiz</button>
                 <button class="button" onclick="limparSessao()">Sair</button>
@@ -275,7 +272,7 @@
                 label: 'My First Dataset',
                 data: [porcentagemErro, porcentagemAcerto],
                 backgroundColor: [
-                    'rgb(201, 171, 0)',
+                    'rgb(255, 226, 10)',
                     'rgb(237, 107, 24)'
                 ],
                 hoverbackgroundColor: [

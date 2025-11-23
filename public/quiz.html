@@ -18,15 +18,12 @@
     <div class="header">
         <img class="img-cabecalho" src="assets/imgs/fundo-header.jpg" alt="Capa do Velozes e Furiosos - Desafio em Tokyo">
         <dialog class="header-texto">
-            <p><a href="index.html">Home</a></p>
-            <p><a href="personagens.html">Personagens</a></p>
-            <p><a href="sobre.html">Sobre mim</a></p>
             <p><a href="quiz.html" class="agora">Quiz</a></p>
             <p><a href="dashboard.html">Dashboard</a></p>
         </dialog>
     </div>
     <div class="conteudo-1">
-        <h2>Teste seu conhecimento sobre o filme Velozes e Furiosos: Desafio em Tóquio</h2>
+        <p class="titulo-quiz">Teste seu conhecimento sobre o filme <span class="titulo-quiz" style="color: #ffe20a">Velozes e Furiosos: Desafio em Tóquio</span></p>
         <div class="container-quiz">
             <!-- <div id="pontuacao">
                 <div id="pontuacaoDuranteJogo" class="card-pontuacao">
@@ -35,33 +32,30 @@
                 </div>
             </div> -->
             <div id="jogo" class="card-pergunta">
-                <div id="infoQuestao" style="padding: 15px 0px;">
+                <div id="infoQuestao" style="margin-bottom: 15px;">
                     <span>Questão <span id="spanNumeroDaQuestaoAtual"></span> de <span id="qtdQuestoes"></span></span>
                 </div>
-                <div id="perguntaDaQuestaoAtual">
-                    <span id="spanQuestaoExibida" class="text-bold"></span>
-                </div>
+                <span id="spanQuestaoExibida" class="texto-pergunta"></span>
                 <span id="span_img"></span>
                 <br>
-                <div id="infoAlternativas">
-                    <span>Escolha uma opção dentre as abaixo:</span>
-                </div>
+                <span class="texto-pergunta">Escolha das opções abaixo:</span>
+
                 <div id="opcoes" class="flex-colunar padding-8">
-                    <span>
+                    <span class="span-alternativa">
                         <input type="radio" id="primeiraOpcao" name="option" class="radio" value="alternativaA" />
-                        <label for="primeiraOpcao" class="option" id="labelOpcaoUm"></label>
+                        <label for="primeiraOpcao" class="alternativa" id="labelOpcaoUm"></label>
                     </span>
-                    <span>
+                    <span class="span-alternativa">
                         <input type="radio" id="segundaOpcao" name="option" class="radio" value="alternativaB" />
-                        <label for="segundaOpcao" class="option" id="labelOpcaoDois"></label>
+                        <label for="segundaOpcao" class="alternativa" id="labelOpcaoDois"></label>
                     </span>
-                    <span>
+                    <span class="span-alternativa">
                         <input type="radio" id="terceiraOpcao" name="option" class="radio" value="alternativaC" />
-                        <label for="terceiraOpcao" class="option" id="labelOpcaoTres"></label>
+                        <label for="terceiraOpcao" class="alternativa" id="labelOpcaoTres"></label>
                     </span>
-                    <span>
+                    <span class="span-alternativa">
                         <input type="radio" id="quartaOpcao" name="option" class="radio" value="alternativaD" />
-                        <label for="quartaOpcao" class="option" id="labelOpcaoQuatro"></label>
+                        <label for="quartaOpcao" class="alternativa" id="labelOpcaoQuatro"></label>
                     </span>
                 </div>
                 <div id="botoes" class="div-button">
@@ -69,7 +63,6 @@
                     <button onclick="avancar()" class="button-quiz" id="btnProx" disabled>Avançar</button>
                 </div>
                 <div class="div-button-2">
-                    <button onclick="irDashboard()" class="button-quiz" style="width: 35%;" id="btnConcluir" disabled>ir para Dashboard</button>
                     <button onclick="tentarNovamente()" class="button-quiz" style="width: 35%;" id="btnTentarNovamente" disabled>Tentar novamente</button>
                 </div>
             </div>
@@ -204,8 +197,25 @@
     let quantidadeDeQuestoes = listaDeQuestoes.length
     let isUltima = numeroDaQuestaoAtual == quantidadeDeQuestoes-1 ? true : false
 
+    // function onloadEsconder() {
+    //     document.getElementById('pontuacao').style.display = "none"
+    //     document.getElementById('jogo').style.display = "none"
+    //     document.getElementById('pontuacao1').style.display = "none"
+    //     btnConcluir.style.display = "none"
+    // }
+
+    function estiloImg() {
+        span_img.style = `align-self: center;
+                        justify-self: center;
+                        border: 2px solid #ed6b18;
+                        border-radius: 5px;`
+    }
+
     function iniciarQuiz() {
+        // document.getElementById('pontuacao').style.display = "flex"
         document.getElementById('jogo').style.display = "block"
+        // document.getElementById('pontuacao1').style.display = "flex"
+        // document.getElementById('btnIniciarQuiz').style.display = "none"
 
         document.getElementById('qtdQuestoes').innerHTML = quantidadeDeQuestoes
 
@@ -214,7 +224,7 @@
         btnSubmeter.disabled = false
         btnProx.disabled = true
         btnProx.style.background = 'linear-gradient(90deg, #6e6e6e, #a5a5a5, #cccccc'
-        btnProx.style.border = 'solid 2px #000000'
+        btnProx.style.border = 'solid 2px #6e6e6e'
         btnTentarNovamente.disabled = false
     }
 
@@ -232,13 +242,17 @@
         document.getElementById("labelOpcaoQuatro").innerHTML = questaoAtual.alternativaD;
 
         if (index == 4) {
-            span_img.innerHTML = `<img src="assets/imgs/dkcar.jpg" alt="Foto do carro Nissan 350Z" style="width: 90%; align-self: center; justify-self: center;">`;
+            span_img.innerHTML = `<img src="assets/imgs/dkcar.jpg" width="100%" alt="Foto do carro Nissan 350Z">`;
+            estiloImg();
 
         } else if (index == 9) {
-            span_img.innerHTML = `<img src="assets/imgs/rua-japao.jpg" alt="Foto de uma rua de Tóquio" style="width: 90%; align-self: center; justify-self: center;">`;
+            span_img.innerHTML = `<img src="assets/imgs/rua-japao.jpg" width="100%" alt="Foto de uma rua de Tóquio">`;
+            estiloImg();
             
         } else {
             span_img.innerHTML = '';
+            span_img.style.display = 'none'
+            span_img.style.margin = '10px'
         }
     }
 
@@ -258,11 +272,11 @@
         } else {
             btnSubmeter.disabled = true
             btnSubmeter.style.background = 'linear-gradient(90deg, #6e6e6e, #a5a5a5, #cccccc'
-            btnSubmeter.style.border = 'solid 2px #000000'
+            btnSubmeter.style.border = 'solid 2px #6e6e6e'
             
             btnProx.disabled = false
-            btnProx.style.background = 'linear-gradient(90deg, #bb4c07, #FF8C00, #c9ab00)'
-            btnProx.style.border = 'solid 2px #bb4c07'
+            btnProx.style.background = 'linear-gradient(90deg, #ed6b18, #FF8C00, #c9ab00)'
+            btnProx.style.border = 'solid 2px #ed6b18'
 
             habilitarAlternativas(false)
 
@@ -283,11 +297,11 @@
     function avancar() {
         btnProx.disabled = true
         btnProx.style.background = 'linear-gradient(90deg, #6e6e6e, #a5a5a5, #cccccc'
-        btnProx.style.border = 'solid 2px #000000'
+        btnProx.style.border = 'solid 2px #6e6e6e'
 
         btnSubmeter.disabled = false
-        btnSubmeter.style.background = 'linear-gradient(90deg, #bb4c07, #FF8C00, #c9ab00)'
-        btnSubmeter.style.border = 'solid 2px #bb4c07'
+        btnSubmeter.style.background = 'linear-gradient(90deg, #ed6b18, #FF8C00, #c9ab00)'
+        btnSubmeter.style.border = 'solid 2px #ed6b18'
 
         desmarcarRadioButtons()
 
@@ -325,7 +339,7 @@
                 document.getElementById(alternativaCorreta).classList.add("text-success-with-bg")
                 pontuacaoFinal++
                 certas++
-                document.getElementById("spanCertas").innerHTML = certas
+                // document.getElementById("spanCertas").innerHTML = certas
                 numeroDaQuestaoAtual++
             } else if (option.checked && option.value !== respostaQuestaoAtual) {
                 const wrongLabelId = option.labels[0].id
@@ -334,7 +348,7 @@
                 document.getElementById(alternativaCorreta).classList.add("text-success-with-bg")
                 tentativaIncorreta++
                 erradas++
-                document.getElementById("spanErradas").innerHTML = erradas
+                // document.getElementById("spanErradas").innerHTML = erradas
                 numeroDaQuestaoAtual++
             }
         })
@@ -384,11 +398,11 @@
 
         btnProx.disabled = true
         btnProx.style.background = 'linear-gradient(90deg, #6e6e6e, #a5a5a5, #cccccc'
-        btnProx.style.border = 'solid 2px #000000'
+        btnProx.style.border = 'solid 2px #6e6e6e'
 
         btnSubmeter.disabled = true
         btnSubmeter.style.background = 'linear-gradient(90deg, #6e6e6e, #a5a5a5, #cccccc'
-        btnSubmeter.style.border = 'solid 2px #000000'
+        btnSubmeter.style.border = 'solid 2px #6e6e6e'
         btnConcluir.style.display = "block"
         btnTentarNovamente.disabled = false
         
@@ -415,9 +429,5 @@
         .catch(function (resposta) {
             console.error(`#ERRO: ${resposta}`);
         });
-    }
-
-    function irDashboard() {
-        window.location = "dashboard.html"
     }
 </script>

@@ -1,43 +1,53 @@
-.conteudo {
-    background-color: gray;
-    /* margin */
-}
-
 .container-quiz {
     display: flex;
     justify-content: space-evenly;
-    padding: 30px 0px;
+    padding: 20px 0px;
 }
 
-h2 {
+.titulo-quiz {
+    /* display: flex; */
     justify-self: center;
-    color: #ffe20a;
-}
-
-.pontos {
+    align-self: center;
     color: #ffffff;
-    font-size: 18px;
+    font-size: 28px;
+    font-weight: bold;
+    margin-bottom: 20px;
 }
 
 .card-pergunta {
     background-color: white;
     border-radius: 10px;
-    padding: 30px;
-    width: 50%;
+    padding: 25px 30px;
+    width: fit-content;
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
+    border: #ed6b18 2px solid;
+}
+
+.texto-pergunta {
+    margin-bottom: 15px;
+    font-size: 20px;
 }
 
 .button-quiz {
     width: 45%;
     height: 45px;
-    background: linear-gradient(90deg, #bb4c07, #FF8C00, #c9ab00);
+    background: linear-gradient(90deg, #ed6b18, #FF8C00, #ffe20a);
     border-radius: 10px;
-    border: solid 2px #bb4c07;
+    border: solid 2px #ed6b18;
     color: #ffffff;
     font-size: 22px;
     cursor: pointer;
     font-size: medium;
     font-family: Arial, Helvetica, sans-serif;
+    overflow: hidden;
+}
+
+.button-quiz::before {
+    transition: 0.4s;
+}
+
+.button-quiz::before {
+    left: 100%;
 }
 
 .div-button {
@@ -62,14 +72,13 @@ button {
 }
 
 #infoQuestao {
-    color: rgb(141, 141, 141)
+    color: #6e6e6e;
 }
 
 .flex-colunar {
     display: flex;
     flex-direction: column;
     padding: 20px;
-    font-size: 1;
 }
 
 .text-success-with-bg {
@@ -91,4 +100,37 @@ button {
     display: flex;
     justify-content: center;
     align-items: center;
+    margin: 10px 0px;
+    width: 80%;
+}
+
+.span-alternativa {
+    display: flex;
+    width: fit-content;
+    margin-bottom: 10px;
+    cursor: pointer;
+}
+
+.alternativa {
+    margin-left: 5px;
+    align-self: center;
+    cursor: pointer;
+}
+
+.radio {
+    appearance: none;
+    margin: 0px;
+    cursor: pointer;
+    height: 25px;
+    width: 25px;
+    margin-right: 10px;
+    transition: 0.2s;
+    border-radius: 50%;
+    border: 2px solid #ed6b18;
+}
+
+.radio:checked, .radio:hover{
+    outline: none;
+    transition: 0.2s;
+    border: 6px solid #ffe20a;
 }
