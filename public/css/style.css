@@ -24,11 +24,6 @@ body {
     display: flex;
     align-items: center;
     justify-content: center;
-
-    /*
-    background-image: url(../assets/imgs/fundo-header.jpg);
-    background-position: center center;
-    background-size: cover; */
     position: sticky; /* fixar na tela */
     top: 0px;
     z-index: 999; /* Ultima camada */
@@ -49,6 +44,8 @@ body {
     height: 100%;
     width: 100%;
     justify-content: center;
+    margin: 0px;
+    padding: 0px;
 }
 
 .header a {

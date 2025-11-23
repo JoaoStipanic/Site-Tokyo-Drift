@@ -10,7 +10,7 @@
     <script src="js/sessao.js"></script>
     <title>Dashboard</title>
 </head>
-<body onload="iniciar()">
+<body onload="iniciar()" onload="validarSessao()">
     <div class="cabecalho">
         <img class="img-cabecalho" src="assets/imgs/cabecalho.jpg" alt="Capa do Velozes e Furiosos - Desafio em Tokyo">
     </div>
@@ -21,22 +21,19 @@
             <p><a href="personagens.html">Personagens</a></p>
             <p><a href="sobre.html">Sobre mim</a></p>
             <p><a href="quiz.html">Quiz</a></p>
-            <p><a href="login.html">Login</a></p>
+            <p><a href="dashboard.html" class="agora">Dashboard</a></p>
         </dialog>
     </div>
 
     <div class="conteudo">
         <div class="navbar">
             <dialog id="dialog_mensagem"></dialog>
-            <div class="hello">
+            <div class="menu-navbar">
                 <p class="titulo-nav">Olá, <span id="nome_usuario" style="color: #ed6b18">XXX</span>! <br>
-                Aqui estão seus resultado!</p>
+                Aqui estão seus resultados!</p>
+                <button class="button" onclick="irQuiz()">Fazer Quiz</button>
+                <button class="button" onclick="limparSessao()">Sair</button>
             </div>
-            <button class="button" onclick="irQuiz()">Fazer Quiz</button>
-            <div class="btn-nav">
-                <h3>Gráficos</h3>
-            </div>
-            <button class="button" onclick="limparSessao()">Sair</button>
         </div>
         <div class="container">
             <div class="container-filho">
@@ -65,7 +62,10 @@
                 </div>
                 <div class="card-dash">
                     <p class="titulo">Porcentagem total de acertos:</p>
-                    <canvas id="pizza" height="50px"></canvas>
+                    <span>
+                        <canvas id="pizza"></canvas>
+                    </span>
+
                 </div>
             </div>
         </div>
@@ -289,7 +289,7 @@
             type: 'pie',
             data: dados,
             options: {
-                maintainAspectRatio: true
+                maintainAspectRatio: false
             }
         };
 
