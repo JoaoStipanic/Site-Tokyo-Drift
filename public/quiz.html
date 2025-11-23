@@ -6,12 +6,12 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="css/style.css">
     <link rel="stylesheet" href="css/style-quiz.css">
+    <script src="js/sessao.js"></script>
     <link rel="shortcut icon" href="./assets/icon/roda.ico" type="image/x-icon">
     <title>Quiz</title>
 </head>
 
-
-<body onload="onloadEsconder()" onload="validarSessao()">
+<body onload="iniciarQuiz()">
     <div class="cabecalho">
         <img class="img-cabecalho" src="assets/imgs/cabecalho.jpg" alt="Capa do Velozes e Furiosos - Desafio em Tokyo">
     </div>
@@ -25,74 +25,65 @@
             <p><a href="dashboard.html">Dashboard</a></p>
         </dialog>
     </div>
-
-    
-    <div><button id="btnIniciarQuiz" class="button-quiz" onclick="iniciarQuiz()">INICIAR QUIZ</button></div>
-    <h2>Teste seu conhecimento sobre o filme Velozes e Furiosos: Desafio em Tóquio</h2>
-    <div class="container-quiz">
-    
-        <div id="pontuacao">
-            <div id="pontuacaoDuranteJogo" class="card-pontuacao">
-                <span class="pontos">Quantidade de acertos: <span id="spanCertas"></span></span><br>
-                <span class="pontos">Quantidade de erros: <span id="spanErradas"></span></span>
+    <div class="conteudo-1">
+        <h2>Teste seu conhecimento sobre o filme Velozes e Furiosos: Desafio em Tóquio</h2>
+        <div class="container-quiz">
+            <!-- <div id="pontuacao">
+                <div id="pontuacaoDuranteJogo" class="card-pontuacao">
+                    <span class="pontos">Quantidade de acertos: <span id="spanCertas"></span></span><br>
+                    <span class="pontos">Quantidade de erros: <span id="spanErradas"></span></span>
+                </div>
+            </div> -->
+            <div id="jogo" class="card-pergunta">
+                <div id="infoQuestao" style="padding: 15px 0px;">
+                    <span>Questão <span id="spanNumeroDaQuestaoAtual"></span> de <span id="qtdQuestoes"></span></span>
+                </div>
+                <div id="perguntaDaQuestaoAtual">
+                    <span id="spanQuestaoExibida" class="text-bold"></span>
+                </div>
+                <span id="span_img"></span>
+                <br>
+                <div id="infoAlternativas">
+                    <span>Escolha uma opção dentre as abaixo:</span>
+                </div>
+                <div id="opcoes" class="flex-colunar padding-8">
+                    <span>
+                        <input type="radio" id="primeiraOpcao" name="option" class="radio" value="alternativaA" />
+                        <label for="primeiraOpcao" class="option" id="labelOpcaoUm"></label>
+                    </span>
+                    <span>
+                        <input type="radio" id="segundaOpcao" name="option" class="radio" value="alternativaB" />
+                        <label for="segundaOpcao" class="option" id="labelOpcaoDois"></label>
+                    </span>
+                    <span>
+                        <input type="radio" id="terceiraOpcao" name="option" class="radio" value="alternativaC" />
+                        <label for="terceiraOpcao" class="option" id="labelOpcaoTres"></label>
+                    </span>
+                    <span>
+                        <input type="radio" id="quartaOpcao" name="option" class="radio" value="alternativaD" />
+                        <label for="quartaOpcao" class="option" id="labelOpcaoQuatro"></label>
+                    </span>
+                </div>
+                <div id="botoes" class="div-button">
+                    <button onclick="submeter()" class="button-quiz" id="btnSubmeter">Submeter</button>
+                    <button onclick="avancar()" class="button-quiz" id="btnProx" disabled>Avançar</button>
+                </div>
+                <div class="div-button-2">
+                    <button onclick="irDashboard()" class="button-quiz" style="width: 35%;" id="btnConcluir" disabled>ir para Dashboard</button>
+                    <button onclick="tentarNovamente()" class="button-quiz" style="width: 35%;" id="btnTentarNovamente" disabled>Tentar novamente</button>
+                </div>
             </div>
-        </div>
-
-        <div id="jogo" class="card-pergunta">
-
-            <div id="infoQuestao" style="padding: 15px 0px;">
-                <span>Questão <span id="spanNumeroDaQuestaoAtual"></span> de <span id="qtdQuestoes"></span></span>
-            </div>
-
-            
-            <div id="perguntaDaQuestaoAtual">
-                <span id="spanQuestaoExibida" class="text-bold"></span>
-            </div>
-            <span id="span_img"></span>
-            <br>
-            <div id="infoAlternativas">
-                <span>Escolha uma opção dentre as abaixo:</span>
-            </div>
-
-            <div id="opcoes" class="flex-colunar padding-8">
-                <span>
-                    <input type="radio" id="primeiraOpcao" name="option" class="radio" value="alternativaA" />
-                    <label for="primeiraOpcao" class="option" id="labelOpcaoUm"></label>
-                </span>
-                <span>
-                    <input type="radio" id="segundaOpcao" name="option" class="radio" value="alternativaB" />
-                    <label for="segundaOpcao" class="option" id="labelOpcaoDois"></label>
-                </span>
-                <span>
-                    <input type="radio" id="terceiraOpcao" name="option" class="radio" value="alternativaC" />
-                    <label for="terceiraOpcao" class="option" id="labelOpcaoTres"></label>
-                </span>
-                <span>
-                    <input type="radio" id="quartaOpcao" name="option" class="radio" value="alternativaD" />
-                    <label for="quartaOpcao" class="option" id="labelOpcaoQuatro"></label>
-                </span>
-            </div>
-
-            <div id="botoes" class="div-button">
-                <button onclick="submeter()" class="button-quiz" id="btnSubmeter">Submeter</button>
-                <button onclick="avancar()" class="button-quiz" id="btnProx" disabled>Avançar</button>
-            </div>
-            <div class="div-button-2">
-                <button onclick="irDashboard()" class="button-quiz" style="width: 35%;" id="btnConcluir" disabled>ir para Dashboard</button>
-                <button onclick="tentarNovamente()" class="button-quiz" style="width: 35%;" id="btnTentarNovamente" disabled>Tentar novamente</button>
-            </div>
-
-        </div>
-
-        <div id="pontuacao1">
-            <div id="pontuacaoFinalJogo" class="card-pontuacao">
-                <span id="pontuacaoFinal" class="pontos">Pontuação Final:
-                    <span id="spanPontuacaoFinal">***</span>
-                </span>
-                <span id="msgFinal" class="width-fit-content">***</span>
-            </div>
+            <!-- <div id="pontuacao1">
+                <div id="pontuacaoFinalJogo" class="card-pontuacao">
+                    <span id="pontuacaoFinal" class="pontos">Pontuação Final:
+                        <span id="spanPontuacaoFinal">***</span>
+                    </span>
+                    <span id="msgFinal" class="width-fit-content">***</span>
+                </div>
+            </div> -->
         </div>
     </div>
+    
 
     <footer>
         <p>João Vitor Stipanic Almeida © 2025</p>
@@ -213,18 +204,8 @@
     let quantidadeDeQuestoes = listaDeQuestoes.length
     let isUltima = numeroDaQuestaoAtual == quantidadeDeQuestoes-1 ? true : false
 
-    function onloadEsconder() {
-        document.getElementById('pontuacao').style.display = "none"
-        document.getElementById('jogo').style.display = "none"
-        document.getElementById('pontuacao1').style.display = "none"
-        btnConcluir.style.display = "none"
-    }
-
     function iniciarQuiz() {
-        document.getElementById('pontuacao').style.display = "flex"
         document.getElementById('jogo').style.display = "block"
-        document.getElementById('pontuacao1').style.display = "flex"
-        document.getElementById('btnIniciarQuiz').style.display = "none"
 
         document.getElementById('qtdQuestoes').innerHTML = quantidadeDeQuestoes
 

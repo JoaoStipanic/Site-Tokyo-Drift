@@ -7,6 +7,7 @@
 body {
     font-family: Arial, Helvetica, sans-serif;
     margin: 0px;
+    background-color: gray;
 }
 
 .cabecalho {
@@ -74,7 +75,7 @@ footer {
     display: flex;
     align-items: center;
     justify-content: center;
-    padding: 15px 0px;
+    padding: 10px 0px;
 }
 
 footer p {
@@ -139,6 +140,7 @@ footer p {
     padding: 30px;
     width: 40%;
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
+    background-color: #ffffff;
 }
 
 .centralizador {
@@ -166,7 +168,8 @@ footer p {
     align-items: center;
     border-bottom: 1px #ffffff solid;
     padding: 60px 0px;
-    background-color: #ffffff;
+    background-color: gray;
+    border: 0px;
 }
 
 .container-login {
@@ -295,4 +298,5 @@ dialog {
     box-shadow: 0 0 20px rgba(0, 0, 0, 0.5);
     font-size: 22px;
     justify-self: center;
+    text-align: center;
 }

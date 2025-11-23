@@ -1,14 +1,11 @@
-/* QUIZ */
-/* Não usar pure white or pure black: https://uxplanet.org/basicdesign-never-use-pure-black-in-typography-36138a3327a6 */
-/* The 4-point grid system: https://medium.com/@sainzkike/controlling-spacing-in-design-systems-multiple-spacing-9bf1afec87f */
-body {
-    background-color: rgb(180, 180, 180);
+.conteudo {
+    background-color: gray;
+    /* margin */
 }
 
 .container-quiz {
     display: flex;
     justify-content: space-evenly;
-    background-color: rgb(180, 180, 180);
     padding: 30px 0px;
 }
 
