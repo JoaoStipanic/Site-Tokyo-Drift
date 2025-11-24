@@ -107,7 +107,7 @@ footer p {
 }
 
 .texto-container-1 {
-    margin: 0px;
+    margin: 0px 0px 0px 10px;
     text-align: justify;
     font-size: 17px;
     color: #ffffff;
@@ -130,9 +130,8 @@ footer p {
     left: 50%; /* Posiciona no meio horizontalmente */
     transform: translate(-50%, -50%); /* Centraliza perfeitamente */
     color: #ffffff;
-    font-weight: bold;
     text-align: center;
-    font-size: 18px;
+    font-size: 20px;
 }
 
 /* PERSONAGENS */
