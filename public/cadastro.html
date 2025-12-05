@@ -249,8 +249,6 @@ function analisarSenha() {
 
 
 function cadastrar() {
-    //Recupere o valor da nova input pelo nome do id
-    // Agora vá para o método fetch logo abaixo
     var nomeVar = nome_input.value.trim();
     var sobrenomeVar = sobrenome_input.value.trim();
     var emailVar = email_input.value.trim();
@@ -258,7 +256,6 @@ function cadastrar() {
     var senhaVar = senha_input.value.trim();
     var confirmacaoSenhaVar = confirmacao_senha_input.value.trim();
 
-    // Verificando se há algum campo em branco
     if (
     nomeVar == "" ||
     sobrenomeVar == "" ||
@@ -293,15 +290,12 @@ function cadastrar() {
     setInterval(sumirMensagem, 2000);
     }
 
-    // Enviando o valor da nova input
     fetch("/usuarios/cadastrar", {
     method: "POST",
     headers: {
         "Content-Type": "application/json",
     },
     body: JSON.stringify({
-        // crie um atributo que recebe o valor recuperado aqui
-        // Agora vá para o arquivo routes/usuario.js
         nomeServer: nomeVar,
         sobrenomeServer: sobrenomeVar,
         emailServer: emailVar,

@@ -328,7 +328,6 @@
                 document.getElementById(alternativaCorreta).classList.add("certas")
                 pontuacaoFinal++
                 certas++
-                // document.getElementById("spanCertas").innerHTML = certas
                 numeroDaQuestaoAtual++
 
             } else if (option.checked && option.value !== respostaQuestaoAtual) {
@@ -338,7 +337,6 @@
                 document.getElementById(alternativaCorreta).classList.add("certas")
                 tentativaIncorreta++
                 erradas++
-                // document.getElementById("spanErradas").innerHTML = erradas
                 numeroDaQuestaoAtual++
             }
         })
